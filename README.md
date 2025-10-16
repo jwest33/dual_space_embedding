@@ -115,7 +115,7 @@ Retrieval Task
 **Key Findings:**
 - **Hierarchical concat** achieves **best performance**: Spearman 0.8828 (+1.8% vs baseline), MRR 0.6593 (+2.5% vs baseline)
 - **Hyperbolic combination** provides **strong middle ground**: Spearman 0.8780 (+1.2% vs baseline), MRR 0.6546 (+1.8% vs baseline)
-- **Dimensional efficiency**: Hyperbolic achieves 68% of concat's improvement using only 67% of the dimensions (768-dim vs 1152-dim)
+- **Dimensional efficiency**: Hyperbolic achieves 68% of concats improvement using only 67% of the dimensions (768-dim vs 1152-dim)
 - Both hierarchical methods substantially outperform single baseline model across all metrics
 
 ## CLI Commands

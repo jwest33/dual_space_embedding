@@ -138,6 +138,7 @@ Similarity Task
 ┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
 │ baseline     │ sts-b   │ 0.8672   │ 0.0000     │ 0.8696  │ 0.0000    │ 1.8158 │
 │ hierarchical │ sts-b   │ 0.8828   │ 0.0000     │ 0.8832  │ 0.0000    │ 1.8171 │
+│ hyperbolic   │ sts-b   │ 0.8780   │ 0.0000     │ 0.8790  │ 0.0000    │ 1.8165 │
 └──────────────┴─────────┴──────────┴────────────┴─────────┴───────────┴────────┘
 
 Retrieval Task
@@ -146,13 +147,15 @@ Retrieval Task
 ┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━┩
 │ baseline     │ sts-b   │ 0.6432 │ 1500.0000   │ 0.5767   │ 0.5767      │ 0.7140   │
 │ hierarchical │ sts-b   │ 0.6593 │ 1500.0000   │ 0.5953   │ 0.5953      │ 0.7327   │
+│ hyperbolic   │ sts-b   │ 0.6546 │ 1500.0000   │ 0.5873   │ 0.5873      │ 0.7233   │
 └──────────────┴─────────┴────────┴─────────────┴──────────┴─────────────┴──────────┘
 ```
 
 **Key Findings:**
-- Hierarchical model improves Spearman correlation by **1.8%** (0.8672 → 0.8828)
-- Mean Reciprocal Rank (MRR) increases by **2.5%** (0.6432 → 0.6593)
-- Recall@5 improves from 71.4% to 73.3%
+- **Hierarchical concat** achieves **best performance**: Spearman 0.8828 (+1.8% vs baseline), MRR 0.6593 (+2.5% vs baseline)
+- **Hyperbolic combination** provides **strong middle ground**: Spearman 0.8780 (+1.2% vs baseline), MRR 0.6546 (+1.8% vs baseline)
+- **Dimensional efficiency**: Hyperbolic achieves 68% of concats improvement using only 67% of the dimensions (768-dim vs 1152-dim)
+- Both hierarchical methods substantially outperform single baseline model across all metrics
 
 ## CLI Commands
 
