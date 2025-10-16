@@ -59,7 +59,7 @@ def check_imports():
         sys.path.insert(0, str(Path(__file__).parent / "src"))
         
         from embeddings import SingleEmbedder, HierarchicalEmbedder
-        from datasets import get_benchmark_dataset, load_custom_dataset
+        from data_loaders import get_benchmark_dataset, load_custom_dataset
         from evaluation import (
             SimilarityEvaluator,
             RetrievalEvaluator,

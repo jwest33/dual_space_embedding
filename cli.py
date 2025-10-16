@@ -227,32 +227,45 @@ def _display_config(config: ExperimentConfig):
 
 def _display_results(metrics_tracker):
     """Display results summary in a nice format."""
+    import pandas as pd
     summary = metrics_tracker.get_summary()
-    
+
     if summary.empty:
         return
-    
+
     console.print("\n[bold]Results Summary:[/bold]\n")
-    
+
     # Group by task and show key metrics
     for task in summary["task"].unique():
         task_results = summary[summary["task"] == task]
-        
+
         table = Table(title=f"{task.capitalize()} Task")
         table.add_column("Model", style="cyan")
         table.add_column("Dataset", style="white")
-        
-        # Add metric columns dynamically
-        metric_cols = [col for col in task_results.columns 
-                      if col not in ["model", "dataset", "task", "metadata"]]
-        for col in metric_cols[:5]:  # Show top 5 metrics
+
+        # Add metric columns dynamically, filtering out columns that are all NaN for this task
+        all_metric_cols = [col for col in task_results.columns
+                          if col not in ["model", "dataset", "task", "metadata"]]
+
+        # Filter to only columns that have at least one non-NaN value
+        metric_cols = [col for col in all_metric_cols
+                      if not task_results[col].isna().all()]
+
+        # Show top 5 non-NaN metrics
+        for col in metric_cols[:5]:
             table.add_column(col, style="green")
-        
+
         for _, row in task_results.iterrows():
             values = [row["model"], row["dataset"]]
-            values.extend([f"{row[col]:.4f}" for col in metric_cols[:5]])
+            # Format values, handling NaN gracefully
+            for col in metric_cols[:5]:
+                val = row[col]
+                if pd.isna(val):
+                    values.append("--")
+                else:
+                    values.append(f"{val:.4f}")
             table.add_row(*values)
-        
+
         console.print(table)
         console.print()
 

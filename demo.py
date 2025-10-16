@@ -6,8 +6,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from embeddings import SingleEmbedder, HierarchicalEmbedder
-from datasets import DatasetSample, get_benchmark_dataset
-from datasets.base import BaseDataset
+from data_loaders import DatasetSample, get_benchmark_dataset
+from data_loaders.base import BaseDataset
 from evaluation import SimilarityEvaluator
 from loguru import logger
 

@@ -7,7 +7,7 @@ from loguru import logger
 import mlflow
 
 from embeddings import SingleEmbedder, HierarchicalEmbedder
-from datasets import get_benchmark_dataset, load_custom_dataset
+from data_loaders import get_benchmark_dataset, load_custom_dataset
 from evaluation import (
     SimilarityEvaluator,
     RetrievalEvaluator,
@@ -146,8 +146,10 @@ class ExperimentRunner:
                 # Log to MLflow
                 if self.config.mlflow_tracking:
                     for metric_name, metric_value in metrics.items():
+                        # Sanitize metric name for MLflow (replace @ with _at_)
+                        sanitized_name = metric_name.replace("@", "_at_")
                         mlflow.log_metric(
-                            f"{dataset_config.name}_{task}_{metric_name}",
+                            f"{dataset_config.name}_{task}_{sanitized_name}",
                             metric_value
                         )
                 

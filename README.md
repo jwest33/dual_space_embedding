@@ -89,6 +89,31 @@ Results are saved to the `results/` directory:
 - `comparison_*.csv`: Metric comparison tables
 - `report.txt`: Human-readable summary
 
+**Example Results** (STS-B validation set, 1500 samples):
+
+```
+Similarity Task
+┏━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
+┃ Model        ┃ Dataset ┃ spearman ┃ spearman_p ┃ pearson ┃ pearson_p ┃ mae    ┃
+┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
+│ baseline     │ sts-b   │ 0.8672   │ 0.0000     │ 0.8696  │ 0.0000    │ 1.8158 │
+│ hierarchical │ sts-b   │ 0.8828   │ 0.0000     │ 0.8832  │ 0.0000    │ 1.8171 │
+└──────────────┴─────────┴──────────┴────────────┴─────────┴───────────┴────────┘
+
+Retrieval Task
+┏━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━┓
+┃ Model        ┃ Dataset ┃ mrr    ┃ num_queries ┃ recall@1 ┃ precision@1 ┃ recall@5 ┃
+┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━┩
+│ baseline     │ sts-b   │ 0.6432 │ 1500.0000   │ 0.5767   │ 0.5767      │ 0.7140   │
+│ hierarchical │ sts-b   │ 0.6593 │ 1500.0000   │ 0.5953   │ 0.5953      │ 0.7327   │
+└──────────────┴─────────┴────────┴─────────────┴──────────┴─────────────┴──────────┘
+```
+
+**Key Findings:**
+- Hierarchical model improves Spearman correlation by **1.8%** (0.8672 → 0.8828)
+- Mean Reciprocal Rank (MRR) increases by **2.5%** (0.6432 → 0.6593)
+- Recall@5 improves from 71.4% to 73.3%
+
 ## CLI Commands
 
 ### Run Experiments

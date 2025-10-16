@@ -1,12 +1,9 @@
-./ARCHITECTURE.md
 ./CHANGELOG.md
 ./GETTING_STARTED.md
 ./LICENSE
 ./Makefile
 ./PROJECT_STRUCTURE.txt
-./PROJECT_SUMMARY.md
 ./README.md
-./START_HERE.md
 ./cli.py
 ./config/experiments/custom_dataset_example.yaml
 ./config/experiments/example_experiment.yaml

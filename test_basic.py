@@ -8,7 +8,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from embeddings import SingleEmbedder, HierarchicalEmbedder
-from datasets import DatasetSample, CustomDataset
+from data_loaders import DatasetSample, CustomDataset
 from evaluation import SimilarityEvaluator
 from utils import ModelConfig, DatasetConfig, ExperimentConfig
 
@@ -145,7 +145,7 @@ class TestEvaluation:
     def test_similarity_evaluator(self):
         """Test similarity evaluator with mock data."""
         # Create mock dataset
-        from datasets.base import BaseDataset
+        from data_loaders.base import BaseDataset
         
         class MockDataset(BaseDataset):
             def __init__(self):
@@ -177,9 +177,9 @@ class TestIntegration:
         """Test end-to-end with single model."""
         # Create model
         embedder = SingleEmbedder("all-MiniLM-L6-v2")
-        
+
         # Create simple dataset
-        from datasets.base import BaseDataset
+        from data_loaders.base import BaseDataset
         
         class SimpleDataset(BaseDataset):
             def __init__(self):

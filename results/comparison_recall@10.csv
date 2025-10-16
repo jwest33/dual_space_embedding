@@ -1,0 +1,2 @@
+dataset,task,baseline,hierarchical
+sts-b,retrieval,0.7573333333333333,0.7766666666666666

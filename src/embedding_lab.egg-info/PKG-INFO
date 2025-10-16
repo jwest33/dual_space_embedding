@@ -83,7 +83,7 @@ pip install -e .
 ### 1. Initialize a Configuration
 
 ```bash
-python cli.py init config/experiments/my_experiment.yaml
+python cli.py init config/experiments/example_experiment.yaml
 ```
 
 ### 2. Edit Configuration
@@ -91,7 +91,7 @@ python cli.py init config/experiments/my_experiment.yaml
 Edit the generated YAML file to specify models, datasets, and tasks:
 
 ```yaml
-name: my_experiment
+name: example_experiment
 description: Testing hierarchical embeddings
 
 models:
@@ -118,7 +118,7 @@ tasks:
 ### 3. Run Experiment
 
 ```bash
-python cli.py run config/experiments/my_experiment.yaml
+python cli.py run config/experiments/example_experiment.yaml
 ```
 
 ### 4. View Results
@@ -396,7 +396,7 @@ from experiments import ExperimentRunner
 from utils import load_config
 
 # Load configuration
-config = load_config("config/experiments/my_experiment.yaml")
+config = load_config("config/experiments/example_experiment.yaml")
 
 # Run experiment
 runner = ExperimentRunner(config)

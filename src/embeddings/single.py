@@ -4,7 +4,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from loguru import logger
 
-from ..datasets.base import BaseEmbedder
+from .base import BaseEmbedder
 
 
 class SingleEmbedder(BaseEmbedder):

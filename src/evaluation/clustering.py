@@ -12,7 +12,7 @@ from sklearn.metrics import (
 from loguru import logger
 
 from embeddings.base import BaseEmbedder
-from datasets.base import BaseDataset
+from data_loaders.base import BaseDataset
 
 
 class ClusteringEvaluator:

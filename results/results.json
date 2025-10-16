@@ -1,0 +1,128 @@
+[
+  {
+    "model": "baseline",
+    "dataset": "sts-b",
+    "task": "similarity",
+    "spearman": 0.8671631190200252,
+    "spearman_p": 0.0,
+    "pearson": 0.8696194568541531,
+    "pearson_p": 0.0,
+    "mae": 1.8157932505555219,
+    "rmse": 2.196772200738299,
+    "num_samples": 1500,
+    "pred_std": 0.27536842226982117,
+    "metadata": {
+      "model_info": {
+        "type": "single",
+        "model_name": "all-MiniLM-L6-v2",
+        "embedding_dim": 384,
+        "normalize": true,
+        "max_seq_length": 256
+      },
+      "dataset_info": {
+        "name": "sts-b-validation",
+        "size": 1500,
+        "has_pairs": true,
+        "has_labels": true
+      }
+    }
+  },
+  {
+    "model": "baseline",
+    "dataset": "sts-b",
+    "task": "retrieval",
+    "mrr": 0.6432494150288071,
+    "num_queries": 1500,
+    "recall@1": 0.5766666666666667,
+    "precision@1": 0.5766666666666667,
+    "recall@5": 0.714,
+    "precision@5": 0.14279999999999998,
+    "recall@10": 0.7573333333333333,
+    "precision@10": 0.07573333333333333,
+    "recall@20": 0.808,
+    "precision@20": 0.0404,
+    "metadata": {
+      "model_info": {
+        "type": "single",
+        "model_name": "all-MiniLM-L6-v2",
+        "embedding_dim": 384,
+        "normalize": true,
+        "max_seq_length": 256
+      },
+      "dataset_info": {
+        "name": "sts-b-validation",
+        "size": 1500,
+        "has_pairs": true,
+        "has_labels": true
+      }
+    }
+  },
+  {
+    "model": "hierarchical",
+    "dataset": "sts-b",
+    "task": "similarity",
+    "spearman": 0.88277081483057,
+    "spearman_p": 0.0,
+    "pearson": 0.8832430344038725,
+    "pearson_p": 0.0,
+    "mae": 1.8171010847938402,
+    "rmse": 2.196661389167046,
+    "num_samples": 1500,
+    "pred_std": 0.273069828748703,
+    "metadata": {
+      "model_info": {
+        "type": "hierarchical",
+        "coarse_model": "all-MiniLM-L6-v2",
+        "fine_model": "all-mpnet-base-v2",
+        "coarse_dim": 384,
+        "fine_dim": 768,
+        "combined_dim": 1152,
+        "normalize": true,
+        "combination_method": "concat",
+        "coarse_weight": 0.5,
+        "fine_weight": 0.5
+      },
+      "dataset_info": {
+        "name": "sts-b-validation",
+        "size": 1500,
+        "has_pairs": true,
+        "has_labels": true
+      }
+    }
+  },
+  {
+    "model": "hierarchical",
+    "dataset": "sts-b",
+    "task": "retrieval",
+    "mrr": 0.6592858593075102,
+    "num_queries": 1500,
+    "recall@1": 0.5953333333333334,
+    "precision@1": 0.5953333333333334,
+    "recall@5": 0.7326666666666667,
+    "precision@5": 0.14653333333333335,
+    "recall@10": 0.7766666666666666,
+    "precision@10": 0.07766666666666666,
+    "recall@20": 0.8206666666666667,
+    "precision@20": 0.041033333333333324,
+    "metadata": {
+      "model_info": {
+        "type": "hierarchical",
+        "coarse_model": "all-MiniLM-L6-v2",
+        "fine_model": "all-mpnet-base-v2",
+        "coarse_dim": 384,
+        "fine_dim": 768,
+        "combined_dim": 1152,
+        "normalize": true,
+        "combination_method": "concat",
+        "coarse_weight": 0.5,
+        "fine_weight": 0.5
+      },
+      "dataset_info": {
+        "name": "sts-b-validation",
+        "size": 1500,
+        "has_pairs": true,
+        "has_labels": true
+      }
+    }
+  }
+]

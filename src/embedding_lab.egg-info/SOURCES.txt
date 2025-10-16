@@ -1,10 +1,10 @@
 LICENSE
 README.md
 setup.py
-src/datasets/__init__.py
-src/datasets/base.py
-src/datasets/benchmarks.py
-src/datasets/custom.py
+src/data_loaders/__init__.py
+src/data_loaders/base.py
+src/data_loaders/benchmarks.py
+src/data_loaders/custom.py
 src/embedding_lab.egg-info/PKG-INFO
 src/embedding_lab.egg-info/SOURCES.txt
 src/embedding_lab.egg-info/dependency_links.txt

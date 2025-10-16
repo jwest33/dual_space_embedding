@@ -1,0 +1,25 @@
+================================================================================
+Experiment Report: my_experiment
+Generated: 2025-10-16 06:51:52
+================================================================================
+
+Description: 
+
+Models evaluated: 2
+  - baseline (single)
+  - hierarchical (hierarchical)
+
+Datasets used: 1
+  - sts-b (benchmark)
+
+Tasks evaluated: similarity, retrieval, classification, clustering
+
+================================================================================
+Results Summary
+================================================================================
+
+       model dataset       task  spearman  spearman_p  pearson  pearson_p      mae     rmse  num_samples  pred_std                                                                                                                                                                                                                                                                                                                                                                  metadata      mrr  num_queries  recall@1  precision@1  recall@5  precision@5  recall@10  precision@10  recall@20  precision@20
+    baseline   sts-b similarity  0.867163         0.0 0.869619        0.0 1.815793 2.196772       1500.0  0.275368                                                                                                                                   {'model_info': {'type': 'single', 'model_name': 'all-MiniLM-L6-v2', 'embedding_dim': 384, 'normalize': True, 'max_seq_length': 256}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}}      NaN          NaN       NaN          NaN       NaN          NaN        NaN           NaN        NaN           NaN
+    baseline   sts-b  retrieval       NaN         NaN      NaN        NaN      NaN      NaN          NaN       NaN                                                                                                                                   {'model_info': {'type': 'single', 'model_name': 'all-MiniLM-L6-v2', 'embedding_dim': 384, 'normalize': True, 'max_seq_length': 256}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}} 0.643249       1500.0  0.576667     0.576667  0.714000     0.142800   0.757333      0.075733   0.808000      0.040400
+hierarchical   sts-b similarity  0.882771         0.0 0.883243        0.0 1.817101 2.196661       1500.0  0.273070 {'model_info': {'type': 'hierarchical', 'coarse_model': 'all-MiniLM-L6-v2', 'fine_model': 'all-mpnet-base-v2', 'coarse_dim': 384, 'fine_dim': 768, 'combined_dim': 1152, 'normalize': True, 'combination_method': 'concat', 'coarse_weight': 0.5, 'fine_weight': 0.5}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}}      NaN          NaN       NaN          NaN       NaN          NaN        NaN           NaN        NaN           NaN
+hierarchical   sts-b  retrieval       NaN         NaN      NaN        NaN      NaN      NaN          NaN       NaN {'model_info': {'type': 'hierarchical', 'coarse_model': 'all-MiniLM-L6-v2', 'fine_model': 'all-mpnet-base-v2', 'coarse_dim': 384, 'fine_dim': 768, 'combined_dim': 1152, 'normalize': True, 'combination_method': 'concat', 'coarse_weight': 0.5, 'fine_weight': 0.5}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}} 0.659286       1500.0  0.595333     0.595333  0.732667     0.146533   0.776667      0.077667   0.820667      0.041033

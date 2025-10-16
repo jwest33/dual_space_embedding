@@ -4,7 +4,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from loguru import logger
 
-from ..datasets.base import BaseEmbedder
+from .base import BaseEmbedder
 
 
 class HierarchicalEmbedder(BaseEmbedder):
@@ -113,11 +113,11 @@ class HierarchicalEmbedder(BaseEmbedder):
         
         # Combine embeddings
         combined = self._combine_embeddings(coarse_embeddings, fine_embeddings)
-        
-        # Normalize if requested
-        if self.normalize:
+
+        # Normalize if requested (only for non-concat methods, as concat normalizes components)
+        if self.normalize and self.combination_method != "concat":
             combined = self._normalize(combined)
-            
+
         return combined
     
     def _combine_embeddings(
@@ -127,17 +127,20 @@ class HierarchicalEmbedder(BaseEmbedder):
     ) -> np.ndarray:
         """
         Combine coarse and fine embeddings.
-        
+
         Args:
             coarse: Coarse-grained embeddings
             fine: Fine-grained embeddings
-            
+
         Returns:
             Combined embeddings
         """
         if self.combination_method == "concat":
-            # Simple concatenation
-            return np.concatenate([coarse, fine], axis=1)
+            # Normalize each component before concatenation to preserve variance
+            # This prevents the embeddings from collapsing to similar vectors
+            coarse_normalized = self._normalize(coarse)
+            fine_normalized = self._normalize(fine)
+            return np.concatenate([coarse_normalized, fine_normalized], axis=1)
         
         elif self.combination_method == "weighted_sum":
             # Weighted sum (requires same dimensions or projection)
