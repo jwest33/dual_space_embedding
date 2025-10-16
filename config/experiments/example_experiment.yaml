@@ -1,0 +1,65 @@
+name: dual_vs_single_comparison
+description: |
+  Comprehensive comparison of hierarchical dual-layer embeddings vs single embeddings.
+  Tests on multiple benchmarks across all evaluation tasks.
+
+models:
+  # Single baseline models
+  - type: single
+    name: single_minilm
+    model_name: all-MiniLM-L6-v2
+    normalize: true
+
+  - type: single
+    name: single_mpnet
+    model_name: all-mpnet-base-v2
+    normalize: true
+
+  # Hierarchical dual-layer models
+  - type: hierarchical
+    name: hierarchical_concat
+    coarse_model: all-MiniLM-L6-v2
+    fine_model: all-mpnet-base-v2
+    combination_method: concat
+    normalize: true
+
+  - type: hierarchical
+    name: hierarchical_weighted
+    coarse_model: all-MiniLM-L6-v2
+    fine_model: all-MiniLM-L6-v2  # Same dim for weighted sum
+    combination_method: weighted_sum
+    coarse_weight: 0.4
+    fine_weight: 0.6
+    normalize: true
+
+datasets:
+  - type: benchmark
+    name: sts-b
+    split: test
+
+  - type: benchmark
+    name: ag-news
+    split: test
+    num_samples: 2000
+
+  - type: benchmark
+    name: trec
+    split: test
+
+tasks:
+  - similarity
+  - classification
+  - clustering
+
+# Experiment settings
+batch_size: 32
+output_dir: results/dual_vs_single
+
+# Task-specific settings
+classification_classifier: logistic_regression
+clustering_algorithm: kmeans
+clustering_n_clusters: null  # Auto-infer from labels
+
+# MLflow tracking
+mlflow_tracking: true
+mlflow_uri: mlruns

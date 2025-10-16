@@ -1,0 +1,36 @@
+name: custom_dataset_experiment
+description: Example experiment using custom datasets
+
+models:
+  - type: hierarchical
+    name: hierarchical_model
+    coarse_model: all-MiniLM-L6-v2
+    fine_model: all-mpnet-base-v2
+    combination_method: concat
+    normalize: true
+
+datasets:
+  # Custom CSV dataset example
+  - type: custom
+    name: my_custom_data
+    file_path: data/my_dataset.csv
+    text1_column: text
+    text2_column: null  # No text pairs
+    label_column: category
+    format: csv
+
+  # Custom JSON dataset example  
+  - type: custom
+    name: my_json_data
+    file_path: data/my_dataset.json
+    text1_column: text1
+    text2_column: text2
+    label_column: score
+    format: json
+
+tasks:
+  - classification
+  - clustering
+
+batch_size: 32
+output_dir: results/custom_experiment

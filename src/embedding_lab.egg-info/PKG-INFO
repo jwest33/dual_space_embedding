@@ -1,0 +1,504 @@
+Metadata-Version: 2.4
+Name: embedding-lab
+Version: 1.0.0
+Summary: Production-ready hierarchical dual-layer embedding experiment platform
+Author: Embedding Lab
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: sentence-transformers>=2.2.2
+Requires-Dist: torch>=2.0.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: scipy>=1.10.0
+Requires-Dist: scikit-learn>=1.3.0
+Requires-Dist: datasets>=2.14.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: nltk>=3.8.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: click>=8.1.0
+Requires-Dist: tqdm>=4.65.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: mlflow>=2.7.0
+Requires-Dist: seaborn>=0.12.0
+Requires-Dist: matplotlib>=3.7.0
+Requires-Dist: loguru>=0.7.0
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Embedding Lab: Hierarchical Dual-Layer Embedding Experiment Platform
+
+A production-ready Python application for evaluating and comparing hierarchical dual-layer embedding models against single embedding models across multiple tasks.
+
+## Overview
+
+This platform enables comprehensive analysis of embedding quality by testing models on:
+- **Semantic Similarity**: Measuring text pair similarity (STS-B benchmark)
+- **Information Retrieval**: Ranking relevant documents (MS MARCO)
+- **Classification**: Text categorization tasks (AG News, TREC)
+- **Clustering**: Grouping similar texts
+
+### Hierarchical Dual-Layer Architecture
+
+The hierarchical approach combines two embedding models:
+1. **Coarse Model**: Captures broad semantic understanding (fast, lightweight)
+2. **Fine Model**: Captures detailed semantic nuances (higher quality)
+
+Combination methods supported:
+- **Concatenation**: Combines both embeddings (default)
+- **Weighted Sum**: Weighted average of embeddings
+- **Learned**: Trainable projection layer (future)
+
+## Installation
+
+```bash
+# Clone or navigate to the project
+cd embedding-lab
+
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install package in development mode
+pip install -e .
+```
+
+## Quick Start
+
+### 1. Initialize a Configuration
+
+```bash
+python cli.py init config/experiments/my_experiment.yaml
+```
+
+### 2. Edit Configuration
+
+Edit the generated YAML file to specify models, datasets, and tasks:
+
+```yaml
+name: my_experiment
+description: Testing hierarchical embeddings
+
+models:
+  - type: single
+    name: baseline
+    model_name: all-MiniLM-L6-v2
+
+  - type: hierarchical
+    name: hierarchical
+    coarse_model: all-MiniLM-L6-v2
+    fine_model: all-mpnet-base-v2
+    combination_method: concat
+
+datasets:
+  - type: benchmark
+    name: sts-b
+    split: test
+
+tasks:
+  - similarity
+  - classification
+```
+
+### 3. Run Experiment
+
+```bash
+python cli.py run config/experiments/my_experiment.yaml
+```
+
+### 4. View Results
+
+Results are saved to the `results/` directory:
+- `results.json`: Detailed metrics
+- `results.csv`: Tabular format
+- `comparison_*.csv`: Metric comparison tables
+- `report.txt`: Human-readable summary
+
+## CLI Commands
+
+### Run Experiments
+```bash
+python cli.py run <config_path> [--output-dir <dir>] [--verbose]
+```
+
+### Initialize Configuration
+```bash
+python cli.py init <output_path> [--name <name>] [--description <desc>]
+```
+
+### Validate Configuration
+```bash
+python cli.py validate <config_path>
+```
+
+### List Available Models
+```bash
+python cli.py list-models
+```
+
+### List Available Datasets
+```bash
+python cli.py list-datasets
+```
+
+## Configuration Reference
+
+### Model Configuration
+
+#### Single Model
+```yaml
+- type: single
+  name: my_model
+  model_name: all-MiniLM-L6-v2  # Sentence-transformer model
+  device: null  # 'cpu', 'cuda', or null for auto
+  normalize: true  # L2 normalize embeddings
+```
+
+#### Hierarchical Model
+```yaml
+- type: hierarchical
+  name: my_hierarchical_model
+  coarse_model: all-MiniLM-L6-v2  # Fast, broad semantics
+  fine_model: all-mpnet-base-v2   # Detailed semantics
+  combination_method: concat      # 'concat', 'weighted_sum'
+  coarse_weight: 0.5              # For weighted_sum
+  fine_weight: 0.5                # For weighted_sum
+  device: null
+  normalize: true
+```
+
+### Dataset Configuration
+
+#### Benchmark Dataset
+```yaml
+- type: benchmark
+  name: sts-b              # 'sts-b', 'msmarco', 'ag-news', 'trec'
+  split: test              # 'train', 'validation', 'test'
+  num_samples: null        # Limit samples (null for all)
+```
+
+#### Custom Dataset
+```yaml
+- type: custom
+  name: my_dataset
+  file_path: data/my_data.csv
+  text1_column: text       # Column name for first text
+  text2_column: text2      # Column name for second text (null if none)
+  label_column: label      # Column name for labels (null if none)
+  format: csv              # 'csv', 'tsv', 'json', 'jsonl', or null for auto
+```
+
+### Custom Dataset Formats
+
+#### CSV/TSV Format
+```csv
+text,label
+"First text sample",0
+"Second text sample",1
+```
+
+#### JSON Format
+```json
+[
+  {"text": "First text", "label": 0},
+  {"text": "Second text", "label": 1}
+]
+```
+
+#### JSONL Format
+```jsonl
+{"text": "First text", "label": 0}
+{"text": "Second text", "label": 1}
+```
+
+For pair tasks (similarity, retrieval):
+```csv
+text1,text2,label
+"Query text","Document text",0.8
+```
+
+## Tasks
+
+### Similarity
+Evaluates semantic textual similarity using:
+- Spearman correlation
+- Pearson correlation
+- MAE, RMSE
+
+**Requirements**: Dataset with text pairs and similarity scores
+
+### Retrieval
+Evaluates information retrieval using:
+- Mean Reciprocal Rank (MRR)
+- Recall@k (k=1,5,10,20)
+- Precision@k
+
+**Requirements**: Dataset with query-document pairs
+
+### Classification
+Evaluates text classification using:
+- Accuracy
+- Precision, Recall, F1
+- Trains logistic regression or SVM on embeddings
+
+**Requirements**: Dataset with texts and labels
+
+### Clustering
+Evaluates clustering quality using:
+- Silhouette score
+- Davies-Bouldin index
+- Calinski-Harabasz index
+- Adjusted Rand Index (if labels available)
+- Normalized Mutual Information (if labels available)
+
+**Requirements**: Dataset with texts (labels optional)
+
+## Available Models
+
+Popular sentence-transformer models:
+
+| Model | Size | Dimensions | Description |
+|-------|------|------------|-------------|
+| all-MiniLM-L6-v2 | 80MB | 384 | Fast, lightweight |
+| all-mpnet-base-v2 | 420MB | 768 | Good quality |
+| all-MiniLM-L12-v2 | 120MB | 384 | Balanced |
+| paraphrase-multilingual-mpnet-base-v2 | 970MB | 768 | Multilingual |
+
+See [SBERT documentation](https://www.sbert.net/docs/pretrained_models.html) for more models.
+
+## Project Structure
+
+```
+embedding-lab/
+├── src/
+│   ├── embeddings/         # Embedding model implementations
+│   │   ├── base.py         # Base embedder interface
+│   │   ├── single.py       # Single model embedder
+│   │   └── hierarchical.py # Hierarchical dual-layer embedder
+│   ├── datasets/           # Dataset loaders
+│   │   ├── base.py         # Base dataset interface
+│   │   ├── benchmarks.py   # Benchmark dataset loaders
+│   │   └── custom.py       # Custom dataset loader
+│   ├── evaluation/         # Evaluation modules
+│   │   ├── similarity.py   # Semantic similarity evaluation
+│   │   ├── retrieval.py    # Information retrieval evaluation
+│   │   ├── classification.py  # Classification evaluation
+│   │   └── clustering.py   # Clustering evaluation
+│   ├── experiments/        # Experiment orchestration
+│   │   └── runner.py       # Main experiment runner
+│   └── utils/              # Utilities
+│       ├── config.py       # Configuration management
+│       └── metrics.py      # Metrics tracking and reporting
+├── config/                 # Configuration files
+│   └── experiments/        # Experiment configurations
+├── data/                   # Custom datasets
+├── results/                # Experiment results
+├── tests/                  # Unit tests
+├── cli.py                  # CLI interface
+├── requirements.txt        # Dependencies
+├── setup.py               # Package setup
+└── README.md              # This file
+```
+
+## Example Use Cases
+
+### Compare Dual vs Single Embeddings
+
+```yaml
+name: dual_vs_single_comparison
+
+models:
+  - type: single
+    name: single_baseline
+    model_name: all-MiniLM-L6-v2
+
+  - type: hierarchical
+    name: hierarchical
+    coarse_model: all-MiniLM-L6-v2
+    fine_model: all-mpnet-base-v2
+    combination_method: concat
+
+datasets:
+  - type: benchmark
+    name: sts-b
+    split: test
+
+tasks:
+  - similarity
+  - classification
+  - clustering
+```
+
+### Test on Custom Dataset
+
+```yaml
+name: custom_sentiment_analysis
+
+models:
+  - type: hierarchical
+    name: hierarchical_sentiment
+    coarse_model: all-MiniLM-L6-v2
+    fine_model: all-mpnet-base-v2
+
+datasets:
+  - type: custom
+    name: sentiment_data
+    file_path: data/sentiment.csv
+    text1_column: review_text
+    label_column: sentiment
+
+tasks:
+  - classification
+```
+
+## MLflow Tracking
+
+Experiments are automatically tracked with MLflow:
+
+```bash
+# View results in MLflow UI
+mlflow ui --backend-store-uri mlruns
+```
+
+Then open http://localhost:5000 to view experiments, compare models, and analyze metrics.
+
+## Testing
+
+```bash
+# Run tests
+pytest tests/
+
+# With coverage
+pytest tests/ --cov=src --cov-report=html
+```
+
+## Advanced Usage
+
+### Programmatic API
+
+```python
+from experiments import ExperimentRunner
+from utils import load_config
+
+# Load configuration
+config = load_config("config/experiments/my_experiment.yaml")
+
+# Run experiment
+runner = ExperimentRunner(config)
+metrics = runner.run()
+
+# Access results
+summary = metrics.get_summary()
+print(summary)
+```
+
+### Custom Evaluators
+
+Extend base evaluator classes:
+
+```python
+from evaluation.similarity import SimilarityEvaluator
+from embeddings import HierarchicalEmbedder
+
+# Create embedder
+embedder = HierarchicalEmbedder(
+    coarse_model="all-MiniLM-L6-v2",
+    fine_model="all-mpnet-base-v2"
+)
+
+# Evaluate
+evaluator = SimilarityEvaluator(embedder)
+metrics = evaluator.evaluate(dataset)
+```
+
+## Performance Considerations
+
+- **Batch Size**: Increase for faster processing (default: 32)
+- **Device**: Use CUDA for GPU acceleration
+- **Model Selection**: Balance speed vs quality
+  - Fast: all-MiniLM-L6-v2
+  - Quality: all-mpnet-base-v2
+- **Normalization**: Enable for cosine similarity tasks
+
+## Troubleshooting
+
+### Out of Memory
+- Reduce batch_size in configuration
+- Use smaller models
+- Process datasets in chunks
+
+### Slow Performance
+- Enable GPU with `device: cuda`
+- Increase batch_size
+- Use faster coarse models
+
+### Import Errors
+```bash
+# Reinstall package
+pip install -e .
+```
+
+## Citation
+
+If you use this platform in your research, please cite:
+
+```bibtex
+@software{embedding_lab,
+  title = {Embedding Lab: Hierarchical Dual-Layer Embedding Experiment Platform},
+  year = {2024},
+  author = {Your Name},
+  url = {https://github.com/yourusername/embedding-lab}
+}
+```
+
+## License
+
+MIT License - see LICENSE file for details
+
+## Contributing
+
+Contributions welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new features
+4. Submit a pull request
+
+## Support
+
+For issues or questions:
+- Open an issue on GitHub
+- Check existing documentation
+- Review example configurations
+
+## Roadmap
+
+- [ ] Learned combination methods
+- [ ] Cross-encoder support
+- [ ] Additional benchmarks (BEIR, MTEB)
+- [ ] Visualization tools
+- [ ] AutoML for hyperparameter tuning
+- [ ] Multi-GPU support
+- [ ] API server for embeddings
+
+## Acknowledgments
+
+Built with:
+- [Sentence Transformers](https://www.sbert.net/)
+- [HuggingFace Datasets](https://huggingface.co/docs/datasets/)
+- [scikit-learn](https://scikit-learn.org/)
+- [MLflow](https://mlflow.org/)

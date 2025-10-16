@@ -1,0 +1,361 @@
+"""Experiment runner for orchestrating evaluations."""
+from pathlib import Path
+from typing import Dict, Any, List
+import time
+from datetime import datetime
+from loguru import logger
+import mlflow
+
+from embeddings import SingleEmbedder, HierarchicalEmbedder
+from datasets import get_benchmark_dataset, load_custom_dataset
+from evaluation import (
+    SimilarityEvaluator,
+    RetrievalEvaluator,
+    ClassificationEvaluator,
+    ClusteringEvaluator,
+)
+from utils import ExperimentConfig, ModelConfig, DatasetConfig, MetricsTracker
+
+
+class ExperimentRunner:
+    """Main experiment runner."""
+    
+    def __init__(self, config: ExperimentConfig):
+        """
+        Initialize experiment runner.
+        
+        Args:
+            config: Experiment configuration
+        """
+        self.config = config
+        self.metrics_tracker = MetricsTracker()
+        
+        # Setup output directory
+        self.output_dir = Path(config.output_dir)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Setup MLflow if enabled
+        if config.mlflow_tracking:
+            mlflow.set_tracking_uri(config.mlflow_uri)
+            mlflow.set_experiment(config.name)
+        
+        logger.info(f"Experiment runner initialized: {config.name}")
+    
+    def run(self) -> MetricsTracker:
+        """
+        Run the full experiment.
+        
+        Returns:
+            MetricsTracker with all results
+        """
+        logger.info("=" * 80)
+        logger.info(f"Starting experiment: {self.config.name}")
+        logger.info(f"Description: {self.config.description}")
+        logger.info("=" * 80)
+        
+        start_time = time.time()
+        
+        # Run experiments for each model
+        for model_config in self.config.models:
+            self._run_model_experiments(model_config)
+        
+        # Save results
+        self._save_results()
+        
+        elapsed = time.time() - start_time
+        logger.info("=" * 80)
+        logger.info(f"Experiment complete! Total time: {elapsed:.2f}s")
+        logger.info(f"Results saved to: {self.output_dir}")
+        logger.info("=" * 80)
+        
+        return self.metrics_tracker
+    
+    def _run_model_experiments(self, model_config: ModelConfig) -> None:
+        """
+        Run experiments for a single model.
+        
+        Args:
+            model_config: Model configuration
+        """
+        logger.info("-" * 80)
+        logger.info(f"Evaluating model: {model_config.name}")
+        logger.info("-" * 80)
+        
+        # Load embedder
+        embedder = self._load_embedder(model_config)
+        
+        # Start MLflow run
+        if self.config.mlflow_tracking:
+            mlflow.start_run(run_name=model_config.name)
+            mlflow.log_params(embedder.get_model_info())
+        
+        try:
+            # Run on each dataset
+            for dataset_config in self.config.datasets:
+                self._run_dataset_experiments(embedder, model_config, dataset_config)
+        finally:
+            if self.config.mlflow_tracking:
+                mlflow.end_run()
+    
+    def _run_dataset_experiments(
+        self,
+        embedder,
+        model_config: ModelConfig,
+        dataset_config: DatasetConfig
+    ) -> None:
+        """
+        Run experiments for a model on a single dataset.
+        
+        Args:
+            embedder: Embedding model
+            model_config: Model configuration
+            dataset_config: Dataset configuration
+        """
+        logger.info(f"Dataset: {dataset_config.name}")
+        
+        # Load dataset(s)
+        datasets = self._load_datasets(dataset_config)
+        
+        # Run each task
+        for task in self.config.tasks:
+            if task not in datasets:
+                logger.warning(f"Skipping task '{task}' - no suitable dataset loaded")
+                continue
+            
+            logger.info(f"  Task: {task}")
+            
+            try:
+                metrics = self._run_task(
+                    embedder,
+                    task,
+                    datasets[task]
+                )
+                
+                # Track metrics
+                self.metrics_tracker.add_result(
+                    model_name=model_config.name,
+                    dataset_name=dataset_config.name,
+                    task=task,
+                    metrics=metrics,
+                    metadata={
+                        "model_info": embedder.get_model_info(),
+                        "dataset_info": datasets[task]["dataset"].get_info() if "dataset" in datasets[task] else {}
+                    }
+                )
+                
+                # Log to MLflow
+                if self.config.mlflow_tracking:
+                    for metric_name, metric_value in metrics.items():
+                        mlflow.log_metric(
+                            f"{dataset_config.name}_{task}_{metric_name}",
+                            metric_value
+                        )
+                
+                # Print key metrics
+                self._print_metrics(metrics)
+                
+            except Exception as e:
+                logger.error(f"Error in task '{task}': {e}", exc_info=True)
+    
+    def _load_embedder(self, model_config: ModelConfig):
+        """Load embedding model from configuration."""
+        if model_config.type == "single":
+            return SingleEmbedder(
+                model_name=model_config.model_name,
+                device=model_config.device,
+                normalize=model_config.normalize,
+            )
+        elif model_config.type == "hierarchical":
+            return HierarchicalEmbedder(
+                coarse_model=model_config.coarse_model,
+                fine_model=model_config.fine_model,
+                device=model_config.device,
+                normalize=model_config.normalize,
+                combination_method=model_config.combination_method,
+                coarse_weight=model_config.coarse_weight,
+                fine_weight=model_config.fine_weight,
+            )
+        else:
+            raise ValueError(f"Unknown model type: {model_config.type}")
+    
+    def _load_datasets(self, dataset_config: DatasetConfig) -> Dict[str, Any]:
+        """
+        Load dataset(s) for different tasks.
+        
+        Returns:
+            Dictionary mapping task names to dataset configurations
+        """
+        datasets = {}
+        
+        if dataset_config.type == "benchmark":
+            # Load benchmark dataset
+            dataset = get_benchmark_dataset(
+                dataset_config.name,
+                split=dataset_config.split,
+                num_samples=dataset_config.num_samples
+            )
+            
+            # Determine which tasks this dataset supports
+            info = dataset.get_info()
+            
+            if info["has_pairs"] and info["has_labels"]:
+                # Supports similarity
+                datasets["similarity"] = {"dataset": dataset}
+                datasets["retrieval"] = {"dataset": dataset}
+            
+            if not info["has_pairs"] and info["has_labels"]:
+                # Supports classification and clustering
+                datasets["classification"] = {
+                    "train": dataset,
+                    "test": dataset  # Will split or use separate split
+                }
+                datasets["clustering"] = {"dataset": dataset}
+        
+        elif dataset_config.type == "custom":
+            # Load custom dataset
+            dataset = load_custom_dataset(
+                file_path=dataset_config.file_path,
+                text1_column=dataset_config.text1_column,
+                text2_column=dataset_config.text2_column,
+                label_column=dataset_config.label_column,
+                format=dataset_config.format,
+            )
+            
+            # Determine supported tasks
+            info = dataset.get_info()
+            
+            if info["has_pairs"] and info["has_labels"]:
+                datasets["similarity"] = {"dataset": dataset}
+                datasets["retrieval"] = {"dataset": dataset}
+            
+            if not info["has_pairs"] and info["has_labels"]:
+                datasets["classification"] = {
+                    "train": dataset,
+                    "test": dataset
+                }
+                datasets["clustering"] = {"dataset": dataset}
+            
+            if not info["has_labels"]:
+                # Unsupervised clustering only
+                datasets["clustering"] = {"dataset": dataset}
+        
+        return datasets
+    
+    def _run_task(
+        self,
+        embedder,
+        task: str,
+        dataset_config: Dict[str, Any]
+    ) -> Dict[str, float]:
+        """
+        Run a specific task.
+        
+        Args:
+            embedder: Embedding model
+            task: Task name
+            dataset_config: Dataset configuration for this task
+            
+        Returns:
+            Dictionary of metrics
+        """
+        if task == "similarity":
+            evaluator = SimilarityEvaluator(embedder)
+            return evaluator.evaluate(
+                dataset_config["dataset"],
+                batch_size=self.config.batch_size
+            )
+        
+        elif task == "retrieval":
+            evaluator = RetrievalEvaluator(embedder)
+            return evaluator.evaluate(
+                dataset_config["dataset"],
+                batch_size=self.config.batch_size,
+                k_values=self.config.retrieval_k_values
+            )
+        
+        elif task == "classification":
+            evaluator = ClassificationEvaluator(
+                embedder,
+                classifier=self.config.classification_classifier
+            )
+            return evaluator.evaluate(
+                dataset_config["train"],
+                dataset_config["test"],
+                batch_size=self.config.batch_size
+            )
+        
+        elif task == "clustering":
+            evaluator = ClusteringEvaluator(
+                embedder,
+                algorithm=self.config.clustering_algorithm,
+                n_clusters=self.config.clustering_n_clusters
+            )
+            return evaluator.evaluate(
+                dataset_config["dataset"],
+                batch_size=self.config.batch_size
+            )
+        
+        else:
+            raise ValueError(f"Unknown task: {task}")
+    
+    def _print_metrics(self, metrics: Dict[str, float]) -> None:
+        """Print key metrics."""
+        # Select most important metrics based on what's available
+        key_metrics = {}
+        
+        priority_metrics = [
+            "accuracy", "f1", "spearman", "pearson",
+            "mrr", "recall@10", "silhouette"
+        ]
+        
+        for metric in priority_metrics:
+            if metric in metrics:
+                key_metrics[metric] = metrics[metric]
+        
+        # Print
+        metrics_str = ", ".join([f"{k}: {v:.4f}" for k, v in key_metrics.items()])
+        logger.info(f"    Metrics: {metrics_str}")
+    
+    def _save_results(self) -> None:
+        """Save all results."""
+        self.metrics_tracker.save_results(self.output_dir)
+        
+        # Generate summary report
+        self._generate_report()
+    
+    def _generate_report(self) -> None:
+        """Generate experiment report."""
+        report_path = self.output_dir / "report.txt"
+        
+        with open(report_path, "w") as f:
+            f.write("=" * 80 + "\n")
+            f.write(f"Experiment Report: {self.config.name}\n")
+            f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write("=" * 80 + "\n\n")
+            
+            f.write(f"Description: {self.config.description}\n\n")
+            
+            f.write(f"Models evaluated: {len(self.config.models)}\n")
+            for model in self.config.models:
+                f.write(f"  - {model.name} ({model.type})\n")
+            f.write("\n")
+            
+            f.write(f"Datasets used: {len(self.config.datasets)}\n")
+            for dataset in self.config.datasets:
+                f.write(f"  - {dataset.name} ({dataset.type})\n")
+            f.write("\n")
+            
+            f.write(f"Tasks evaluated: {', '.join(self.config.tasks)}\n\n")
+            
+            f.write("=" * 80 + "\n")
+            f.write("Results Summary\n")
+            f.write("=" * 80 + "\n\n")
+            
+            # Write summary table
+            summary = self.metrics_tracker.get_summary()
+            if not summary.empty:
+                f.write(summary.to_string(index=False))
+            else:
+                f.write("No results available.\n")
+        
+        logger.info(f"Report saved to {report_path}")
