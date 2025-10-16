@@ -1,22 +1,22 @@
-# 1) Hyperbolic (non-Euclidean) embeddings for hierarchies
+# 1 Hyperbolic (non-Euclidean) embeddings for hierarchies
 
 Hyperbolic spaces model tree-like structure with low distortion, so they’re strong for label/topic/doc taxonomies. Recent work adds simple regularizers you can drop into standard encoders:
 
 * **Poincaré/Lorentz hyperbolic embeddings** for hierarchical structure (foundational). ([arXiv][1])
 * **HypStructure (NeurIPS 2024)**: a hyperbolic tree-based representation loss + centering loss that you add alongside your task loss to make representations hierarchy-aware. Code is public. ([NeurIPS Proceedings][2])
 
-**When to use:** you have an explicit tree/DAG (taxonomy, label hierarchy, site map) and want global + per-node geometry that respects parent→child relations.
+**When to use:** Explicit tree/DAG (taxonomy, label hierarchy, site map) and want global + per-node geometry that respects parent→child relations.
 
-# 2) Hierarchical contrastive learning (local↔global)
+# 2 Hierarchical contrastive learning (local↔global)
 
 Contrastive objectives at multiple granularities (segments/sentences vs full sequence/doc) give you a clean “dual-layer” setup:
 
 * **HiCL (EMNLP Findings 2023):** splits sequences into segments, learns local (segment) and global (sequence) representations with joint contrastive objectives—faster and more robust than sequence-only CSE. ([arXiv][3])
 * **HiLight (2024):** “hierarchy-aware light global model” + **hierarchical local contrastive** learning; addresses common collapse issues in recursive regularization. ([arXiv][4])
 
-**When to use:** you want sentence/paragraph vectors that compose into strong doc vectors, and you don’t have (or don’t fully trust) a labeled hierarchy.
+**When to use:** Want sentence/paragraph vectors that compose into strong doc vectors, and you don’t have (or don’t fully trust) a labeled hierarchy.
 
-# 3) Multi-vector / late-interaction retrieval (token-level + doc-level)
+# 3 Multi-vector / late-interaction retrieval (token-level + doc-level)
 
 For retrieval over hierarchical corpora, multi-vector models give you a natural dual layer: token/phrase vectors for precise matching plus a pooled doc vector:
 
@@ -24,15 +24,15 @@ For retrieval over hierarchical corpora, multi-vector models give you a natural 
 
 **When to use:** hierarchical sites/wikis/manuals where you need both fine-grain passage hits (local) and section/document ranking (global).
 
-# 4) Label-aware and graph-aware encoders
+# 4 Label-aware and graph-aware encoders
 
-If you have a label tree, making the model *see* it helps both layers:
+Using a label tree, making the model *see* it helps both layers:
 
 * **Dual Prompt Tuning (ACL Findings 2024):** contrastive learning **per hierarchy level** with prompts that expose positives/negatives among sibling labels. ([ACL Anthology][6])
 * **Hybrid hierarchical text classification** with the decoder **pre-populated by all label embeddings** to expose global structure during learning. ([SpringerLink][7])
 * **Graph attention / GAT variants** for label graphs combine structural and semantic signals (e.g., HE-HMTC lineage). ([ScienceDirect][8])
 
-# 5) Topic/modeling under hyperbolic geometry
+# 5 Topic/modeling under hyperbolic geometry
 
 For hierarchical topic trees, pairing contrastive signals with hyperbolic projection preserves tree structure in the embedding space. ([ACL Anthology][9])
 
@@ -51,10 +51,10 @@ For hierarchical topic trees, pairing contrastive signals with hyperbolic projec
 
 ## How to choose
 
-* **You have a real tree/DAG** (ontology, product catalog): add **HypStructure** on the **global** embeddings; consider **Lorentz/Poincaré** distances at inference. ([NeurIPS Proceedings][2])
-* **You need high-recall retrieval** across long manuals/wikis: use a **multi-vector/late-interaction** head + **token-pooling** to control index size. ([arXiv][5])
-* **You lack clean labels but have long docs:** train **HiCL-style** (local+global contrastive) and optionally discover topic trees in **hyperbolic** space post-hoc. ([arXiv][3])
-* **You’re doing hierarchical classification:** use **Dual Prompt Tuning** or **hybrid encoder-decoder with label embeddings** to expose level-wise structure. ([ACL Anthology][6])
+* **Real tree/DAG** (ontology, product catalog): add **HypStructure** on the **global** embeddings; consider **Lorentz/Poincaré** distances at inference. ([NeurIPS Proceedings][2])
+* **High-recall retrieval** across long manuals/wikis: use a **multi-vector/late-interaction** head + **token-pooling** to control index size. ([arXiv][5])
+* **Lack clean labels but have long docs:** train **HiCL-style** (local+global contrastive) and optionally discover topic trees in **hyperbolic** space post-hoc. ([arXiv][3])
+* **Hierarchical classification:** use **Dual Prompt Tuning** or **hybrid encoder-decoder with label embeddings** to expose level-wise structure. ([ACL Anthology][6])
 
 
 [1]: https://arxiv.org/abs/1705.08039?utm_source=chatgpt.com "Poincaré Embeddings for Learning Hierarchical Representations"

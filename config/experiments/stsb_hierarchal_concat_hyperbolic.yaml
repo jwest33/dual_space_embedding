@@ -1,41 +1,41 @@
-name: my_experiment
-description: ''
+name: hyperbolic_test
+description: 'Test hyperbolic embedding combination method'
+
 models:
 - type: single
   name: baseline
   model_name: all-MiniLM-L6-v2
-  combination_method: concat
-  coarse_weight: 0.5
-  fine_weight: 0.5
   normalize: true
+
 - type: hierarchical
-  name: hierarchical
+  name: hierarchical_concat
   coarse_model: all-MiniLM-L6-v2
   fine_model: all-mpnet-base-v2
   combination_method: concat
-  coarse_weight: 0.5
-  fine_weight: 0.5
   normalize: true
+
+- type: hierarchical
+  name: hierarchical_hyperbolic
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: hyperbolic
+  hyperbolic_curvature: 1.0
+  normalize: true
+
 datasets:
 - type: benchmark
   name: sts-b
   split: validation  # Use validation split - test split has withheld labels (-1.0)
-  text1_column: text1
-  text2_column: text2
-  label_column: label
+
 tasks:
 - similarity
 - retrieval
-- classification
-- clustering
+
 batch_size: 32
 output_dir: results
 retrieval_k_values:
 - 1
 - 5
 - 10
-- 20
-classification_classifier: logistic_regression
-clustering_algorithm: kmeans
 mlflow_tracking: true
 mlflow_uri: mlruns

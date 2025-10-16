@@ -7,6 +7,79 @@ from loguru import logger
 from .base import BaseEmbedder
 
 
+# Hyperbolic space operations (Poincaré ball model)
+class HyperbolicOps:
+    """Operations in hyperbolic space using Poincaré ball model."""
+
+    @staticmethod
+    def _clip_norm(x: np.ndarray, max_norm: float = 1.0 - 1e-5) -> np.ndarray:
+        """Clip vector norms to avoid numerical issues at boundary."""
+        norms = np.linalg.norm(x, axis=-1, keepdims=True)
+        norms = np.where(norms == 0, 1, norms)
+        scale = np.minimum(1.0, max_norm / norms)
+        return x * scale
+
+    @staticmethod
+    def to_poincare(x: np.ndarray, c: float = 1.0) -> np.ndarray:
+        """
+        Project Euclidean embeddings to Poincaré ball.
+
+        Args:
+            x: Euclidean embeddings
+            c: Curvature (positive, related to radius)
+
+        Returns:
+            Embeddings in Poincaré ball
+        """
+        # Normalize to unit ball, then scale by sqrt(c)
+        norm = np.linalg.norm(x, axis=-1, keepdims=True)
+        norm = np.where(norm == 0, 1, norm)
+        # Use tanh to map to (-1, 1), then scale
+        scale = np.tanh(norm / 2)
+        result = (x / norm) * scale / np.sqrt(c)
+        return HyperbolicOps._clip_norm(result)
+
+    @staticmethod
+    def from_poincare(x: np.ndarray, c: float = 1.0) -> np.ndarray:
+        """
+        Project from Poincaré ball back to Euclidean space.
+
+        Args:
+            x: Embeddings in Poincaré ball
+            c: Curvature
+
+        Returns:
+            Euclidean embeddings
+        """
+        norm = np.linalg.norm(x, axis=-1, keepdims=True)
+        norm = np.where(norm == 0, 1e-10, norm)
+        # Inverse of tanh mapping
+        scale = 2 * np.arctanh(norm * np.sqrt(c))
+        return (x / norm) * scale
+
+    @staticmethod
+    def mobius_add(x: np.ndarray, y: np.ndarray, c: float = 1.0) -> np.ndarray:
+        """
+        Möbius addition in Poincaré ball.
+
+        Args:
+            x, y: Vectors in Poincaré ball
+            c: Curvature
+
+        Returns:
+            x ⊕_c y in Poincaré ball
+        """
+        x2 = np.sum(x * x, axis=-1, keepdims=True)
+        y2 = np.sum(y * y, axis=-1, keepdims=True)
+        xy = np.sum(x * y, axis=-1, keepdims=True)
+
+        numerator = (1 + 2 * c * xy + c * y2) * x + (1 - c * x2) * y
+        denominator = 1 + 2 * c * xy + c * c * x2 * y2
+
+        result = numerator / (denominator + 1e-8)
+        return HyperbolicOps._clip_norm(result)
+
+
 class HierarchicalEmbedder(BaseEmbedder):
     """
     Hierarchical dual-layer embedder.
@@ -21,22 +94,24 @@ class HierarchicalEmbedder(BaseEmbedder):
         fine_model: str = "all-mpnet-base-v2",
         device: str = None,
         normalize: bool = True,
-        combination_method: Literal["concat", "weighted_sum", "learned"] = "concat",
+        combination_method: Literal["concat", "weighted_sum", "learned", "hyperbolic"] = "concat",
         coarse_weight: float = 0.5,
         fine_weight: float = 0.5,
+        hyperbolic_curvature: float = 1.0,
         **kwargs
     ):
         """
         Initialize hierarchical embedding model.
-        
+
         Args:
             coarse_model: Name of coarse-grained sentence-transformer model
             fine_model: Name of fine-grained sentence-transformer model
             device: Device to run models on ('cpu', 'cuda', or None for auto)
             normalize: Whether to normalize final embeddings
-            combination_method: How to combine embeddings ('concat', 'weighted_sum', 'learned')
+            combination_method: How to combine embeddings ('concat', 'weighted_sum', 'learned', 'hyperbolic')
             coarse_weight: Weight for coarse embeddings (used in weighted_sum)
             fine_weight: Weight for fine embeddings (used in weighted_sum)
+            hyperbolic_curvature: Curvature for hyperbolic space (positive value, default: 1.0)
             **kwargs: Additional arguments
         """
         super().__init__(f"hierarchical:{coarse_model}+{fine_model}", **kwargs)
@@ -47,6 +122,7 @@ class HierarchicalEmbedder(BaseEmbedder):
         self.combination_method = combination_method
         self.coarse_weight = coarse_weight
         self.fine_weight = fine_weight
+        self.hyperbolic_curvature = hyperbolic_curvature
         
         # Load models
         logger.info(f"Loading coarse model: {coarse_model}")
@@ -158,7 +234,41 @@ class HierarchicalEmbedder(BaseEmbedder):
                 "Learned combination not implemented yet, falling back to concat"
             )
             return np.concatenate([coarse, fine], axis=1)
-        
+
+        elif self.combination_method == "hyperbolic":
+            # Hierarchical combination: project coarse into fine using hyperbolic geometry
+            # This refines the fine embedding with coarse semantic information
+
+            # Handle dimension mismatch by projecting coarse to fine dimension
+            if coarse.shape[1] != fine.shape[1]:
+                # Project coarse to match fine dimension
+                if coarse.shape[1] < fine.shape[1]:
+                    # Pad with zeros
+                    padding = np.zeros((coarse.shape[0], fine.shape[1] - coarse.shape[1]))
+                    coarse_projected = np.concatenate([coarse, padding], axis=1)
+                else:
+                    # Truncate (though this loses information)
+                    logger.warning(
+                        f"Coarse dim ({coarse.shape[1]}) > fine dim ({fine.shape[1]}). "
+                        "Truncating coarse embedding. Consider using models with fine_dim >= coarse_dim."
+                    )
+                    coarse_projected = coarse[:, :fine.shape[1]]
+            else:
+                coarse_projected = coarse
+
+            # Project both to hyperbolic space
+            coarse_hyp = HyperbolicOps.to_poincare(coarse_projected, c=self.hyperbolic_curvature)
+            fine_hyp = HyperbolicOps.to_poincare(fine, c=self.hyperbolic_curvature)
+
+            # Combine using Möbius addition: coarse ⊕ fine
+            # This hierarchically refines fine with coarse information
+            combined_hyp = HyperbolicOps.mobius_add(
+                coarse_hyp, fine_hyp, c=self.hyperbolic_curvature
+            )
+
+            # Project back to Euclidean space
+            return HyperbolicOps.from_poincare(combined_hyp, c=self.hyperbolic_curvature)
+
         else:
             raise ValueError(f"Unknown combination method: {self.combination_method}")
     
@@ -177,12 +287,16 @@ class HierarchicalEmbedder(BaseEmbedder):
             return self.coarse_dim  # Assumes same dimensions
         elif self.combination_method == "learned":
             return self.coarse_dim + self.fine_dim  # For now
+        elif self.combination_method == "hyperbolic":
+            # Hyperbolic uses Möbius addition, output dimension is fine_dim
+            # (coarse is projected to fine dimension if needed)
+            return self.fine_dim
         else:
             raise ValueError(f"Unknown combination method: {self.combination_method}")
     
     def get_model_info(self) -> Dict[str, Any]:
         """Get model information."""
-        return {
+        info = {
             "type": "hierarchical",
             "coarse_model": self.coarse_model_name,
             "fine_model": self.fine_model_name,
@@ -194,3 +308,9 @@ class HierarchicalEmbedder(BaseEmbedder):
             "coarse_weight": self.coarse_weight,
             "fine_weight": self.fine_weight,
         }
+
+        # Add hyperbolic-specific info if using hyperbolic combination
+        if self.combination_method == "hyperbolic":
+            info["hyperbolic_curvature"] = self.hyperbolic_curvature
+
+        return info

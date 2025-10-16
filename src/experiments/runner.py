@@ -176,6 +176,7 @@ class ExperimentRunner:
                 combination_method=model_config.combination_method,
                 coarse_weight=model_config.coarse_weight,
                 fine_weight=model_config.fine_weight,
+                hyperbolic_curvature=model_config.hyperbolic_curvature,
             )
         else:
             raise ValueError(f"Unknown model type: {model_config.type}")

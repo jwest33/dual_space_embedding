@@ -1,0 +1,2 @@
+dataset,task,baseline,hierarchical_concat,hierarchical_hyperbolic
+sts-b,retrieval,0.6432494150288071,0.6592858593075102,0.6546251883378263

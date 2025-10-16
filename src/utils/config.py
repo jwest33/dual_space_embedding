@@ -11,17 +11,20 @@ class ModelConfig:
     """Configuration for an embedding model."""
     type: str  # 'single' or 'hierarchical'
     name: str
-    
+
     # For single models
     model_name: str = None
-    
+
     # For hierarchical models
     coarse_model: str = None
     fine_model: str = None
     combination_method: str = "concat"
     coarse_weight: float = 0.5
     fine_weight: float = 0.5
-    
+
+    # For hyperbolic combination
+    hyperbolic_curvature: float = 1.0
+
     # Common parameters
     device: str = None
     normalize: bool = True

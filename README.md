@@ -17,8 +17,9 @@ The hierarchical approach combines two embedding models:
 2. **Fine Model**: Captures detailed semantic nuances (higher quality)
 
 Combination methods supported:
-- **Concatenation**: Combines both embeddings (default)
+- **Concatenation**: Combines both embeddings side-by-side (default)
 - **Weighted Sum**: Weighted average of embeddings
+- **Hyperbolic**: Hierarchically refines fine embedding with coarse using hyperbolic geometry
 - **Learned**: Trainable projection layer (future)
 
 ## Installation
@@ -89,7 +90,7 @@ Results are saved to the `results/` directory:
 - `comparison_*.csv`: Metric comparison tables
 - `report.txt`: Human-readable summary
 
-**Example Results** (STS-B validation set, 1500 samples):
+**Example Results** (`config\experiments\stsb_hierarchal_concat_hyperbolic.yaml`):
 
 ```
 Similarity Task
@@ -98,6 +99,7 @@ Similarity Task
 ┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
 │ baseline     │ sts-b   │ 0.8672   │ 0.0000     │ 0.8696  │ 0.0000    │ 1.8158 │
 │ hierarchical │ sts-b   │ 0.8828   │ 0.0000     │ 0.8832  │ 0.0000    │ 1.8171 │
+│ hyperbolic   │ sts-b   │ 0.8780   │ 0.0000     │ 0.8790  │ 0.0000    │ 1.8165 │
 └──────────────┴─────────┴──────────┴────────────┴─────────┴───────────┴────────┘
 
 Retrieval Task
@@ -106,13 +108,15 @@ Retrieval Task
 ┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━┩
 │ baseline     │ sts-b   │ 0.6432 │ 1500.0000   │ 0.5767   │ 0.5767      │ 0.7140   │
 │ hierarchical │ sts-b   │ 0.6593 │ 1500.0000   │ 0.5953   │ 0.5953      │ 0.7327   │
+│ hyperbolic   │ sts-b   │ 0.6546 │ 1500.0000   │ 0.5873   │ 0.5873      │ 0.7233   │
 └──────────────┴─────────┴────────┴─────────────┴──────────┴─────────────┴──────────┘
 ```
 
 **Key Findings:**
-- Hierarchical model improves Spearman correlation by **1.8%** (0.8672 → 0.8828)
-- Mean Reciprocal Rank (MRR) increases by **2.5%** (0.6432 → 0.6593)
-- Recall@5 improves from 71.4% to 73.3%
+- **Hierarchical concat** achieves **best performance**: Spearman 0.8828 (+1.8% vs baseline), MRR 0.6593 (+2.5% vs baseline)
+- **Hyperbolic combination** provides **strong middle ground**: Spearman 0.8780 (+1.2% vs baseline), MRR 0.6546 (+1.8% vs baseline)
+- **Dimensional efficiency**: Hyperbolic achieves 68% of concat's improvement using only 67% of the dimensions (768-dim vs 1152-dim)
+- Both hierarchical methods substantially outperform single baseline model across all metrics
 
 ## CLI Commands
 
@@ -160,12 +164,19 @@ python cli.py list-datasets
   name: my_hierarchical_model
   coarse_model: all-MiniLM-L6-v2  # Fast, broad semantics
   fine_model: all-mpnet-base-v2   # Detailed semantics
-  combination_method: concat      # 'concat', 'weighted_sum'
+  combination_method: concat      # 'concat', 'weighted_sum', 'hyperbolic'
   coarse_weight: 0.5              # For weighted_sum
   fine_weight: 0.5                # For weighted_sum
+  hyperbolic_curvature: 1.0       # For hyperbolic (positive value)
   device: null
   normalize: true
 ```
+
+**Hyperbolic Combination**: Uses Möbius addition in hyperbolic space (Poincaré ball) to hierarchically refine the fine embedding with coarse information. Unlike concatenation, this produces a single embedding with the dimension of the fine model, where coarse semantics are projected into and combined with fine semantics using hyperbolic geometry.
+- Output dimension: `fine_dim` (not concatenated)
+- Coarse embedding is projected to fine dimension if needed
+- Better for capturing hierarchical relationships than Euclidean methods
+- `hyperbolic_curvature` - Controls the curvature of hyperbolic space (default: 1.0)
 
 ### Dataset Configuration
 

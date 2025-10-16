@@ -1,0 +1,34 @@
+name: my_experiment
+description: ''
+models:
+- type: single
+  name: baseline
+  model_name: all-MiniLM-L6-v2
+  normalize: true
+
+- type: hierarchical
+  name: hierarchical
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: concat
+  coarse_weight: 0.5
+  fine_weight: 0.5
+  normalize: true
+  
+datasets:
+- type: benchmark
+  name: sts-b
+  split: validation  # Use validation split - test split has withheld labels (-1.0)
+
+tasks:
+- similarity
+- retrieval
+
+batch_size: 32
+output_dir: results
+retrieval_k_values:
+- 1
+- 5
+- 10
+mlflow_tracking: true
+mlflow_uri: mlruns

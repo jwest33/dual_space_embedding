@@ -1,0 +1,2 @@
+dataset,task,baseline,hierarchical_concat,hierarchical_hyperbolic
+sts-b,similarity,0.8671631190200252,0.88277081483057,0.8779517812600767

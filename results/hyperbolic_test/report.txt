@@ -1,0 +1,28 @@
+================================================================================
+Experiment Report: hyperbolic_test
+Generated: 2025-10-16 07:46:28
+================================================================================
+
+Description: Test hyperbolic embedding combination method
+
+Models evaluated: 3
+  - baseline (single)
+  - hierarchical_concat (hierarchical)
+  - hierarchical_hyperbolic (hierarchical)
+
+Datasets used: 1
+  - sts-b (benchmark)
+
+Tasks evaluated: similarity, retrieval
+
+================================================================================
+Results Summary
+================================================================================
+
+                  model dataset       task  spearman  spearman_p  pearson  pearson_p      mae     rmse  num_samples  pred_std                                                                                                                                                                                                                                                                                                                                                                                                  metadata      mrr  num_queries  recall@1  precision@1  recall@5  precision@5  recall@10  precision@10
+               baseline   sts-b similarity  0.867163         0.0 0.869619        0.0 1.815793 2.196772       1500.0  0.275368                                                                                                                                                                   {'model_info': {'type': 'single', 'model_name': 'all-MiniLM-L6-v2', 'embedding_dim': 384, 'normalize': True, 'max_seq_length': 256}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}}      NaN          NaN       NaN          NaN       NaN          NaN        NaN           NaN
+               baseline   sts-b  retrieval       NaN         NaN      NaN        NaN      NaN      NaN          NaN       NaN                                                                                                                                                                   {'model_info': {'type': 'single', 'model_name': 'all-MiniLM-L6-v2', 'embedding_dim': 384, 'normalize': True, 'max_seq_length': 256}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}} 0.643249       1500.0  0.576667     0.576667  0.714000     0.142800   0.757333      0.075733
+    hierarchical_concat   sts-b similarity  0.882771         0.0 0.883243        0.0 1.817101 2.196661       1500.0  0.273070                                 {'model_info': {'type': 'hierarchical', 'coarse_model': 'all-MiniLM-L6-v2', 'fine_model': 'all-mpnet-base-v2', 'coarse_dim': 384, 'fine_dim': 768, 'combined_dim': 1152, 'normalize': True, 'combination_method': 'concat', 'coarse_weight': 0.5, 'fine_weight': 0.5}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}}      NaN          NaN       NaN          NaN       NaN          NaN        NaN           NaN
+    hierarchical_concat   sts-b  retrieval       NaN         NaN      NaN        NaN      NaN      NaN          NaN       NaN                                 {'model_info': {'type': 'hierarchical', 'coarse_model': 'all-MiniLM-L6-v2', 'fine_model': 'all-mpnet-base-v2', 'coarse_dim': 384, 'fine_dim': 768, 'combined_dim': 1152, 'normalize': True, 'combination_method': 'concat', 'coarse_weight': 0.5, 'fine_weight': 0.5}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}} 0.659286       1500.0  0.595333     0.595333  0.732667     0.146533   0.776667      0.077667
+hierarchical_hyperbolic   sts-b similarity  0.877952         0.0 0.879027        0.0 1.816544 2.196869       1500.0  0.272842 {'model_info': {'type': 'hierarchical', 'coarse_model': 'all-MiniLM-L6-v2', 'fine_model': 'all-mpnet-base-v2', 'coarse_dim': 384, 'fine_dim': 768, 'combined_dim': 768, 'normalize': True, 'combination_method': 'hyperbolic', 'coarse_weight': 0.5, 'fine_weight': 0.5, 'hyperbolic_curvature': 1.0}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}}      NaN          NaN       NaN          NaN       NaN          NaN        NaN           NaN
+hierarchical_hyperbolic   sts-b  retrieval       NaN         NaN      NaN        NaN      NaN      NaN          NaN       NaN {'model_info': {'type': 'hierarchical', 'coarse_model': 'all-MiniLM-L6-v2', 'fine_model': 'all-mpnet-base-v2', 'coarse_dim': 384, 'fine_dim': 768, 'combined_dim': 768, 'normalize': True, 'combination_method': 'hyperbolic', 'coarse_weight': 0.5, 'fine_weight': 0.5, 'hyperbolic_curvature': 1.0}, 'dataset_info': {'name': 'sts-b-validation', 'size': 1500, 'has_pairs': True, 'has_labels': True}} 0.654625       1500.0  0.587333     0.587333  0.723333     0.144667   0.764000      0.076400
