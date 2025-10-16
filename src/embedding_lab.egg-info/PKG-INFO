@@ -495,31 +495,6 @@ If you use this platform in your research, please cite:
 
 MIT License - see LICENSE file for details
 
-## Contributing
-
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Add tests for new features
-4. Submit a pull request
-
-## Support
-
-For issues or questions:
-- Open an issue on GitHub
-- Check existing documentation
-- Review example configurations
-
-## Roadmap
-
-- [ ] Learned combination methods
-- [ ] Cross-encoder support
-- [ ] Additional benchmarks (BEIR, MTEB)
-- [ ] Visualization tools
-- [ ] AutoML for hyperparameter tuning
-- [ ] Multi-GPU support
-- [ ] API server for embeddings
-
 ## Acknowledgments
 
 Built with:

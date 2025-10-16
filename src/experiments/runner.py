@@ -29,9 +29,9 @@ class ExperimentRunner:
         """
         self.config = config
         self.metrics_tracker = MetricsTracker()
-        
-        # Setup output directory
-        self.output_dir = Path(config.output_dir)
+
+        # Setup output directory (create subdirectory for experiment name)
+        self.output_dir = Path(config.output_dir) / config.name
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
         # Setup MLflow if enabled
