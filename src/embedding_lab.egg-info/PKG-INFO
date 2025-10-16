@@ -57,8 +57,9 @@ The hierarchical approach combines two embedding models:
 2. **Fine Model**: Captures detailed semantic nuances (higher quality)
 
 Combination methods supported:
-- **Concatenation**: Combines both embeddings (default)
+- **Concatenation**: Combines both embeddings side-by-side (default)
 - **Weighted Sum**: Weighted average of embeddings
+- **Hyperbolic**: Hierarchically refines fine embedding with coarse using hyperbolic geometry
 - **Learned**: Trainable projection layer (future)
 
 ## Installation
@@ -129,7 +130,7 @@ Results are saved to the `results/` directory:
 - `comparison_*.csv`: Metric comparison tables
 - `report.txt`: Human-readable summary
 
-**Example Results** (STS-B validation set, 1500 samples):
+**Example Results** (`config\experiments\stsb_hierarchal_concat_hyperbolic.yaml`):
 
 ```
 Similarity Task
@@ -203,12 +204,19 @@ python cli.py list-datasets
   name: my_hierarchical_model
   coarse_model: all-MiniLM-L6-v2  # Fast, broad semantics
   fine_model: all-mpnet-base-v2   # Detailed semantics
-  combination_method: concat      # 'concat', 'weighted_sum'
+  combination_method: concat      # 'concat', 'weighted_sum', 'hyperbolic'
   coarse_weight: 0.5              # For weighted_sum
   fine_weight: 0.5                # For weighted_sum
+  hyperbolic_curvature: 1.0       # For hyperbolic (positive value)
   device: null
   normalize: true
 ```
+
+**Hyperbolic Combination**: Uses Möbius addition in hyperbolic space (Poincaré ball) to hierarchically refine the fine embedding with coarse information. Unlike concatenation, this produces a single embedding with the dimension of the fine model, where coarse semantics are projected into and combined with fine semantics using hyperbolic geometry.
+- Output dimension: `fine_dim` (not concatenated)
+- Coarse embedding is projected to fine dimension if needed
+- Better for capturing hierarchical relationships than Euclidean methods
+- `hyperbolic_curvature` - Controls the curvature of hyperbolic space (default: 1.0)
 
 ### Dataset Configuration
 

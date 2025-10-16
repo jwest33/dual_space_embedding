@@ -7,7 +7,6 @@
 ./cli.py
 ./config/experiments/custom_dataset_example.yaml
 ./config/experiments/example_experiment.yaml
-./data/sample_dataset.csv
 ./demo.py
 ./requirements.txt
 ./setup.py

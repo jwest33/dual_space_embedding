@@ -103,7 +103,7 @@ def demo_evaluation():
     print("\n2. Hierarchical Model Evaluation")
     hierarchical = HierarchicalEmbedder(
         coarse_model="all-MiniLM-L6-v2",
-        fine_model="all-MiniLM-L6-v2",  # Using same for speed
+        fine_model="all-mpnet-base-v2",
         combination_method="concat"
     )
     evaluator = SimilarityEvaluator(hierarchical)
