@@ -1,6 +1,6 @@
 # Embedding Lab: Hierarchical Dual-Layer Embedding Experiment Platform
 
-A production-ready Python application for evaluating and comparing hierarchical dual-layer embedding models against single embedding models across multiple tasks.
+An application for evaluating and comparing hierarchical dual-layer embedding models against single embedding models across multiple tasks.
 
 ## Overview
 
@@ -447,7 +447,7 @@ If you use this platform in your research, please cite:
   title = {Embedding Lab: Hierarchical Dual-Layer Embedding Experiment Platform},
   year = {2024},
   author = {Your Name},
-  url = {https://github.com/yourusername/embedding-lab}
+  url = {https://github.com/jwest33/dual-space-embedding}
 }
 ```
 
