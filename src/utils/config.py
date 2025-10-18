@@ -60,6 +60,7 @@ class DatasetConfig:
     group_id_column: str = None  # Path to group_id field (e.g., "metadata.group_id")
     append_timestamp_to_text: bool = False  # Include timestamp in embedding text
     timestamp_format: str = "iso"  # Format for appended timestamp: iso, human, unix, relative
+    temporal_timestamp_target: str = None  # Which model gets timestamps: "coarse" or "fine" (required for hierarchical models)
 
 
 @dataclass

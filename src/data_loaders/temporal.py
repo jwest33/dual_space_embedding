@@ -64,6 +64,7 @@ class TemporalDataset(BaseDataset):
         self.groups = {}  # group_id -> list of sample indices
         self.timestamps = []  # parallel to self.samples
         self.group_start_times = {}  # For relative timestamp formatting
+        self.plain_texts = []  # Text without timestamps (parallel to self.samples)
 
         self.load()
 
@@ -161,14 +162,18 @@ class TemporalDataset(BaseDataset):
                     metadata = item.get("metadata", {})
                     variation_id = metadata.get("variation_id")
 
+                    # Store plain text (without timestamp)
+                    plain_text = str(text)
+
                     # Optionally append timestamp to text
+                    timestamped_text = plain_text
                     if self.append_timestamp_to_text:
                         formatted_ts = self._format_timestamp(timestamp, group_id)
-                        text = f"{text} [{formatted_ts}]"
+                        timestamped_text = f"{plain_text} [{formatted_ts}]"
 
-                    # Create sample
+                    # Create sample (use timestamped text if append_timestamp_to_text is True)
                     sample = DatasetSample(
-                        text1=str(text),
+                        text1=timestamped_text,
                         text2=None,
                         label=None,  # No labels for temporal retrieval
                         metadata={
@@ -184,6 +189,7 @@ class TemporalDataset(BaseDataset):
 
                     self.samples.append(sample)
                     self.timestamps.append(timestamp)
+                    self.plain_texts.append(plain_text)
 
                     # Track groups
                     if group_id not in self.groups:
@@ -256,6 +262,72 @@ class TemporalDataset(BaseDataset):
             Timestamp as datetime object
         """
         return self.timestamps[sample_idx]
+
+    def get_text_for_model(self, sample_idx: int, model_target: str = None) -> str:
+        """
+        Get text for a specific model target (coarse/fine).
+
+        Args:
+            sample_idx: Sample index
+            model_target: "coarse" or "fine" - which model should get timestamps.
+                         If None, returns the default text1 from sample.
+
+        Returns:
+            Text string (with or without timestamp depending on model_target)
+        """
+        if model_target is None:
+            return self.samples[sample_idx].text1
+
+        model_target = model_target.lower()
+        if model_target not in ["coarse", "fine"]:
+            raise ValueError(f"model_target must be 'coarse' or 'fine', got '{model_target}'")
+
+        # If append_timestamp_to_text is False, return plain text regardless of target
+        if not self.append_timestamp_to_text:
+            return self.plain_texts[sample_idx]
+
+        # Return timestamped text for the target model, plain text for the other
+        if model_target == "fine":
+            # Fine model gets timestamp, so return text1 (which has timestamp)
+            return self.samples[sample_idx].text1
+        else:
+            # Coarse model gets timestamp, but text1 has timestamp, so return plain
+            return self.plain_texts[sample_idx]
+
+    def get_texts_for_hierarchical(self, temporal_timestamp_target: str = None) -> tuple:
+        """
+        Get all texts for hierarchical models with selective timestamp targeting.
+
+        Args:
+            temporal_timestamp_target: "coarse" or "fine" - which model gets timestamps
+
+        Returns:
+            Tuple of (coarse_texts, fine_texts) where only the target model gets timestamps
+        """
+        if temporal_timestamp_target is None:
+            # No selective targeting, return same texts for both
+            all_texts = [sample.text1 for sample in self.samples]
+            return all_texts, all_texts
+
+        temporal_timestamp_target = temporal_timestamp_target.lower()
+        if temporal_timestamp_target not in ["coarse", "fine"]:
+            raise ValueError(
+                f"temporal_timestamp_target must be 'coarse' or 'fine', got '{temporal_timestamp_target}'"
+            )
+
+        if not self.append_timestamp_to_text:
+            # No timestamps appended, return plain texts for both
+            return self.plain_texts.copy(), self.plain_texts.copy()
+
+        # Get timestamped texts (from samples)
+        timestamped_texts = [sample.text1 for sample in self.samples]
+
+        if temporal_timestamp_target == "coarse":
+            # Coarse gets timestamps, fine gets plain
+            return timestamped_texts, self.plain_texts.copy()
+        else:  # "fine"
+            # Fine gets timestamps, coarse gets plain
+            return self.plain_texts.copy(), timestamped_texts
 
     def get_info(self) -> Dict[str, Any]:
         """Get dataset information."""

@@ -56,6 +56,7 @@ class TemporalRetrievalEvaluator:
         dataset: TemporalDataset,
         batch_size: int = 32,
         k_values: List[int] = [1, 5, 10, 20],
+        temporal_timestamp_target: Optional[str] = None,
     ) -> Dict[str, float]:
         """
         Evaluate embedder on temporal retrieval task.
@@ -64,6 +65,8 @@ class TemporalRetrievalEvaluator:
             dataset: Temporal dataset
             batch_size: Batch size for encoding
             k_values: K values for recall@k and precision@k
+            temporal_timestamp_target: Which model gets timestamps ("coarse" or "fine")
+                                      for hierarchical models. None for single models.
 
         Returns:
             Dictionary with evaluation metrics
@@ -71,9 +74,24 @@ class TemporalRetrievalEvaluator:
         logger.info(f"Evaluating temporal retrieval on {dataset.name} ({len(dataset)} samples)")
 
         # Encode all facts
-        texts = [s.text1 for s in dataset]
         logger.debug("Encoding all facts...")
-        embeddings = self.embedder.encode(texts, batch_size=batch_size)
+
+        # Check if using hierarchical model with temporal timestamp targeting
+        from embeddings.hierarchical import HierarchicalEmbedder
+        if isinstance(self.embedder, HierarchicalEmbedder) and temporal_timestamp_target:
+            # Get separate texts for coarse and fine models
+            coarse_texts, fine_texts = dataset.get_texts_for_hierarchical(temporal_timestamp_target)
+            logger.debug(f"Using hierarchical encoding with temporal_timestamp_target='{temporal_timestamp_target}'")
+            embeddings = self.embedder.encode(
+                texts=coarse_texts,  # Provide default texts
+                coarse_texts=coarse_texts,
+                fine_texts=fine_texts,
+                batch_size=batch_size
+            )
+        else:
+            # Standard encoding for single models or hierarchical without targeting
+            texts = [s.text1 for s in dataset]
+            embeddings = self.embedder.encode(texts, batch_size=batch_size)
 
         # Compute similarity matrix (all vs all)
         logger.debug("Computing similarity matrix...")

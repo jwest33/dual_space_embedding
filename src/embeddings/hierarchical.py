@@ -144,49 +144,64 @@ class HierarchicalEmbedder(BaseEmbedder):
         texts: Union[str, List[str]],
         batch_size: int = 32,
         show_progress_bar: bool = False,
+        coarse_texts: List[str] = None,
+        fine_texts: List[str] = None,
         **kwargs
     ) -> np.ndarray:
         """
         Encode text(s) using hierarchical approach.
-        
+
         First encodes with coarse model for broad semantics,
         then with fine model for detailed semantics,
         finally combines according to combination_method.
-        
+
         Args:
-            texts: Single text or list of texts
+            texts: Single text or list of texts (used for both models if coarse_texts/fine_texts not provided)
             batch_size: Batch size for encoding
             show_progress_bar: Whether to show progress bar
+            coarse_texts: Optional separate texts for coarse model (for temporal timestamp targeting)
+            fine_texts: Optional separate texts for fine model (for temporal timestamp targeting)
             **kwargs: Additional arguments
-            
+
         Returns:
             Numpy array of combined embeddings
         """
         if isinstance(texts, str):
             texts = [texts]
-        
+
+        # Determine which texts to use for each model
+        texts_for_coarse = coarse_texts if coarse_texts is not None else texts
+        texts_for_fine = fine_texts if fine_texts is not None else texts
+
+        # Validate that both have the same length
+        if len(texts_for_coarse) != len(texts_for_fine):
+            raise ValueError(
+                f"coarse_texts and fine_texts must have the same length. "
+                f"Got coarse: {len(texts_for_coarse)}, fine: {len(texts_for_fine)}"
+            )
+
         # Encode with coarse model (broad semantic understanding)
-        logger.debug(f"Encoding {len(texts)} texts with coarse model")
+        logger.debug(f"Encoding {len(texts_for_coarse)} texts with coarse model")
         coarse_embeddings = self.coarse_model.encode(
-            texts,
+            texts_for_coarse,
             batch_size=batch_size,
             show_progress_bar=show_progress_bar,
             normalize_embeddings=False,  # We'll normalize at the end
             convert_to_numpy=True,
             **kwargs
         )
-        
+
         # Encode with fine model (detailed semantic understanding)
-        logger.debug(f"Encoding {len(texts)} texts with fine model")
+        logger.debug(f"Encoding {len(texts_for_fine)} texts with fine model")
         fine_embeddings = self.fine_model.encode(
-            texts,
+            texts_for_fine,
             batch_size=batch_size,
             show_progress_bar=show_progress_bar,
             normalize_embeddings=False,
             convert_to_numpy=True,
             **kwargs
         )
-        
+
         # Combine embeddings
         combined = self._combine_embeddings(coarse_embeddings, fine_embeddings)
 

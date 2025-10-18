@@ -32,12 +32,13 @@ models:
 datasets:
 - type: temporal
   name: temporal_facts_social
-  file_path: datasets/temporal_facts_social_20251018_055003.jsonl
+  file_path: datasets/temporal_facts_social_evolution_v1.jsonl
   text_column: instruction
   timestamp_column: metadata.timestamp  # Required: path to timestamp field
   group_id_column: metadata.group_id  # Optional: defaults to metadata.group_id
   append_timestamp_to_text: true  # Include timestamps in embeddings
   timestamp_format: relative  # Options: iso, human, unix, relative
+  temporal_timestamp_target: fine  # Which model gets timestamps: "coarse" or "fine" (required for hierarchical models)
 
 tasks:
 - temporal

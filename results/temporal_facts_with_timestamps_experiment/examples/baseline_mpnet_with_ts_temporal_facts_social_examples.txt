@@ -12,182 +12,182 @@ Dataset: temporal_facts_social
 Within-Group Example 1
 ================================================================================
 
-Query (Group: group_007, Position: 1):
-Timestamp: 2025-03-07 06:43:12
-"In March 2024, the hashtag challenge #SustainableStyleSwap, initiated by users, gained traction on I..."
+Query (Group: group_001, Position: 1):
+Timestamp: 2025-01-01 00:00:00
+"After the city council's failed attempt to address housing insecurity, a group of neighbors in the S..."
 
 Retrieved Facts (by similarity):
 
-  1. [Pos: 5, Sim: 0.986] 
-     Timestamp: 2025-03-07 10:43:12
-     "A user-generated hashtag challenge named #SustainableStyleSwap was launched on Instagram in March 20..."
+  1. [Pos: 3, Sim: 0.537] 
+     Timestamp: 2025-01-03 00:00:00
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-  2. [Pos: 6, Sim: 0.982] 
-     Timestamp: 2025-03-07 11:43:12
-     "On Instagram, in March 2024, the #SustainableStyleSwap hashtag challenge, created by users, produced..."
+  2. [Pos: 2, Sim: 0.519] 
+     Timestamp: 2025-01-02 00:00:00
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-  3. [Pos: 2, Sim: 0.982] 
-     Timestamp: 2025-03-07 07:43:12
-     "According to reports, a user-generated hashtag challenge #SustainableStyleSwap was launched on Insta..."
+  3. [Pos: 4, Sim: 0.447] 
+     Timestamp: 2025-01-04 00:00:00
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-  4. [Pos: 7, Sim: 0.965] 
-     Timestamp: 2025-03-07 12:43:12
-     "Within 30 days of its launch in March 2024, the #SustainableStyleSwap user-generated hashtag challen..."
+  4. [Pos: 6, Sim: 0.440] 
+     Timestamp: 2025-01-06 00:00:00
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-  5. [Pos: 4, Sim: 0.958] 
-     Timestamp: 2025-03-07 09:43:12
-     "Over 120,000 posts and 2.1 billion impressions were recorded for the user-generated hashtag challeng..."
+  5. [Pos: 5, Sim: 0.432] 
+     Timestamp: 2025-01-05 00:00:00
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-  6. [Pos: 3, Sim: 0.939] 
-     Timestamp: 2025-03-07 08:43:12
-     "The #SustainableStyleSwap challenge, a user-driven initiative, went live on Instagram in March 2024,..."
+  6. [Pos: 7, Sim: 0.396] 
+     Timestamp: 2025-01-07 00:00:00
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-Temporal Order Correlation: -0.314
-Nearest Fact Rank: 3
+Temporal Order Correlation: 0.886
+Nearest Fact Rank: 2
 ================================================================================
 Within-Group Example 2
 ================================================================================
 
-Query (Group: group_009, Position: 1):
-Timestamp: 2025-03-29 00:57:36
-"A 30-second TikTok dance challenge, which gained 180 million views and generated 1.2 million user-ge..."
+Query (Group: group_005, Position: 1):
+Timestamp: 2025-02-13 12:28:48
+"After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
 Retrieved Facts (by similarity):
 
-  1. [Pos: 7, Sim: 0.963] 
-     Timestamp: 2025-03-29 06:57:36
-     "A TikTok dance challenge launched with a 30-second routine reportedly achieved 180 million views and..."
+  1. [Pos: 5, Sim: 0.843] 
+     Timestamp: 2025-02-17 12:28:48
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
-  2. [Pos: 3, Sim: 0.956] 
-     Timestamp: 2025-03-29 02:57:36
-     "According to reports, a 30-second TikTok dance challenge reached 180 million views and attracted 1.2..."
+  2. [Pos: 3, Sim: 0.840] 
+     Timestamp: 2025-02-15 12:28:48
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
-  3. [Pos: 2, Sim: 0.956] 
-     Timestamp: 2025-03-29 01:57:36
-     "Within 72 hours of its launch, a TikTok dance challenge featuring a 30-second routine accumulated 18..."
+  3. [Pos: 7, Sim: 0.821] 
+     Timestamp: 2025-02-19 12:28:48
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
-  4. [Pos: 4, Sim: 0.948] 
-     Timestamp: 2025-03-29 03:57:36
-     "The TikTok dance challenge, launched with a 30-second routine, was viewed 180 million times and trig..."
+  4. [Pos: 2, Sim: 0.818] 
+     Timestamp: 2025-02-14 12:28:48
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
-  5. [Pos: 5, Sim: 0.945] 
-     Timestamp: 2025-03-29 04:57:36
-     "A 30-second routine from a TikTok dance challenge amassed 180 million views and generated 1.2 millio..."
+  5. [Pos: 4, Sim: 0.794] 
+     Timestamp: 2025-02-16 12:28:48
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
-  6. [Pos: 6, Sim: 0.930] 
-     Timestamp: 2025-03-29 05:57:36
-     "In the first 72 hours post-launch, a TikTok dance challenge with a 30-second routine saw 180 million..."
+  6. [Pos: 6, Sim: 0.739] 
+     Timestamp: 2025-02-18 12:28:48
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
 Temporal Order Correlation: 0.086
-Nearest Fact Rank: 3
+Nearest Fact Rank: 4
 ================================================================================
 Within-Group Example 3
 ================================================================================
 
-Query (Group: group_013, Position: 1):
-Timestamp: 2025-05-11 13:26:24
-"A cooking competition streamed live on Instagram Live garnered 250,000 views within 20 minutes, accu..."
+Query (Group: group_007, Position: 1):
+Timestamp: 2025-03-07 06:43:12
+"After the community-wide cleanup and the planting of the first trees along the old riverbed, the vil..."
 
 Retrieved Facts (by similarity):
 
-  1. [Pos: 5, Sim: 0.977] 
-     Timestamp: 2025-05-11 17:26:24
-     "A live-streamed cooking competition on Instagram Live was observed to reach 250,000 views within 20 ..."
+  1. [Pos: 2, Sim: 0.787] 
+     Timestamp: 2025-03-08 06:43:12
+     "A single teacher’s idea sparked a transformation that rippled through the entire community. After th..."
 
-  2. [Pos: 3, Sim: 0.969] 
-     Timestamp: 2025-05-11 15:26:24
-     "During the live stream, a cooking competition on Instagram Live achieved 250,000 views in 20 minutes..."
+  2. [Pos: 4, Sim: 0.754] 
+     Timestamp: 2025-03-10 06:43:12
+     "Following the vibrant community garden’s first harvest and the children’s joyous celebration under t..."
 
-  3. [Pos: 7, Sim: 0.958] 
-     Timestamp: 2025-05-11 19:26:24
-     "With 250,000 views in 20 minutes, a live-streamed cooking competition on Instagram Live recorded 12,..."
+  3. [Pos: 3, Sim: 0.751] 
+     Timestamp: 2025-03-09 06:43:12
+     "After the community-wide cleanup and the planting of the first trees along the old riverbed, the vil..."
 
-  4. [Pos: 6, Sim: 0.956] 
-     Timestamp: 2025-05-11 18:26:24
-     "In a live-streamed cooking competition on Instagram Live, 250,000 views were reached in 20 minutes, ..."
+  4. [Pos: 5, Sim: 0.719] 
+     Timestamp: 2025-03-11 06:43:12
+     "After the community-wide cleanup and the planting of the first trees along the old riverbed, and fol..."
 
-  5. [Pos: 2, Sim: 0.943] 
-     Timestamp: 2025-05-11 14:26:24
-     "According to reports, a live-streamed cooking competition on Instagram Live reached 250,000 views in..."
+  5. [Pos: 7, Sim: 0.602] 
+     Timestamp: 2025-03-13 06:43:12
+     "After the community garden’s first harvest and the children’s joyous celebration under the blooming ..."
 
-  6. [Pos: 4, Sim: 0.913] 
-     Timestamp: 2025-05-11 16:26:24
-     "The event, a live-streamed cooking competition on Instagram Live, saw 250,000 views in 20 minutes, r..."
+  6. [Pos: 6, Sim: 0.532] 
+     Timestamp: 2025-03-12 06:43:12
+     "After the community garden’s first harvest and the children’s joyous celebration under the blooming ..."
 
-Temporal Order Correlation: -0.257
-Nearest Fact Rank: 5
+Temporal Order Correlation: 0.886
+Nearest Fact Rank: 1
 ================================================================================
 Within-Group Example 4
 ================================================================================
 
-Query (Group: group_024, Position: 1):
-Timestamp: 2025-09-08 05:45:36
-"A user named @DanceWithMe2024 sparked a TikTok dance challenge that went viral, amassing 120 million..."
+Query (Group: group_010, Position: 1):
+Timestamp: 2025-04-08 22:04:48
+"After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
 Retrieved Facts (by similarity):
 
-  1. [Pos: 5, Sim: 0.967] 
-     Timestamp: 2025-09-08 09:45:36
-     "It was reported that @DanceWithMe2024’s TikTok dance challenge went viral, accumulating 120 million ..."
+  1. [Pos: 2, Sim: 0.807] 
+     Timestamp: 2025-04-09 22:04:48
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  2. [Pos: 7, Sim: 0.965] 
-     Timestamp: 2025-09-08 11:45:36
-     "@DanceWithMe2024 launched a TikTok dance challenge that went viral, collecting 120 million views in ..."
+  2. [Pos: 3, Sim: 0.793] 
+     Timestamp: 2025-04-10 22:04:48
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  3. [Pos: 3, Sim: 0.958] 
-     Timestamp: 2025-09-08 07:45:36
-     "The viral TikTok dance challenge initiated by @DanceWithMe2024 garnered 120 million views in 72 hour..."
+  3. [Pos: 7, Sim: 0.781] 
+     Timestamp: 2025-04-14 22:04:48
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  4. [Pos: 4, Sim: 0.958] 
-     Timestamp: 2025-09-08 08:45:36
-     "A viral TikTok dance challenge featuring @DanceWithMe2024 amassed 120 million views over a span of 7..."
+  4. [Pos: 4, Sim: 0.739] 
+     Timestamp: 2025-04-11 22:04:48
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  5. [Pos: 6, Sim: 0.952] 
-     Timestamp: 2025-09-08 10:45:36
-     "The TikTok dance challenge by @DanceWithMe2024 became viral, reaching 120 million views within 72 ho..."
+  5. [Pos: 5, Sim: 0.723] 
+     Timestamp: 2025-04-12 22:04:48
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  6. [Pos: 2, Sim: 0.935] 
-     Timestamp: 2025-09-08 06:45:36
-     "According to reports, the TikTok dance challenge led by @DanceWithMe2024 reached 120 million views i..."
+  6. [Pos: 6, Sim: 0.640] 
+     Timestamp: 2025-04-13 22:04:48
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-Temporal Order Correlation: -0.486
-Nearest Fact Rank: 6
+Temporal Order Correlation: 0.657
+Nearest Fact Rank: 1
 ================================================================================
 Within-Group Example 5
 ================================================================================
 
-Query (Group: group_025, Position: 1):
-Timestamp: 2025-09-19 02:52:48
-"A user named @DanceWithMe created a modified version of the "Renegade" dance, which sparked a TikTok..."
+Query (Group: group_012, Position: 1):
+Timestamp: 2025-04-30 16:19:12
+"After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
 Retrieved Facts (by similarity):
 
-  1. [Pos: 3, Sim: 0.951] 
-     Timestamp: 2025-09-19 04:52:48
-     "The "Renegade" dance was modified by user @DanceWithMe, leading to a TikTok challenge that went vira..."
+  1. [Pos: 4, Sim: 0.792] 
+     Timestamp: 2025-05-03 16:19:12
+     "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
-  2. [Pos: 5, Sim: 0.941] 
-     Timestamp: 2025-09-19 06:52:48
-     "A modified version of the "Renegade" dance, created by user @DanceWithMe, ignited a TikTok challenge..."
+  2. [Pos: 3, Sim: 0.770] 
+     Timestamp: 2025-05-02 16:19:12
+     "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
-  3. [Pos: 6, Sim: 0.927] 
-     Timestamp: 2025-09-19 07:52:48
-     "Reportedly, the viral TikTok dance challenge featuring a modified "Renegade" dance, crafted by @Danc..."
+  3. [Pos: 6, Sim: 0.695] 
+     Timestamp: 2025-05-05 16:19:12
+     "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
-  4. [Pos: 4, Sim: 0.926] 
-     Timestamp: 2025-09-19 05:52:48
-     "A TikTok dance challenge rooted in a modified "Renegade" dance, originated by @DanceWithMe, went vir..."
+  4. [Pos: 7, Sim: 0.652] 
+     Timestamp: 2025-05-06 16:19:12
+     "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
-  5. [Pos: 7, Sim: 0.919] 
-     Timestamp: 2025-09-19 08:52:48
-     "TikTok users witnessed a viral challenge based on a modified "Renegade" dance, initiated by @DanceWi..."
+  5. [Pos: 2, Sim: 0.650] 
+     Timestamp: 2025-05-01 16:19:12
+     "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
-  6. [Pos: 2, Sim: 0.907] 
-     Timestamp: 2025-09-19 03:52:48
-     "According to reports, a TikTok dance challenge based on a modified "Renegade" dance, developed by us..."
+  6. [Pos: 5, Sim: 0.597] 
+     Timestamp: 2025-05-04 16:19:12
+     "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
-Temporal Order Correlation: -0.029
-Nearest Fact Rank: 6
+Temporal Order Correlation: 0.086
+Nearest Fact Rank: 5
 
 ################################################################################
 # CROSS-GROUP RETRIEVAL EXAMPLES
@@ -197,82 +197,82 @@ Nearest Fact Rank: 6
 Cross-Group Example 1
 ================================================================================
 
-Query (Group: group_004):
-"The 30-second "Sunset Glow" dance routine, developed by @danceforyou123, saw 25 million views in 72 ..."
+Query (Group: group_003):
+"After the chaos of the first day’s morning rush, the students of Maplewood High spilled into the qua..."
 
 Top 10 Retrieved Facts:
 
-  1. [Sim: 0.930] ✓ SAME
-     "A 30-second "Sunset Glow" dance routine, created by @danceforyou123 and popularized on TikTok, amass..."
+  1. [Sim: 0.804] ✓ SAME
+     "After the chaos of the first day’s morning rush, the students of Maplewood High spilled into the qua..."
 
-  2. [Sim: 0.920] ✓ SAME
-     "The "Sunset Glow" routine, a 30-second dance challenge by @danceforyou123, achieved 25 million views..."
+  2. [Sim: 0.785] ✓ SAME
+     "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in..."
 
-  3. [Sim: 0.878] ✓ SAME
-     "A TikTok dance challenge featuring a 30-second "Sunset Glow" routine, created by user @danceforyou12..."
+  3. [Sim: 0.766] ✓ SAME
+     "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in..."
 
-  4. [Sim: 0.869] ✓ SAME
-     "Created by @danceforyou123, the 30-second "Sunset Glow" TikTok dance challenge was viewed 25 million..."
+  4. [Sim: 0.753] ✗ group_005
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
-  5. [Sim: 0.868] ✓ SAME
-     "According to reports, the TikTok dance challenge titled "Sunset Glow," produced by user @danceforyou..."
+  5. [Sim: 0.738] ✗ group_008
+     "After the community garden project wrapped up, the youth gathered in the old community center’s sunl..."
 
-  6. [Sim: 0.867] ✓ SAME
-     "A TikTok dance challenge known as "Sunset Glow," featuring a 30-second routine from user @danceforyo..."
+  6. [Sim: 0.735] ✗ group_005
+     "After the quiet chaos of the morning’s community clean-up, the neighborhood youth mentorship program..."
 
-  7. [Sim: 0.805] ✗ group_016
-     "The dance challenge centered on a remix of 'Blinding Lights' reached 20 million views on TikTok in 7..."
+  7. [Sim: 0.730] ✗ group_016
+     "After the successful youth summit, a group of high school students from Maplewood High, including Ma..."
 
-  8. [Sim: 0.795] ✗ group_016
-     "Within 72 hours, a trending dance challenge based on a remix of 'Blinding Lights' achieved 20 millio..."
+  8. [Sim: 0.729] ✓ SAME
+     "After the chaotic morning rush that had left the hallways of Maplewood High echoing with shouts and ..."
 
-  9. [Sim: 0.793] ✗ group_016
-     "In a span of 72 hours, the dance trend built around a remix of 'Blinding Lights' gained 20 million v..."
+  9. [Sim: 0.719] ✗ group_016
+     "After the youth summit, a group of high school students from Maplewood High, including Ma, gathered ..."
 
-  10. [Sim: 0.781] ✗ group_016
-     "According to reports, a viral dance challenge featuring a remix of 'Blinding Lights' generated 20 mi..."
+  10. [Sim: 0.717] ✗ group_009
+     "After the quiet protest ended in a moment of unity, the community gathered in the town square under ..."
 
-Same-group facts in top-5: 5/5
-Same-group facts in top-10: 6/10
+Same-group facts in top-5: 3/5
+Same-group facts in top-10: 4/10
 First same-group fact rank: 1
 ================================================================================
 Cross-Group Example 2
 ================================================================================
 
-Query (Group: group_005):
-"A user-generated art competition on Instagram Reels, featuring AI-generated portraits, reportedly sp..."
+Query (Group: group_004):
+"After the morning’s planting ritual, the garden’s rhythm shifted as afternoon sunlight poured throug..."
 
 Top 10 Retrieved Facts:
 
-  1. [Sim: 0.959] ✓ SAME
-     "Featuring AI-generated portraits, the user-generated art competition on Instagram Reels attracted 2...."
+  1. [Sim: 0.800] ✓ SAME
+     "After the morning’s planting ritual, the garden’s rhythm shifted as afternoon sunlight poured throug..."
 
-  2. [Sim: 0.940] ✓ SAME
-     "Within 72 hours of launch, the Instagram Reels user-generated art competition showcasing AI-generate..."
+  2. [Sim: 0.789] ✓ SAME
+     "After the morning’s planting ritual, the garden’s rhythm shifted as afternoon sunlight poured throug..."
 
-  3. [Sim: 0.934] ✓ SAME
-     "According to reports, an Instagram Reels art competition driven by user-generated content and center..."
+  3. [Sim: 0.753] ✓ SAME
+     "After the morning’s planting ritual, the garden’s rhythm shifted as afternoon sunlight poured throug..."
 
-  4. [Sim: 0.912] ✓ SAME
-     "In the first 72 hours post-launch, the Instagram Reels art competition based on user-generated conte..."
+  4. [Sim: 0.750] ✓ SAME
+     "After the morning’s planting ritual, the garden’s rhythm shifted as afternoon sunlight poured throug..."
 
-  5. [Sim: 0.906] ✓ SAME
-     "The Instagram Reels competition, which featured AI-generated portraits and was user-generated, saw 2..."
+  5. [Sim: 0.746] ✓ SAME
+     "After the morning’s planting ritual, the garden’s rhythm shifted as afternoon sunlight poured throug..."
 
-  6. [Sim: 0.897] ✓ SAME
-     "Sparked by user-generated art and centered on AI-generated portraits, the Instagram Reels competitio..."
+  6. [Sim: 0.734] ✓ SAME
+     "Following the quiet intensity of the morning’s planting ritual, the garden’s rhythm shifted as after..."
 
-  7. [Sim: 0.851] ✗ group_015
-     "Featuring the hashtag #UrbanArtRevival, a user-generated art challenge on Instagram Reels attracted ..."
+  7. [Sim: 0.708] ✗ group_016
+     "After the youth summit, a group of high school students from Maplewood High, including Ma, gathered ..."
 
-  8. [Sim: 0.829] ✗ group_015
-     "A user-generated art challenge on Instagram Reels, centered around the hashtag #UrbanArtRevival, gar..."
+  8. [Sim: 0.707] ✗ group_012
+     "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto..."
 
-  9. [Sim: 0.818] ✗ group_015
-     "According to reports, a user-generated art challenge on Instagram Reels using the hashtag #UrbanArtR..."
+  9. [Sim: 0.690] ✗ group_006
+     "After the community cleanup and the launch of the new garden, the local high school’s student counci..."
 
-  10. [Sim: 0.798] ✗ group_015
-     "A specific hashtag campaign, #UrbanArtRevival, on Instagram Reels sparked a user-generated art chall..."
+  10. [Sim: 0.689] ✗ group_025
+     "After the first protest, a group of residents from the eastern neighborhood—mostly women and elders—..."
 
 Same-group facts in top-5: 5/5
 Same-group facts in top-10: 6/10
@@ -281,124 +281,124 @@ First same-group fact rank: 1
 Cross-Group Example 3
 ================================================================================
 
-Query (Group: group_012):
-"In just 72 hours, the TikTok dance challenge 'The Glitch Hop' achieved 20 million views, with 120,00..."
+Query (Group: group_016):
+"After the youth summit, a group of high school students from Maplewood High, including Ma, gathered ..."
 
 Top 10 Retrieved Facts:
 
-  1. [Sim: 0.989] ✓ SAME
-     "With 120,000 users joining and 500,000 shares across the platform, the TikTok dance challenge 'The G..."
+  1. [Sim: 0.841] ✓ SAME
+     "After the youth summit, a group of high school students from Maplewood High, including Ma, gathered ..."
 
-  2. [Sim: 0.967] ✓ SAME
-     "According to reports, 'The Glitch Hop' — a new TikTok dance challenge — amassed 20 million views in ..."
+  2. [Sim: 0.833] ✗ group_001
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-  3. [Sim: 0.958] ✓ SAME
-     "The Glitch Hop," a TikTok dance challenge, reportedly gained 20 million views in 72 hours, with 120,..."
+  3. [Sim: 0.832] ✗ group_007
+     "After the community-wide cleanup and the planting of the first trees along the old riverbed, the vil..."
 
-  4. [Sim: 0.945] ✓ SAME
-     "The Glitch Hop,' a viral TikTok dance challenge, was observed to gain 20 million views in 72 hours, ..."
+  4. [Sim: 0.832] ✗ group_014
+     "After a series of community workshops on youth leadership, twelve teenagers gathered in the town’s o..."
 
-  5. [Sim: 0.839] ✗ group_024
-     "The TikTok dance challenge by @DanceWithMe2024 became viral, reaching 120 million views within 72 ho..."
+  5. [Sim: 0.830] ✗ group_003
+     "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in..."
 
-  6. [Sim: 0.838] ✗ group_001
-     "The TikTok dance challenge, inspired by the 1980s, went viral and amassed 50 million views in 72 hou..."
+  6. [Sim: 0.813] ✓ SAME
+     "After the youth summit’s empowering talks and collaborative workshops, a group of high school studen..."
 
-  7. [Sim: 0.837] ✗ group_024
-     "The viral TikTok dance challenge initiated by @DanceWithMe2024 garnered 120 million views in 72 hour..."
+  7. [Sim: 0.812] ✓ SAME
+     "After the successful youth summit, a group of high school students from Maplewood High, including Ma..."
 
-  8. [Sim: 0.837] ✗ group_009
-     "A 30-second TikTok dance challenge, which gained 180 million views and generated 1.2 million user-ge..."
+  8. [Sim: 0.812] ✗ group_008
+     "After the community garden project wrapped up, the youth gathered in the old community center’s sunl..."
 
-  9. [Sim: 0.836] ✗ group_024
-     "It was reported that @DanceWithMe2024’s TikTok dance challenge went viral, accumulating 120 million ..."
+  9. [Sim: 0.805] ✗ group_001
+     "After the city council’s failed attempt to address housing insecurity, a group of neighbors in the S..."
 
-  10. [Sim: 0.836] ✗ group_001
-     "According to reports, a viral TikTok dance challenge featuring 1980s-inspired choreography achieved ..."
+  10. [Sim: 0.792] ✗ group_004
+     "After the morning’s planting ritual, the garden’s rhythm shifted as afternoon sunlight poured throug..."
 
-Same-group facts in top-5: 4/5
-Same-group facts in top-10: 4/10
+Same-group facts in top-5: 1/5
+Same-group facts in top-10: 3/10
 First same-group fact rank: 1
 ================================================================================
 Cross-Group Example 4
 ================================================================================
 
 Query (Group: group_017):
-"An Instagram art contest launched in early 2024 encouraged users to produce digital art based on "cl..."
+"After the harvest festival celebrations ended and the last lanterns flickered out, a quiet determina..."
 
 Top 10 Retrieved Facts:
 
-  1. [Sim: 0.965] ✓ SAME
-     "A user-generated art contest on Instagram, launched in early 2024, invited participants to create di..."
+  1. [Sim: 0.868] ✗ group_021
+     "After the quiet aftermath of the storm, when the last echoes of wind had faded and the sky began to ..."
 
-  2. [Sim: 0.957] ✓ SAME
-     "Users on Instagram participated in a contest launched in early 2024 to generate digital art inspired..."
+  2. [Sim: 0.831] ✗ group_022
+     "After the morning ritual of checking the horizon for signs of the storm, Kael stood at the edge of t..."
 
-  3. [Sim: 0.940] ✓ SAME
-     "In early 2024, Instagram launched a user-generated art contest where participants created digital ar..."
+  3. [Sim: 0.830] ✗ group_007
+     "After the community-wide cleanup and the planting of the first trees along the old riverbed, the vil..."
 
-  4. [Sim: 0.930] ✓ SAME
-     "A user-generated art contest on Instagram launched in early 2024, where participants created digital..."
+  4. [Sim: 0.805] ✗ group_023
+     "After the children's laughter had faded and the last of the morning mist lifted from the square, a q..."
 
-  5. [Sim: 0.928] ✓ SAME
-     "A user-generated art contest on Instagram launched in early 2024, where participants created digital..."
+  5. [Sim: 0.793] ✗ group_010
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  6. [Sim: 0.927] ✓ SAME
-     "A user-generated art contest on Instagram launched in early 2024, where participants created digital..."
+  6. [Sim: 0.787] ✗ group_010
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  7. [Sim: 0.693] ✗ group_007
-     "The #SustainableStyleSwap challenge, a user-driven initiative, went live on Instagram in March 2024,..."
+  7. [Sim: 0.783] ✗ group_022
+     "After the morning ritual of checking the horizon for signs of the storm, Kael stood at the edge of t..."
 
-  8. [Sim: 0.678] ✗ group_005
-     "A user-generated art competition on Instagram Reels, featuring AI-generated portraits, reportedly sp..."
+  8. [Sim: 0.780] ✗ group_010
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-  9. [Sim: 0.664] ✗ group_005
-     "Within 72 hours of launch, the Instagram Reels user-generated art competition showcasing AI-generate..."
+  9. [Sim: 0.771] ✗ group_023
+     "The morning sun spilled golden light across the village square, warming the cobblestones where child..."
 
-  10. [Sim: 0.646] ✗ group_007
-     "On Instagram, in March 2024, the #SustainableStyleSwap hashtag challenge, created by users, produced..."
+  10. [Sim: 0.768] ✗ group_010
+     "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re..."
 
-Same-group facts in top-5: 5/5
-Same-group facts in top-10: 6/10
-First same-group fact rank: 1
+Same-group facts in top-5: 0/5
+Same-group facts in top-10: 0/10
+First same-group fact rank: 14
 ================================================================================
 Cross-Group Example 5
 ================================================================================
 
-Query (Group: group_018):
-"Using the phrase "I’m a robot," a TikTok dance challenge gained over 50 million views in 21 days and..."
+Query (Group: group_017):
+"After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h..."
 
 Top 10 Retrieved Facts:
 
-  1. [Sim: 0.980] ✓ SAME
-     "According to reports, a TikTok dance challenge featuring the phrase "I’m a robot" accumulated over 5..."
+  1. [Sim: 0.865] ✓ SAME
+     "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h..."
 
-  2. [Sim: 0.977] ✓ SAME
-     "TikTok users participated in a dance challenge with the phrase "I’m a robot" that gained over 50 mil..."
+  2. [Sim: 0.859] ✓ SAME
+     "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h..."
 
-  3. [Sim: 0.972] ✓ SAME
-     "The dance challenge on TikTok using the phrase "I’m a robot" achieved over 50 million views within 2..."
+  3. [Sim: 0.836] ✓ SAME
+     "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h..."
 
-  4. [Sim: 0.970] ✓ SAME
-     "A dance challenge on TikTok, centered around the phrase "I’m a robot," amassed over 50 million views..."
+  4. [Sim: 0.781] ✓ SAME
+     "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h..."
 
-  5. [Sim: 0.940] ✓ SAME
-     "The trend on TikTok involving the phrase "I’m a robot" in a dance challenge saw over 50 million view..."
+  5. [Sim: 0.705] ✓ SAME
+     "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h..."
 
-  6. [Sim: 0.924] ✓ SAME
-     "A TikTok trend that involved a dance challenge with the phrase "I’m a robot" reportedly gained over ..."
+  6. [Sim: 0.698] ✗ group_021
+     "After the quiet aftermath of the storm, when the last echoes of wind had faded and the sky began to ..."
 
-  7. [Sim: 0.801] ✗ group_002
-     "Reportedly, a TikTok dance challenge by user @DanceWithMe2024, inspired by a 2023 music video, accum..."
+  7. [Sim: 0.694] ✗ group_022
+     "After the morning ritual of checking the horizon for signs of the storm, Kael stood at the edge of t..."
 
-  8. [Sim: 0.801] ✗ group_006
-     "A viral 2023 song sparked a TikTok dance challenge by user @DanceWithMeSue, which amassed 25 million..."
+  8. [Sim: 0.683] ✗ group_023
+     "After the children's laughter had faded and the last of the morning mist lifted from the square, a q..."
 
-  9. [Sim: 0.800] ✗ group_002
-     "A viral 2023 music video inspired a TikTok dance challenge by user @DanceWithMe2024, which amassed o..."
+  9. [Sim: 0.679] ✓ SAME
+     "After the harvest festival celebrations ended and the last lanterns flickered out, a quiet determina..."
 
-  10. [Sim: 0.798] ✗ group_006
-     "In a span of 72 hours, the TikTok dance challenge by @DanceWithMeSue, inspired by a viral 2023 song,..."
+  10. [Sim: 0.678] ✗ group_019
+     "In the dimly lit chamber of the old observatory, where dust motes drifted like forgotten memories, E..."
 
 Same-group facts in top-5: 5/5
 Same-group facts in top-10: 6/10

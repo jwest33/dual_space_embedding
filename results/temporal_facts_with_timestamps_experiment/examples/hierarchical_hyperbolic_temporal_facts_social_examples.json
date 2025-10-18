@@ -3,660 +3,660 @@
   "dataset": "temporal_facts_social",
   "within_group_examples": [
     {
-      "query_text": "A viral 2023 music video inspired a TikTok dance challenge by user @DanceWithMe2024, which amassed o...",
+      "query_text": "The first spark of defiance flared in Kael\u2019s chest after he\u2019d heard the elders\u2019 decree\u2014that the last...",
       "query_timestamp": "2025-01-11 21:07:12",
       "query_group": "group_002",
       "query_temporal_position": 1,
       "retrieved_facts": [
         {
-          "text": "Reportedly, a TikTok dance challenge by user @DanceWithMe2024, inspired by a 2023 music video, accum...",
-          "timestamp": "2025-01-12 01:07:12",
+          "text": "After the elders decreed the last of the Skyward Stones must be destroyed, Kael stood frozen as the ...",
+          "timestamp": "2025-01-12 21:07:12",
           "rank": 1,
-          "similarity": 0.968373531158753,
-          "temporal_position": 5
-        },
-        {
-          "text": "A dance challenge featuring @DanceWithMe2024 on TikTok, rooted in a 2023 music video, achieved over ...",
-          "timestamp": "2025-01-12 00:07:12",
-          "rank": 2,
-          "similarity": 0.9527931674361144,
-          "temporal_position": 4
-        },
-        {
-          "text": "Inspired by a viral 2023 music video, the dance challenge on TikTok led by @DanceWithMe2024 grew to ...",
-          "timestamp": "2025-01-12 02:07:12",
-          "rank": 3,
-          "similarity": 0.9503762298110265,
-          "temporal_position": 6
-        },
-        {
-          "text": "The TikTok dance challenge initiated by @DanceWithMe2024, inspired by a viral 2023 music video, gain...",
-          "timestamp": "2025-01-11 23:07:12",
-          "rank": 4,
-          "similarity": 0.9503638594035085,
-          "temporal_position": 3
-        },
-        {
-          "text": "According to reports, the dance challenge on TikTok led by @DanceWithMe2024, sparked by a 2023 music...",
-          "timestamp": "2025-01-11 22:07:12",
-          "rank": 5,
-          "similarity": 0.9407701175302139,
+          "similarity": 0.5684203054121892,
           "temporal_position": 2
         },
         {
-          "text": "On TikTok, the user @DanceWithMe2024 launched a dance challenge inspired by [Hour 6]...",
-          "timestamp": "2025-01-12 03:07:12",
-          "rank": 6,
-          "similarity": 0.7685819179404244,
-          "temporal_position": 7
-        }
-      ],
-      "temporal_order_correlation": 0.028571428571428574,
-      "nearest_fact_rank": 5
-    },
-    {
-      "query_text": "A 30-second \"Sunset Glow\" dance routine, created by @danceforyou123 and popularized on TikTok, amass...",
-      "query_timestamp": "2025-02-02 15:21:36",
-      "query_group": "group_004",
-      "query_temporal_position": 1,
-      "retrieved_facts": [
-        {
-          "text": "The \"Sunset Glow\" routine, a 30-second dance challenge by @danceforyou123, achieved 25 million views...",
-          "timestamp": "2025-02-02 17:21:36",
-          "rank": 1,
-          "similarity": 0.9611413415685034,
-          "temporal_position": 3
-        },
-        {
-          "text": "A TikTok dance challenge featuring a 30-second \"Sunset Glow\" routine, created by user @danceforyou12...",
-          "timestamp": "2025-02-02 21:21:36",
+          "text": "After the elders\u2019 decree to destroy the Skyward Stones, the air in the village square hung thick wit...",
+          "timestamp": "2025-01-14 21:07:12",
           "rank": 2,
-          "similarity": 0.9598237799955607,
-          "temporal_position": 7
-        },
-        {
-          "text": "A TikTok dance challenge known as \"Sunset Glow,\" featuring a 30-second routine from user @danceforyo...",
-          "timestamp": "2025-02-02 19:21:36",
-          "rank": 3,
-          "similarity": 0.9510929686322189,
-          "temporal_position": 5
-        },
-        {
-          "text": "According to reports, the TikTok dance challenge titled \"Sunset Glow,\" produced by user @danceforyou...",
-          "timestamp": "2025-02-02 16:21:36",
-          "rank": 4,
-          "similarity": 0.9492881714287034,
-          "temporal_position": 2
-        },
-        {
-          "text": "Created by @danceforyou123, the 30-second \"Sunset Glow\" TikTok dance challenge was viewed 25 million...",
-          "timestamp": "2025-02-02 18:21:36",
-          "rank": 5,
-          "similarity": 0.9487899643605746,
+          "similarity": 0.558003473343991,
           "temporal_position": 4
         },
         {
-          "text": "The 30-second \"Sunset Glow\" dance routine, developed by @danceforyou123, saw 25 million views in 72 ...",
-          "timestamp": "2025-02-02 20:21:36",
-          "rank": 6,
-          "similarity": 0.8910254375608351,
-          "temporal_position": 6
-        }
-      ],
-      "temporal_order_correlation": 0.08571428571428573,
-      "nearest_fact_rank": 4
-    },
-    {
-      "query_text": "Neon Dreams,\" an AI-generated music track, reached 10 million views on YouTube in just 28 hours, set...",
-      "query_timestamp": "2025-04-08 22:04:48",
-      "query_group": "group_010",
-      "query_temporal_position": 1,
-      "retrieved_facts": [
-        {
-          "text": "A report states that 'Neon Dreams,' an AI-generated music track, gained 10 million views on YouTube ...",
-          "timestamp": "2025-04-09 02:04:48",
-          "rank": 1,
-          "similarity": 0.9725857010467023,
-          "temporal_position": 5
-        },
-        {
-          "text": "In a remarkable 28 hours, 'Neon Dreams' \u2014 an AI-generated track \u2014 hit 10 million views on YouTube, m...",
-          "timestamp": "2025-04-09 01:04:48",
-          "rank": 2,
-          "similarity": 0.9722006208905761,
-          "temporal_position": 4
-        },
-        {
-          "text": "The music video 'Neon Dreams,' produced by AI, surpassed 10 million views on YouTube in 28 hours, ea...",
-          "timestamp": "2025-04-09 00:04:48",
+          "text": "After the elders\u2019 decree to destroy the Skyward Stones, the silence that followed felt heavier than ...",
+          "timestamp": "2025-01-16 21:07:12",
           "rank": 3,
-          "similarity": 0.970499845814842,
-          "temporal_position": 3
+          "similarity": 0.5456668696985558,
+          "temporal_position": 6
         },
         {
-          "text": "According to reports, the AI-generated music video titled 'Neon Dreams' achieved 10 million views on...",
-          "timestamp": "2025-04-08 23:04:48",
+          "text": "After the elders' decree to destroy the Skyward Stones, the silence that followed felt heavier than ...",
+          "timestamp": "2025-01-17 21:07:12",
           "rank": 4,
-          "similarity": 0.9684682220760572,
-          "temporal_position": 2
-        },
-        {
-          "text": "Within 28 hours, the AI-generated track 'Neon Dreams' amassed 10 million views on YouTube, marking i...",
-          "timestamp": "2025-04-09 04:04:48",
-          "rank": 5,
-          "similarity": 0.968126889246607,
+          "similarity": 0.5299909467893998,
           "temporal_position": 7
         },
         {
-          "text": "Neon Dreams,' a music video generated by AI, was viewed more than 10 million times on YouTube in 28 ...",
-          "timestamp": "2025-04-09 03:04:48",
+          "text": "After the elders' decree to destroy the Skyward Stones, the silence that followed felt heavier than ...",
+          "timestamp": "2025-01-13 21:07:12",
+          "rank": 5,
+          "similarity": 0.5227826563713589,
+          "temporal_position": 3
+        },
+        {
+          "text": "After the elders' decree to destroy the Skyward Stones, the silence that followed felt heavier than ...",
+          "timestamp": "2025-01-15 21:07:12",
           "rank": 6,
-          "similarity": 0.961169977306911,
-          "temporal_position": 6
+          "similarity": 0.4394306457358082,
+          "temporal_position": 5
         }
       ],
       "temporal_order_correlation": 0.3714285714285715,
-      "nearest_fact_rank": 4
+      "nearest_fact_rank": 1
     },
     {
-      "query_text": "A dance challenge live-streamed on Instagram Reels reportedly went viral, amassing **20 million view...",
+      "query_text": "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in...",
+      "query_timestamp": "2025-01-22 18:14:24",
+      "query_group": "group_003",
+      "query_temporal_position": 1,
+      "retrieved_facts": [
+        {
+          "text": "After the chaos of the first day\u2019s morning rush, the students of Maplewood High spilled into the qua...",
+          "timestamp": "2025-01-26 18:14:24",
+          "rank": 1,
+          "similarity": 0.7538317808658531,
+          "temporal_position": 5
+        },
+        {
+          "text": "After the chaotic morning rush that had left the hallways of Maplewood High echoing with shouts and ...",
+          "timestamp": "2025-01-28 18:14:24",
+          "rank": 2,
+          "similarity": 0.747168499533338,
+          "temporal_position": 7
+        },
+        {
+          "text": "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in...",
+          "timestamp": "2025-01-23 18:14:24",
+          "rank": 3,
+          "similarity": 0.7088248436720415,
+          "temporal_position": 2
+        },
+        {
+          "text": "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in...",
+          "timestamp": "2025-01-25 18:14:24",
+          "rank": 4,
+          "similarity": 0.639389816160215,
+          "temporal_position": 4
+        },
+        {
+          "text": "After the chaos of the first day\u2019s morning rush, the students of Maplewood High spilled into the qua...",
+          "timestamp": "2025-01-24 18:14:24",
+          "rank": 5,
+          "similarity": 0.6167528247758137,
+          "temporal_position": 3
+        },
+        {
+          "text": "After the chaos of the first day\u2019s morning rush, the students of Maplewood High spilled into the qua...",
+          "timestamp": "2025-01-27 18:14:24",
+          "rank": 6,
+          "similarity": 0.5922121094543359,
+          "temporal_position": 6
+        }
+      ],
+      "temporal_order_correlation": -0.14285714285714288,
+      "nearest_fact_rank": 3
+    },
+    {
+      "query_text": "After the quiet aftermath of the storm, when the last echoes of wind had faded and the sky began to ...",
+      "query_timestamp": "2025-08-06 14:24:00",
+      "query_group": "group_021",
+      "query_temporal_position": 1,
+      "retrieved_facts": [
+        {
+          "text": "After the storm\u2019s fury had finally relented, the town\u2019s streets still bore the scars of chaos\u2014twiste...",
+          "timestamp": "2025-08-09 14:24:00",
+          "rank": 1,
+          "similarity": 0.8057644267286606,
+          "temporal_position": 4
+        },
+        {
+          "text": "After the storm\u2019s fury had finally relented, the town\u2019s streets still bore the scars of chaos\u2014twiste...",
+          "timestamp": "2025-08-11 14:24:00",
+          "rank": 2,
+          "similarity": 0.6185367560445821,
+          "temporal_position": 6
+        },
+        {
+          "text": "After the storm\u2019s fury had finally relented, the town\u2019s streets still bore the scars of chaos\u2014twiste...",
+          "timestamp": "2025-08-07 14:24:00",
+          "rank": 3,
+          "similarity": 0.6125572163777866,
+          "temporal_position": 2
+        },
+        {
+          "text": "After the storm\u2019s fury had finally relented, the town\u2019s streets still bore the scars of chaos\u2014twiste...",
+          "timestamp": "2025-08-10 14:24:00",
+          "rank": 4,
+          "similarity": 0.6079496571509468,
+          "temporal_position": 5
+        },
+        {
+          "text": "After the storm\u2019s fury had finally relented, the town\u2019s streets still bore the scars of chaos\u2014twiste...",
+          "timestamp": "2025-08-12 14:24:00",
+          "rank": 5,
+          "similarity": 0.6018580509493657,
+          "temporal_position": 7
+        },
+        {
+          "text": "After the storm\u2019s fury had finally relented, the town\u2019s streets still bore the scars of chaos\u2014twiste...",
+          "timestamp": "2025-08-08 14:24:00",
+          "rank": 6,
+          "similarity": 0.5186736886268131,
+          "temporal_position": 3
+        }
+      ],
+      "temporal_order_correlation": 0.028571428571428574,
+      "nearest_fact_rank": 3
+    },
+    {
+      "query_text": "The morning sun spilled golden light across the village square, warming the cobblestones where child...",
       "query_timestamp": "2025-08-28 08:38:24",
       "query_group": "group_023",
       "query_temporal_position": 1,
       "retrieved_facts": [
         {
-          "text": "A live-streamed dance challenge on Instagram Reels achieved viral status, garnering **20 million vie...",
-          "timestamp": "2025-08-28 12:38:24",
+          "text": "After the children's laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "timestamp": "2025-08-29 08:38:24",
           "rank": 1,
-          "similarity": 0.974935213117514,
-          "temporal_position": 5
-        },
-        {
-          "text": "Viral on Instagram Reels, the live-streamed dance challenge reached **20 million views in 12 hours**...",
-          "timestamp": "2025-08-28 14:38:24",
-          "rank": 2,
-          "similarity": 0.9552662033234945,
-          "temporal_position": 7
-        },
-        {
-          "text": "According to reports, a viral dance challenge streamed live on Instagram Reels achieved **20 million...",
-          "timestamp": "2025-08-28 10:38:24",
-          "rank": 3,
-          "similarity": 0.9547487307443043,
-          "temporal_position": 3
-        },
-        {
-          "text": "The dance challenge, live-streamed on Instagram Reels, amassed **20 million views in 12 hours**, acc...",
-          "timestamp": "2025-08-28 11:38:24",
-          "rank": 4,
-          "similarity": 0.9476993261418333,
-          "temporal_position": 4
-        },
-        {
-          "text": "On Instagram Reels, a live-streamed dance challenge reached **20 million views in 12 hours**, record...",
-          "timestamp": "2025-08-28 09:38:24",
-          "rank": 5,
-          "similarity": 0.9402316248466125,
+          "similarity": 0.6528497249526871,
           "temporal_position": 2
         },
         {
-          "text": "With **20 million views in 12 hours**, **1.2 million interactions** (likes, comments, shares), and *...",
-          "timestamp": "2025-08-28 13:38:24",
-          "rank": 6,
-          "similarity": 0.9282256998018338,
+          "text": "After the children's laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "timestamp": "2025-08-31 08:38:24",
+          "rank": 2,
+          "similarity": 0.6439229878812833,
+          "temporal_position": 4
+        },
+        {
+          "text": "After the children's laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "timestamp": "2025-08-30 08:38:24",
+          "rank": 3,
+          "similarity": 0.6403625811919872,
+          "temporal_position": 3
+        },
+        {
+          "text": "After the children\u2019s laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "timestamp": "2025-09-03 08:38:24",
+          "rank": 4,
+          "similarity": 0.5730763021962777,
+          "temporal_position": 7
+        },
+        {
+          "text": "After the children's laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "timestamp": "2025-09-02 08:38:24",
+          "rank": 5,
+          "similarity": 0.5710584757184338,
           "temporal_position": 6
+        },
+        {
+          "text": "After the children\u2019s laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "timestamp": "2025-09-01 08:38:24",
+          "rank": 6,
+          "similarity": 0.5155969648644947,
+          "temporal_position": 5
         }
       ],
-      "temporal_order_correlation": -0.2571428571428572,
-      "nearest_fact_rank": 5
+      "temporal_order_correlation": 0.7142857142857143,
+      "nearest_fact_rank": 1
     },
     {
-      "query_text": "A user named @DanceWithMe created a modified version of the \"Renegade\" dance, which sparked a TikTok...",
-      "query_timestamp": "2025-09-19 02:52:48",
-      "query_group": "group_025",
+      "query_text": "After the quiet storm had passed and the town\u2019s streets were slick with rain, the community gathered...",
+      "query_timestamp": "2025-09-08 05:45:36",
+      "query_group": "group_024",
       "query_temporal_position": 1,
       "retrieved_facts": [
         {
-          "text": "A modified version of the \"Renegade\" dance, created by user @DanceWithMe, ignited a TikTok challenge...",
-          "timestamp": "2025-09-19 06:52:48",
+          "text": "After the quiet storm had passed and the town\u2019s streets were slick with rain, the community gathered...",
+          "timestamp": "2025-09-11 05:45:36",
           "rank": 1,
-          "similarity": 0.964631273505218,
-          "temporal_position": 5
-        },
-        {
-          "text": "Reportedly, the viral TikTok dance challenge featuring a modified \"Renegade\" dance, crafted by @Danc...",
-          "timestamp": "2025-09-19 07:52:48",
-          "rank": 2,
-          "similarity": 0.9549765745690005,
-          "temporal_position": 6
-        },
-        {
-          "text": "A TikTok dance challenge rooted in a modified \"Renegade\" dance, originated by @DanceWithMe, went vir...",
-          "timestamp": "2025-09-19 05:52:48",
-          "rank": 3,
-          "similarity": 0.954871693652133,
+          "similarity": 0.6675003295388934,
           "temporal_position": 4
         },
         {
-          "text": "The \"Renegade\" dance was modified by user @DanceWithMe, leading to a TikTok challenge that went vira...",
-          "timestamp": "2025-09-19 04:52:48",
-          "rank": 4,
-          "similarity": 0.9531560596012774,
+          "text": "After the quiet storm had passed and the town\u2019s streets were slick with rain, the community gathered...",
+          "timestamp": "2025-09-10 05:45:36",
+          "rank": 2,
+          "similarity": 0.6566752760525033,
           "temporal_position": 3
         },
         {
-          "text": "TikTok users witnessed a viral challenge based on a modified \"Renegade\" dance, initiated by @DanceWi...",
-          "timestamp": "2025-09-19 08:52:48",
-          "rank": 5,
-          "similarity": 0.9474842206628799,
+          "text": "After the quiet storm had passed and the town\u2019s streets were slick with rain, the community gathered...",
+          "timestamp": "2025-09-12 05:45:36",
+          "rank": 3,
+          "similarity": 0.6541153186306897,
+          "temporal_position": 5
+        },
+        {
+          "text": "After the quiet storm had passed and the town\u2019s streets were slick with rain, the community gathered...",
+          "timestamp": "2025-09-14 05:45:36",
+          "rank": 4,
+          "similarity": 0.6504413625336206,
           "temporal_position": 7
         },
         {
-          "text": "According to reports, a TikTok dance challenge based on a modified \"Renegade\" dance, developed by us...",
-          "timestamp": "2025-09-19 03:52:48",
+          "text": "After the quiet storm had passed and the town\u2019s streets were slick with rain, the community gathered...",
+          "timestamp": "2025-09-13 05:45:36",
+          "rank": 5,
+          "similarity": 0.6370977216492429,
+          "temporal_position": 6
+        },
+        {
+          "text": "After the quiet storm had passed and the town\u2019s streets were slick with rain, the community gathered...",
+          "timestamp": "2025-09-09 05:45:36",
           "rank": 6,
-          "similarity": 0.9212627464211705,
+          "similarity": 0.6020150059535055,
           "temporal_position": 2
         }
       ],
-      "temporal_order_correlation": -0.3714285714285715,
+      "temporal_order_correlation": 0.028571428571428574,
       "nearest_fact_rank": 6
     }
   ],
   "cross_group_examples": [
     {
-      "query_text": "A live-streamed cooking competition on Instagram Live was observed to reach 250,000 views within 20 ...",
-      "query_group": "group_013",
+      "query_text": "After the city council\u2019s failed attempt to address housing insecurity, a group of neighbors in the S...",
+      "query_group": "group_001",
       "retrieved_facts": [
         {
-          "text": "A cooking competition streamed live on Instagram Live garnered 250,000 views within 20 minutes, accu...",
-          "group": "group_013",
+          "text": "After the successful youth summit, a group of high school students from Maplewood High, including Ma...",
+          "group": "group_016",
           "rank": 1,
-          "similarity": 0.9859850056248316,
-          "is_same_group": true
+          "similarity": 0.775200906412796,
+          "is_same_group": false
         },
         {
-          "text": "According to reports, a live-streamed cooking competition on Instagram Live reached 250,000 views in...",
-          "group": "group_013",
+          "text": "After a series of community workshops on youth leadership, twelve teenagers gathered in the town\u2019s o...",
+          "group": "group_014",
           "rank": 2,
-          "similarity": 0.9839507073373344,
-          "is_same_group": true
+          "similarity": 0.755033042810173,
+          "is_same_group": false
         },
         {
-          "text": "With 250,000 views in 20 minutes, a live-streamed cooking competition on Instagram Live recorded 12,...",
-          "group": "group_013",
+          "text": "After the first protest, a group of residents from the eastern neighborhood\u2014mostly women and elders\u2014...",
+          "group": "group_025",
           "rank": 3,
-          "similarity": 0.9785064290376564,
-          "is_same_group": true
+          "similarity": 0.7263435471274552,
+          "is_same_group": false
         },
         {
-          "text": "During the live stream, a cooking competition on Instagram Live achieved 250,000 views in 20 minutes...",
-          "group": "group_013",
+          "text": "After the community garden project wrapped up, the youth gathered in the old community center\u2019s sunl...",
+          "group": "group_008",
           "rank": 4,
-          "similarity": 0.9744539944431799,
-          "is_same_group": true
+          "similarity": 0.7194030657607924,
+          "is_same_group": false
         },
         {
-          "text": "In a live-streamed cooking competition on Instagram Live, 250,000 views were reached in 20 minutes, ...",
-          "group": "group_013",
+          "text": "After the city council\u2019s failed attempt to address housing insecurity, a group of neighbors in the S...",
+          "group": "group_001",
           "rank": 5,
-          "similarity": 0.9713366175620393,
+          "similarity": 0.714217129661871,
           "is_same_group": true
         },
         {
-          "text": "The event, a live-streamed cooking competition on Instagram Live, saw 250,000 views in 20 minutes, r...",
-          "group": "group_013",
+          "text": "After the community garden project wrapped up, the youth gathered in the old community center\u2019s sunl...",
+          "group": "group_008",
           "rank": 6,
-          "similarity": 0.9383032935198974,
-          "is_same_group": true
+          "similarity": 0.712488120263126,
+          "is_same_group": false
         },
         {
-          "text": "According to reports, a viral dance challenge streamed live on Instagram Reels achieved **20 million...",
-          "group": "group_023",
+          "text": "After the morning\u2019s planting ritual, the garden\u2019s rhythm shifted as afternoon sunlight poured throug...",
+          "group": "group_004",
           "rank": 7,
-          "similarity": 0.7318468586376129,
+          "similarity": 0.7058883174249944,
           "is_same_group": false
         },
         {
-          "text": "Viral on Instagram Reels, the live-streamed dance challenge reached **20 million views in 12 hours**...",
-          "group": "group_023",
+          "text": "After the storm\u2019s fury had finally relented, the town\u2019s streets still bore the scars of chaos\u2014twiste...",
+          "group": "group_021",
           "rank": 8,
-          "similarity": 0.7047278378923606,
+          "similarity": 0.7052376335398248,
           "is_same_group": false
         },
         {
-          "text": "A live-streamed dance challenge on Instagram Reels achieved viral status, garnering **20 million vie...",
+          "text": "After the children's laughter had faded and the last of the morning mist lifted from the square, a q...",
           "group": "group_023",
           "rank": 9,
-          "similarity": 0.700383952158389,
+          "similarity": 0.6980096030212097,
           "is_same_group": false
         },
         {
-          "text": "On Instagram Reels, a live-streamed dance challenge reached **20 million views in 12 hours**, record...",
-          "group": "group_023",
+          "text": "After the community cleanup and the launch of the new garden, the local high school\u2019s student counci...",
+          "group": "group_006",
           "rank": 10,
-          "similarity": 0.6960579219182892,
+          "similarity": 0.6955010438569469,
           "is_same_group": false
         }
       ],
-      "same_group_in_top_5": 5,
-      "same_group_in_top_10": 6,
+      "same_group_in_top_5": 1,
+      "same_group_in_top_10": 1,
+      "first_same_group_rank": 5
+    },
+    {
+      "query_text": "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in...",
+      "query_group": "group_003",
+      "retrieved_facts": [
+        {
+          "text": "After the chaos of the first day\u2019s morning rush, the students of Maplewood High spilled into the qua...",
+          "group": "group_003",
+          "rank": 1,
+          "similarity": 0.7477311678819708,
+          "is_same_group": true
+        },
+        {
+          "text": "After the chaotic morning rush of the first day of school, the students of Maplewood High spilled in...",
+          "group": "group_003",
+          "rank": 2,
+          "similarity": 0.7088248436720415,
+          "is_same_group": true
+        },
+        {
+          "text": "After the quiet chaos of the morning\u2019s community clean-up, the neighborhood youth mentorship program...",
+          "group": "group_005",
+          "rank": 3,
+          "similarity": 0.6894952093026393,
+          "is_same_group": false
+        },
+        {
+          "text": "After the chaos of the first day\u2019s morning rush, the students of Maplewood High spilled into the qua...",
+          "group": "group_003",
+          "rank": 4,
+          "similarity": 0.6664419219329167,
+          "is_same_group": true
+        },
+        {
+          "text": "After the chaotic morning rush that had left the hallways of Maplewood High echoing with shouts and ...",
+          "group": "group_003",
+          "rank": 5,
+          "similarity": 0.6506009782173302,
+          "is_same_group": true
+        },
+        {
+          "text": "After the youth summit, a group of high school students from Maplewood High, including Ma, gathered ...",
+          "group": "group_016",
+          "rank": 6,
+          "similarity": 0.6424366442645992,
+          "is_same_group": false
+        },
+        {
+          "text": "After the quiet chaos of the morning\u2019s community clean-up, the neighborhood youth mentorship program...",
+          "group": "group_005",
+          "rank": 7,
+          "similarity": 0.6413717736122158,
+          "is_same_group": false
+        },
+        {
+          "text": "After the early morning rain stopped, the city slowly came back to life. Aiden stood on the corner o...",
+          "group": "group_015",
+          "rank": 8,
+          "similarity": 0.6373326636199379,
+          "is_same_group": false
+        },
+        {
+          "text": "After the initial gathering of 25 residents in the damp community hall, the momentum of concern over...",
+          "group": "group_018",
+          "rank": 9,
+          "similarity": 0.6329765143302754,
+          "is_same_group": false
+        },
+        {
+          "text": "After the cleanup crew dispersed and the last of the fallen branches were hauled away, the community...",
+          "group": "group_015",
+          "rank": 10,
+          "similarity": 0.6267305176951471,
+          "is_same_group": false
+        }
+      ],
+      "same_group_in_top_5": 4,
+      "same_group_in_top_10": 4,
       "first_same_group_rank": 1
     },
     {
-      "query_text": "Featuring the hashtag #UrbanArtRevival, a user-generated art challenge on Instagram Reels attracted ...",
-      "query_group": "group_015",
+      "query_text": "After the community garden\u2019s first harvest and the children\u2019s joyous celebration under the blooming ...",
+      "query_group": "group_007",
       "retrieved_facts": [
         {
-          "text": "A user-generated art challenge on Instagram Reels, centered around the hashtag #UrbanArtRevival, gar...",
-          "group": "group_015",
+          "text": "After the community garden project wrapped up, the youth gathered in the old community center\u2019s sunl...",
+          "group": "group_008",
           "rank": 1,
-          "similarity": 0.9835130057028624,
-          "is_same_group": true
+          "similarity": 0.7252906156936214,
+          "is_same_group": false
         },
         {
-          "text": "According to reports, a user-generated art challenge on Instagram Reels using the hashtag #UrbanArtR...",
-          "group": "group_015",
+          "text": "After the quiet chaos of the morning\u2019s community clean-up, the neighborhood youth mentorship program...",
+          "group": "group_005",
           "rank": 2,
-          "similarity": 0.9745163625466923,
-          "is_same_group": true
+          "similarity": 0.7087129021931506,
+          "is_same_group": false
         },
         {
-          "text": "In a user-generated art challenge featuring the hashtag #UrbanArtRevival on Instagram Reels, 12 mill...",
-          "group": "group_015",
+          "text": "After the community cleanup and the launch of the new garden, the local high school\u2019s student counci...",
+          "group": "group_006",
           "rank": 3,
-          "similarity": 0.9512277805519631,
-          "is_same_group": true
+          "similarity": 0.6940857502355627,
+          "is_same_group": false
         },
         {
-          "text": "On Instagram Reels, a challenge driven by the hashtag #UrbanArtRevival produced 12 million views wit...",
-          "group": "group_015",
+          "text": "After the quiet chaos of the morning\u2019s community clean-up, the neighborhood youth mentorship program...",
+          "group": "group_005",
           "rank": 4,
-          "similarity": 0.949616121761517,
-          "is_same_group": true
+          "similarity": 0.6892524036486474,
+          "is_same_group": false
         },
         {
-          "text": "A specific hashtag campaign, #UrbanArtRevival, on Instagram Reels sparked a user-generated art chall...",
-          "group": "group_015",
+          "text": "After the quiet chaos of the morning\u2019s community clean-up, the neighborhood youth mentorship program...",
+          "group": "group_005",
           "rank": 5,
-          "similarity": 0.9426864211757985,
-          "is_same_group": true
+          "similarity": 0.6889225488110108,
+          "is_same_group": false
         },
         {
-          "text": "The hashtag #UrbanArtRevival, part of a user-generated art challenge on Instagram Reels, achieved 12...",
-          "group": "group_015",
+          "text": "After the community garden\u2019s first harvest and the children\u2019s joyous celebration under the blooming ...",
+          "group": "group_007",
           "rank": 6,
-          "similarity": 0.9321861597614219,
+          "similarity": 0.680591475396441,
           "is_same_group": true
         },
         {
-          "text": "Featuring AI-generated portraits, the user-generated art competition on Instagram Reels attracted 2....",
-          "group": "group_005",
+          "text": "After a series of community workshops on youth leadership, twelve teenagers gathered in the town\u2019s o...",
+          "group": "group_014",
           "rank": 7,
-          "similarity": 0.7924220545825544,
+          "similarity": 0.6746109708254048,
           "is_same_group": false
         },
         {
-          "text": "According to reports, an Instagram Reels art competition driven by user-generated content and center...",
-          "group": "group_005",
+          "text": "After the community garden project wrapped up, the youth gathered in the old community center\u2019s sunl...",
+          "group": "group_008",
           "rank": 8,
-          "similarity": 0.7790565348482527,
+          "similarity": 0.6716336158722774,
           "is_same_group": false
         },
         {
-          "text": "In the first 72 hours post-launch, the Instagram Reels art competition based on user-generated conte...",
-          "group": "group_005",
+          "text": "After the community-wide cleanup and the planting of the first trees along the old riverbed, and fol...",
+          "group": "group_007",
           "rank": 9,
-          "similarity": 0.770534528198271,
+          "similarity": 0.670981132284985,
+          "is_same_group": true
+        },
+        {
+          "text": "Following the vibrant community garden\u2019s first harvest and the children\u2019s joyous celebration under t...",
+          "group": "group_007",
+          "rank": 10,
+          "similarity": 0.6520320569476797,
+          "is_same_group": true
+        }
+      ],
+      "same_group_in_top_5": 0,
+      "same_group_in_top_10": 3,
+      "first_same_group_rank": 6
+    },
+    {
+      "query_text": "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re...",
+      "query_group": "group_010",
+      "retrieved_facts": [
+        {
+          "text": "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re...",
+          "group": "group_010",
+          "rank": 1,
+          "similarity": 0.768239623403959,
+          "is_same_group": true
+        },
+        {
+          "text": "After the harvest festival celebrations ended and the last lanterns flickered out, a quiet determina...",
+          "group": "group_017",
+          "rank": 2,
+          "similarity": 0.7423124303452971,
           "is_same_group": false
         },
         {
-          "text": "Within 72 hours of launch, the Instagram Reels user-generated art competition showcasing AI-generate...",
-          "group": "group_005",
+          "text": "After the community-wide cleanup and the planting of the first trees along the old riverbed, the vil...",
+          "group": "group_007",
+          "rank": 3,
+          "similarity": 0.7411937106169723,
+          "is_same_group": false
+        },
+        {
+          "text": "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re...",
+          "group": "group_010",
+          "rank": 4,
+          "similarity": 0.7282865423786461,
+          "is_same_group": true
+        },
+        {
+          "text": "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re...",
+          "group": "group_010",
+          "rank": 5,
+          "similarity": 0.727108925182425,
+          "is_same_group": true
+        },
+        {
+          "text": "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re...",
+          "group": "group_010",
+          "rank": 6,
+          "similarity": 0.6778401424723521,
+          "is_same_group": true
+        },
+        {
+          "text": "After the children's laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "group": "group_023",
+          "rank": 7,
+          "similarity": 0.6759913141565701,
+          "is_same_group": false
+        },
+        {
+          "text": "After the children's laughter had faded and the last of the morning mist lifted from the square, a q...",
+          "group": "group_023",
+          "rank": 8,
+          "similarity": 0.6667591998735207,
+          "is_same_group": false
+        },
+        {
+          "text": "After the morning ritual of checking the horizon for signs of the storm, Kael stood at the edge of t...",
+          "group": "group_022",
+          "rank": 9,
+          "similarity": 0.6665142689803666,
+          "is_same_group": false
+        },
+        {
+          "text": "After the morning ritual of checking the horizon for signs of the storm, Kael stood at the edge of t...",
+          "group": "group_022",
           "rank": 10,
-          "similarity": 0.7672079197638837,
+          "similarity": 0.6656788535608515,
           "is_same_group": false
         }
       ],
-      "same_group_in_top_5": 5,
-      "same_group_in_top_10": 6,
+      "same_group_in_top_5": 3,
+      "same_group_in_top_10": 4,
       "first_same_group_rank": 1
     },
     {
-      "query_text": "The platform's previous record for a debut AI-generated song was surpassed when 'Neon Dreams,' an AI...",
-      "query_group": "group_021",
+      "query_text": "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h...",
+      "query_group": "group_017",
       "retrieved_facts": [
         {
-          "text": "According to reports, the AI-generated music track 'Neon Dreams' by virtual artist AURA achieved 50 ...",
-          "group": "group_021",
+          "text": "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h...",
+          "group": "group_017",
           "rank": 1,
-          "similarity": 0.9435793629295541,
+          "similarity": 0.7343170692397665,
           "is_same_group": true
         },
         {
-          "text": "In a remarkable achievement, 'Neon Dreams' \u2014 an AI-generated music track by AURA \u2014 hit 50 million vi...",
-          "group": "group_021",
+          "text": "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h...",
+          "group": "group_017",
           "rank": 2,
-          "similarity": 0.942953392829978,
+          "similarity": 0.7336339627809724,
           "is_same_group": true
         },
         {
-          "text": "A virtual artist named AURA released an AI-generated music track titled 'Neon Dreams' that reached 5...",
-          "group": "group_021",
+          "text": "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h...",
+          "group": "group_017",
           "rank": 3,
-          "similarity": 0.9375050764751807,
+          "similarity": 0.7271309754251498,
           "is_same_group": true
         },
         {
-          "text": "Reportedly, an AI-generated music track titled 'Neon Dreams' by virtual artist AURA climbed to 50 mi...",
-          "group": "group_021",
+          "text": "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h...",
+          "group": "group_017",
           "rank": 4,
-          "similarity": 0.9331482864327519,
+          "similarity": 0.7124802888817611,
           "is_same_group": true
         },
         {
-          "text": "The debut AI-generated song 'Neon Dreams' by virtual artist AURA reached 50 million views on YouTube...",
-          "group": "group_021",
+          "text": "After the morning ritual of checking the horizon for signs of the storm, Kael stood at the edge of t...",
+          "group": "group_022",
           "rank": 5,
-          "similarity": 0.921845266386416,
-          "is_same_group": true
+          "similarity": 0.6749478438607263,
+          "is_same_group": false
         },
         {
-          "text": "AURA, a virtual artist, produced an AI-generated music track titled 'Neon Dreams' that garnered 50 m...",
-          "group": "group_021",
+          "text": "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto...",
+          "group": "group_012",
           "rank": 6,
-          "similarity": 0.871448088063686,
+          "similarity": 0.6537253358472374,
+          "is_same_group": false
+        },
+        {
+          "text": "After the final lantern faded from the sky, Elara stood alone at the edge of the Whispering Woods, h...",
+          "group": "group_017",
+          "rank": 7,
+          "similarity": 0.6522996827848602,
           "is_same_group": true
         },
         {
-          "text": "Neon Dreams,\" an AI-generated music track, reached 10 million views on YouTube in just 28 hours, set...",
-          "group": "group_010",
-          "rank": 7,
-          "similarity": 0.856058601541189,
-          "is_same_group": false
-        },
-        {
-          "text": "A report states that 'Neon Dreams,' an AI-generated music track, gained 10 million views on YouTube ...",
-          "group": "group_010",
+          "text": "After the quiet morning ritual of brewing coffee and reviewing her schedule on the tablet, Elena sto...",
+          "group": "group_012",
           "rank": 8,
-          "similarity": 0.8501998166426609,
+          "similarity": 0.6364715184955644,
           "is_same_group": false
         },
         {
-          "text": "In a remarkable 28 hours, 'Neon Dreams' \u2014 an AI-generated track \u2014 hit 10 million views on YouTube, m...",
-          "group": "group_010",
+          "text": "After the storm had finally passed and the city began to breathe again, the morning sun painted the ...",
+          "group": "group_020",
           "rank": 9,
-          "similarity": 0.8449809229130154,
+          "similarity": 0.6346372617624522,
           "is_same_group": false
         },
         {
-          "text": "The music video 'Neon Dreams,' produced by AI, surpassed 10 million views on YouTube in 28 hours, ea...",
+          "text": "After the harsh winter that left the village in ruins, the people of Elden Hollow slowly began to re...",
           "group": "group_010",
           "rank": 10,
-          "similarity": 0.8407591250953821,
+          "similarity": 0.6343830219541209,
           "is_same_group": false
         }
       ],
-      "same_group_in_top_5": 5,
-      "same_group_in_top_10": 6,
-      "first_same_group_rank": 1
-    },
-    {
-      "query_text": "In a remarkable achievement, 'Neon Dreams' \u2014 an AI-generated music track by AURA \u2014 hit 50 million vi...",
-      "query_group": "group_021",
-      "retrieved_facts": [
-        {
-          "text": "According to reports, the AI-generated music track 'Neon Dreams' by virtual artist AURA achieved 50 ...",
-          "group": "group_021",
-          "rank": 1,
-          "similarity": 0.9623855171727634,
-          "is_same_group": true
-        },
-        {
-          "text": "A virtual artist named AURA released an AI-generated music track titled 'Neon Dreams' that reached 5...",
-          "group": "group_021",
-          "rank": 2,
-          "similarity": 0.9615691670331533,
-          "is_same_group": true
-        },
-        {
-          "text": "Reportedly, an AI-generated music track titled 'Neon Dreams' by virtual artist AURA climbed to 50 mi...",
-          "group": "group_021",
-          "rank": 3,
-          "similarity": 0.9593519992547758,
-          "is_same_group": true
-        },
-        {
-          "text": "The debut AI-generated song 'Neon Dreams' by virtual artist AURA reached 50 million views on YouTube...",
-          "group": "group_021",
-          "rank": 4,
-          "similarity": 0.9509819655834173,
-          "is_same_group": true
-        },
-        {
-          "text": "The platform's previous record for a debut AI-generated song was surpassed when 'Neon Dreams,' an AI...",
-          "group": "group_021",
-          "rank": 5,
-          "similarity": 0.942953392829978,
-          "is_same_group": true
-        },
-        {
-          "text": "Neon Dreams,\" an AI-generated music track, reached 10 million views on YouTube in just 28 hours, set...",
-          "group": "group_010",
-          "rank": 6,
-          "similarity": 0.9212417531739562,
-          "is_same_group": false
-        },
-        {
-          "text": "In a remarkable 28 hours, 'Neon Dreams' \u2014 an AI-generated track \u2014 hit 10 million views on YouTube, m...",
-          "group": "group_010",
-          "rank": 7,
-          "similarity": 0.9170751553066239,
-          "is_same_group": false
-        },
-        {
-          "text": "AURA, a virtual artist, produced an AI-generated music track titled 'Neon Dreams' that garnered 50 m...",
-          "group": "group_021",
-          "rank": 8,
-          "similarity": 0.9130673946354793,
-          "is_same_group": true
-        },
-        {
-          "text": "A report states that 'Neon Dreams,' an AI-generated music track, gained 10 million views on YouTube ...",
-          "group": "group_010",
-          "rank": 9,
-          "similarity": 0.9027310700014445,
-          "is_same_group": false
-        },
-        {
-          "text": "The music video 'Neon Dreams,' produced by AI, surpassed 10 million views on YouTube in 28 hours, ea...",
-          "group": "group_010",
-          "rank": 10,
-          "similarity": 0.9005810989503507,
-          "is_same_group": false
-        }
-      ],
-      "same_group_in_top_5": 5,
-      "same_group_in_top_10": 6,
-      "first_same_group_rank": 1
-    },
-    {
-      "query_text": "Data shows that a TikTok dance challenge featuring a user named \"DanceWithMe123\" went viral, with ov...",
-      "query_group": "group_022",
-      "retrieved_facts": [
-        {
-          "text": "According to reports, a TikTok dance challenge featuring a user named \"DanceWithMe123\" went viral, w...",
-          "group": "group_022",
-          "rank": 1,
-          "similarity": 0.9951453413199519,
-          "is_same_group": true
-        },
-        {
-          "text": "Sources indicate that a TikTok dance challenge featuring a user named \"DanceWithMe123\" went viral, w...",
-          "group": "group_022",
-          "rank": 2,
-          "similarity": 0.9950760852681785,
-          "is_same_group": true
-        },
-        {
-          "text": "It was reported that a TikTok dance challenge featuring a user named \"DanceWithMe123\" went viral, wi...",
-          "group": "group_022",
-          "rank": 3,
-          "similarity": 0.9948667021810063,
-          "is_same_group": true
-        },
-        {
-          "text": "Officials confirmed that a TikTok dance challenge featuring a user named \"DanceWithMe123\" went viral...",
-          "group": "group_022",
-          "rank": 4,
-          "similarity": 0.9917710794433553,
-          "is_same_group": true
-        },
-        {
-          "text": "A TikTok dance challenge featuring a user named \"DanceWithMe123\" went viral, with over 10 million vi...",
-          "group": "group_022",
-          "rank": 5,
-          "similarity": 0.9894817233438785,
-          "is_same_group": true
-        },
-        {
-          "text": "A TikTok dance challenge featuring a user named \"DanceWithMe123\" went viral, with over 10 million vi...",
-          "group": "group_022",
-          "rank": 6,
-          "similarity": 0.9889203005966896,
-          "is_same_group": true
-        },
-        {
-          "text": "A user named @DanceWithMe2024 sparked a TikTok dance challenge that went viral, amassing 120 million...",
-          "group": "group_024",
-          "rank": 7,
-          "similarity": 0.9126859477672803,
-          "is_same_group": false
-        },
-        {
-          "text": "@DanceWithMe2024 launched a TikTok dance challenge that went viral, collecting 120 million views in ...",
-          "group": "group_024",
-          "rank": 8,
-          "similarity": 0.904981774090668,
-          "is_same_group": false
-        },
-        {
-          "text": "It was reported that @DanceWithMe2024\u2019s TikTok dance challenge went viral, accumulating 120 million ...",
-          "group": "group_024",
-          "rank": 9,
-          "similarity": 0.8978746152499731,
-          "is_same_group": false
-        },
-        {
-          "text": "A viral TikTok dance challenge featuring @DanceWithMe2024 amassed 120 million views over a span of 7...",
-          "group": "group_024",
-          "rank": 10,
-          "similarity": 0.8968938444551458,
-          "is_same_group": false
-        }
-      ],
-      "same_group_in_top_5": 5,
-      "same_group_in_top_10": 6,
+      "same_group_in_top_5": 4,
+      "same_group_in_top_10": 5,
       "first_same_group_rank": 1
     }
   ]

@@ -40,9 +40,51 @@ class ExperimentRunner:
         if config.mlflow_tracking:
             mlflow.set_tracking_uri(config.mlflow_uri)
             mlflow.set_experiment(config.name)
-        
+
+        # Validate configuration
+        self._validate_config()
+
         logger.info(f"Experiment runner initialized: {config.name}")
-    
+
+    def _validate_config(self) -> None:
+        """
+        Validate experiment configuration.
+
+        Raises:
+            ValueError: If configuration is invalid
+        """
+        # Check if any models are hierarchical
+        has_hierarchical_model = any(m.type == "hierarchical" for m in self.config.models)
+
+        # Check temporal datasets for required temporal_timestamp_target
+        for dataset_config in self.config.datasets:
+            if dataset_config.type == "temporal":
+                # Check if timestamps are being appended
+                append_timestamp = (
+                    dataset_config.append_timestamp_to_text or
+                    self.config.temporal_append_timestamp
+                )
+
+                # If using hierarchical model with temporal dataset and timestamps
+                if has_hierarchical_model and append_timestamp:
+                    if dataset_config.temporal_timestamp_target is None:
+                        raise ValueError(
+                            f"Temporal dataset '{dataset_config.name}' requires "
+                            f"'temporal_timestamp_target' to be set to 'coarse' or 'fine' "
+                            f"when using hierarchical models with append_timestamp_to_text=True. "
+                            f"This specifies which model (coarse or fine) receives the "
+                            f"timestamp-appended text."
+                        )
+
+                    # Validate the value
+                    target = dataset_config.temporal_timestamp_target.lower()
+                    if target not in ["coarse", "fine"]:
+                        raise ValueError(
+                            f"Temporal dataset '{dataset_config.name}' has invalid "
+                            f"temporal_timestamp_target='{dataset_config.temporal_timestamp_target}'. "
+                            f"Must be 'coarse' or 'fine'."
+                        )
+
     def run(self) -> MetricsTracker:
         """
         Run the full experiment.
@@ -270,7 +312,10 @@ class ExperimentRunner:
             )
 
             # Temporal datasets support temporal task
-            datasets["temporal"] = {"dataset": dataset}
+            datasets["temporal"] = {
+                "dataset": dataset,
+                "temporal_timestamp_target": dataset_config.temporal_timestamp_target
+            }
 
         return datasets
     
@@ -341,7 +386,8 @@ class ExperimentRunner:
             return evaluator.evaluate(
                 dataset_config["dataset"],
                 batch_size=self.config.batch_size,
-                k_values=self.config.retrieval_k_values
+                k_values=self.config.retrieval_k_values,
+                temporal_timestamp_target=dataset_config.get("temporal_timestamp_target")
             )
 
         else:
