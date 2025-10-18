@@ -1,475 +1,301 @@
-# Embedding Lab: Hierarchical Dual-Layer Embedding Experiment Platform
+# Embedding Lab
 
-An application for evaluating and comparing hierarchical dual-layer embedding models against single embedding models across multiple tasks.
-
-## Overview
-
-This platform enables comprehensive analysis of embedding quality by testing models on:
-- **Semantic Similarity**: Measuring text pair similarity (STS-B benchmark)
-- **Information Retrieval**: Ranking relevant documents (MS MARCO)
-- **Classification**: Text categorization tasks (AG News, TREC)
-- **Clustering**: Grouping similar texts
-
-### Hierarchical Dual-Layer Architecture
-
-The hierarchical approach combines two embedding models:
-1. **Coarse Model**: Captures broad semantic understanding (fast, lightweight)
-2. **Fine Model**: Captures detailed semantic nuances (higher quality)
-
-Combination methods supported:
-- **Concatenation**: Combines both embeddings side-by-side (default)
-- **Weighted Sum**: Weighted average of embeddings
-- **Hyperbolic**: Hierarchically refines fine embedding with coarse using hyperbolic geometry
-- **Learned**: Trainable projection layer (future)
+Platform for evaluating embedding models across similarity, retrieval, classification, clustering, and temporal tasks. Supports single models and hierarchical dual-layer combinations.
 
 ## Installation
 
 ```bash
-# Clone or navigate to the project
-cd embedding-lab
-
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
 # Install dependencies
 pip install -r requirements.txt
 
-# Install package in development mode
+# Install package
 pip install -e .
+
+# Verify installation
+python verify_installation.py
 ```
 
 ## Quick Start
 
-### 1. Initialize a Configuration
+### Run a Similarity Experiment
 
 ```bash
-python cli.py init config/experiments/example_experiment.yaml
+# Run pre-configured experiment
+python cli.py run config/experiments/stsb_hierarchal_concat.yaml
+
+# View results
+cat results/my_experiment/report.txt
 ```
 
-### 2. Edit Configuration
+### Run a Temporal Experiment
 
-Edit the generated YAML file to specify models, datasets, and tasks:
+```bash
+# Without timestamp augmentation (pure semantic)
+python cli.py run config/experiments/temporal_experiment.yaml
 
+# With timestamp augmentation (temporal-aware)
+python cli.py run config/experiments/temporal_experiment_with_timestamps.yaml
+
+# View examples
+cat results/temporal_facts_experiment/examples/baseline_minilm_temporal_facts_social_examples.txt
+```
+
+### View Results in MLflow
+
+```bash
+mlflow ui --backend-store-uri mlruns
+# Open http://localhost:5000
+```
+
+## Configuration
+
+### Models
+
+**Single Model:**
 ```yaml
-name: example_experiment
-description: Testing hierarchical embeddings
-
 models:
-  - type: single
-    name: baseline
-    model_name: all-MiniLM-L6-v2
-
-  - type: hierarchical
-    name: hierarchical
-    coarse_model: all-MiniLM-L6-v2
-    fine_model: all-mpnet-base-v2
-    combination_method: concat
-
-datasets:
-  - type: benchmark
-    name: sts-b
-    split: test
-
-tasks:
-  - similarity
-  - classification
-```
-
-### 3. Run Experiment
-
-```bash
-python cli.py run config/experiments/example_experiment.yaml
-```
-
-### 4. View Results
-
-Results are saved to the `results/` directory:
-- `results.json`: Detailed metrics
-- `results.csv`: Tabular format
-- `comparison_*.csv`: Metric comparison tables
-- `report.txt`: Human-readable summary
-
-**Example Results** (`config\experiments\stsb_hierarchal_concat_hyperbolic.yaml`):
-
-```
-Similarity Task
-┏━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━┓
-┃ Model        ┃ Dataset ┃ spearman ┃ spearman_p ┃ pearson ┃ pearson_p ┃ mae    ┃
-┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━┩
-│ baseline     │ sts-b   │ 0.8672   │ 0.0000     │ 0.8696  │ 0.0000    │ 1.8158 │
-│ hierarchical │ sts-b   │ 0.8828   │ 0.0000     │ 0.8832  │ 0.0000    │ 1.8171 │
-│ hyperbolic   │ sts-b   │ 0.8780   │ 0.0000     │ 0.8790  │ 0.0000    │ 1.8165 │
-└──────────────┴─────────┴──────────┴────────────┴─────────┴───────────┴────────┘
-
-Retrieval Task
-┏━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━┓
-┃ Model        ┃ Dataset ┃ mrr    ┃ num_queries ┃ recall@1 ┃ precision@1 ┃ recall@5 ┃
-┡━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━┩
-│ baseline     │ sts-b   │ 0.6432 │ 1500.0000   │ 0.5767   │ 0.5767      │ 0.7140   │
-│ hierarchical │ sts-b   │ 0.6593 │ 1500.0000   │ 0.5953   │ 0.5953      │ 0.7327   │
-│ hyperbolic   │ sts-b   │ 0.6546 │ 1500.0000   │ 0.5873   │ 0.5873      │ 0.7233   │
-└──────────────┴─────────┴────────┴─────────────┴──────────┴─────────────┴──────────┘
-```
-
-**Key Findings:**
-- **Hierarchical concat** achieves **best performance**: Spearman 0.8828 (+1.8% vs baseline), MRR 0.6593 (+2.5% vs baseline)
-- **Hyperbolic combination** provides **strong middle ground**: Spearman 0.8780 (+1.2% vs baseline), MRR 0.6546 (+1.8% vs baseline)
-- **Dimensional efficiency**: Hyperbolic achieves 68% of concats improvement using only 67% of the dimensions (768-dim vs 1152-dim)
-- Both hierarchical methods substantially outperform single baseline model across all metrics
-
-## CLI Commands
-
-### Run Experiments
-```bash
-python cli.py run <config_path> [--output-dir <dir>] [--verbose]
-```
-
-### Initialize Configuration
-```bash
-python cli.py init <output_path> [--name <name>] [--description <desc>]
-```
-
-### Validate Configuration
-```bash
-python cli.py validate <config_path>
-```
-
-### List Available Models
-```bash
-python cli.py list-models
-```
-
-### List Available Datasets
-```bash
-python cli.py list-datasets
-```
-
-## Configuration Reference
-
-### Model Configuration
-
-#### Single Model
-```yaml
 - type: single
-  name: my_model
-  model_name: all-MiniLM-L6-v2  # Sentence-transformer model
-  device: null  # 'cpu', 'cuda', or null for auto
-  normalize: true  # L2 normalize embeddings
-```
-
-#### Hierarchical Model
-```yaml
-- type: hierarchical
-  name: my_hierarchical_model
-  coarse_model: all-MiniLM-L6-v2  # Fast, broad semantics
-  fine_model: all-mpnet-base-v2   # Detailed semantics
-  combination_method: concat      # 'concat', 'weighted_sum', 'hyperbolic'
-  coarse_weight: 0.5              # For weighted_sum
-  fine_weight: 0.5                # For weighted_sum
-  hyperbolic_curvature: 1.0       # For hyperbolic (positive value)
-  device: null
+  name: baseline
+  model_name: all-MiniLM-L6-v2  # Any sentence-transformer model
   normalize: true
 ```
 
-**Hyperbolic Combination**: Uses Möbius addition in hyperbolic space (Poincaré ball) to hierarchically refine the fine embedding with coarse information. Unlike concatenation, this produces a single embedding with the dimension of the fine model, where coarse semantics are projected into and combined with fine semantics using hyperbolic geometry.
-- Output dimension: `fine_dim` (not concatenated)
-- Coarse embedding is projected to fine dimension if needed
-- Better for capturing hierarchical relationships than Euclidean methods
-- `hyperbolic_curvature` - Controls the curvature of hyperbolic space (default: 1.0)
-
-### Dataset Configuration
-
-#### Benchmark Dataset
+**Hierarchical Model:**
 ```yaml
+models:
+- type: hierarchical
+  name: hierarchical_concat
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: concat  # concat, weighted_sum, or hyperbolic
+  normalize: true
+```
+
+**Combination Methods:**
+- `concat`: Concatenate embeddings (coarse_dim + fine_dim)
+- `weighted_sum`: Weighted average (requires same dimensions)
+- `hyperbolic`: Hyperbolic geometry combination (fine_dim output)
+
+### Datasets
+
+**Benchmark Dataset:**
+```yaml
+datasets:
 - type: benchmark
-  name: sts-b              # 'sts-b', 'msmarco', 'ag-news', 'trec'
-  split: test              # 'train', 'validation', 'test'
-  num_samples: null        # Limit samples (null for all)
+  name: sts-b  # sts-b, msmarco, ag-news, trec
+  split: validation
 ```
 
-#### Custom Dataset
+**Custom Dataset:**
 ```yaml
+datasets:
 - type: custom
-  name: my_dataset
-  file_path: data/my_data.csv
-  text1_column: text       # Column name for first text
-  text2_column: text2      # Column name for second text (null if none)
-  label_column: label      # Column name for labels (null if none)
-  format: csv              # 'csv', 'tsv', 'json', 'jsonl', or null for auto
+  name: my_data
+  file_path: datasets/my_data.csv
+  text1_column: text
+  label_column: label
+  format: csv  # csv, tsv, json, jsonl
 ```
 
-### Custom Dataset Formats
-
-#### CSV/TSV Format
-```csv
-text,label
-"First text sample",0
-"Second text sample",1
+**Temporal Dataset:**
+```yaml
+datasets:
+- type: temporal
+  name: temporal_facts
+  file_path: datasets/temporal_facts_social_20251018_055003.jsonl
+  text_column: instruction
+  timestamp_column: metadata.timestamp
+  append_timestamp_to_text: false  # Set true to include timestamps in embeddings
+  timestamp_format: relative  # iso, human, unix, relative
 ```
 
-#### JSON Format
-```json
-[
-  {"text": "First text", "label": 0},
-  {"text": "Second text", "label": 1}
-]
+### Tasks
+
+```yaml
+tasks:
+- similarity      # Spearman/Pearson correlation
+- retrieval       # MRR, Recall@k, Precision@k
+- classification  # Accuracy, F1
+- clustering      # Silhouette score
+- temporal        # Temporal ordering, group discrimination
 ```
 
-#### JSONL Format
-```jsonl
-{"text": "First text", "label": 0}
-{"text": "Second text", "label": 1}
+### Full Example
+
+```yaml
+name: my_experiment
+description: 'Compare single vs hierarchical models'
+
+models:
+- type: single
+  name: baseline
+  model_name: all-MiniLM-L6-v2
+
+- type: hierarchical
+  name: hierarchical
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: concat
+
+datasets:
+- type: benchmark
+  name: sts-b
+  split: validation
+
+tasks:
+- similarity
+- retrieval
+
+batch_size: 32
+output_dir: results
+mlflow_tracking: true
 ```
 
-For pair tasks (similarity, retrieval):
-```csv
-text1,text2,label
-"Query text","Document text",0.8
-```
-
-## Tasks
+## Tasks & Metrics
 
 ### Similarity
-Evaluates semantic textual similarity using:
-- Spearman correlation
-- Pearson correlation
-- MAE, RMSE
+Evaluates semantic text similarity.
 
-**Requirements**: Dataset with text pairs and similarity scores
+**Metrics:** spearman, pearson, mae, rmse
+**Requires:** Text pairs with similarity scores
 
 ### Retrieval
-Evaluates information retrieval using:
-- Mean Reciprocal Rank (MRR)
-- Recall@k (k=1,5,10,20)
-- Precision@k
+Evaluates document retrieval.
 
-**Requirements**: Dataset with query-document pairs
+**Metrics:** mrr, recall@k, precision@k
+**Requires:** Query-document pairs
 
 ### Classification
-Evaluates text classification using:
-- Accuracy
-- Precision, Recall, F1
-- Trains logistic regression or SVM on embeddings
+Evaluates text classification (trains logistic regression on embeddings).
 
-**Requirements**: Dataset with texts and labels
+**Metrics:** accuracy, precision, recall, f1
+**Requires:** Texts with labels
 
 ### Clustering
-Evaluates clustering quality using:
-- Silhouette score
-- Davies-Bouldin index
-- Calinski-Harabasz index
-- Adjusted Rand Index (if labels available)
-- Normalized Mutual Information (if labels available)
+Evaluates clustering quality.
 
-**Requirements**: Dataset with texts (labels optional)
+**Metrics:** silhouette, davies_bouldin, calinski_harabasz
+**Requires:** Texts (labels optional)
+
+### Temporal
+Evaluates temporal fact retrieval and ordering.
+
+**Metrics:**
+- `within_group_temporal_order_correlation`: Temporal ordering within fact groups
+- `within_group_nearest_fact_mrr`: Finding temporally adjacent facts
+- `cross_group_mrr`: Discriminating between fact groups
+- `cross_group_purity@k`: Group purity in top-k results
+- `temporal_drift_correlation`: Similarity decay over time
+
+**Requires:** JSONL with timestamp and group_id in metadata
+
+**See:** `TEMPORAL_METRICS_GUIDE.md` for metric interpretations
+
+## Results Files
+
+After running an experiment:
+
+```
+results/my_experiment/
+├── results.json          # Full metrics (all data)
+├── results.csv           # Tabular metrics (numeric only)
+├── report.txt            # Human-readable summary
+├── comparison_*.csv      # Per-task metric comparisons
+└── examples/             # Temporal examples (if temporal task)
+    ├── README.md
+    ├── model_dataset_examples.txt   # Human-readable
+    └── model_dataset_examples.json  # Machine-readable
+```
+
+## CLI Reference
+
+```bash
+# Run experiment
+python cli.py run <config.yaml> [--output-dir DIR] [--verbose]
+
+# Validate config
+python cli.py validate <config.yaml>
+
+# Create template
+python cli.py init <output.yaml>
+
+# List models
+python cli.py list-models
+
+# List datasets
+python cli.py list-datasets
+```
 
 ## Available Models
 
-Popular sentence-transformer models:
+| Model | Dimensions | Size | Speed |
+|-------|------------|------|-------|
+| all-MiniLM-L6-v2 | 384 | 80MB | Fast |
+| all-MiniLM-L12-v2 | 384 | 120MB | Fast |
+| all-mpnet-base-v2 | 768 | 420MB | Slower, higher quality |
+| paraphrase-multilingual-mpnet-base-v2 | 768 | 970MB | Multilingual |
 
-| Model | Size | Dimensions | Description |
-|-------|------|------------|-------------|
-| all-MiniLM-L6-v2 | 80MB | 384 | Fast, lightweight |
-| all-mpnet-base-v2 | 420MB | 768 | Good quality |
-| all-MiniLM-L12-v2 | 120MB | 384 | Balanced |
-| paraphrase-multilingual-mpnet-base-v2 | 970MB | 768 | Multilingual |
+See [SBERT Models](https://www.sbert.net/docs/pretrained_models.html) for more.
 
-See [SBERT documentation](https://www.sbert.net/docs/pretrained_models.html) for more models.
+## Dataset Formats
 
-## Project Structure
-
-```
-embedding-lab/
-├── src/
-│   ├── embeddings/         # Embedding model implementations
-│   │   ├── base.py         # Base embedder interface
-│   │   ├── single.py       # Single model embedder
-│   │   └── hierarchical.py # Hierarchical dual-layer embedder
-│   ├── datasets/           # Dataset loaders
-│   │   ├── base.py         # Base dataset interface
-│   │   ├── benchmarks.py   # Benchmark dataset loaders
-│   │   └── custom.py       # Custom dataset loader
-│   ├── evaluation/         # Evaluation modules
-│   │   ├── similarity.py   # Semantic similarity evaluation
-│   │   ├── retrieval.py    # Information retrieval evaluation
-│   │   ├── classification.py  # Classification evaluation
-│   │   └── clustering.py   # Clustering evaluation
-│   ├── experiments/        # Experiment orchestration
-│   │   └── runner.py       # Main experiment runner
-│   └── utils/              # Utilities
-│       ├── config.py       # Configuration management
-│       └── metrics.py      # Metrics tracking and reporting
-├── config/                 # Configuration files
-│   └── experiments/        # Experiment configurations
-├── data/                   # Custom datasets
-├── results/                # Experiment results
-├── tests/                  # Unit tests
-├── cli.py                  # CLI interface
-├── requirements.txt        # Dependencies
-├── setup.py               # Package setup
-└── README.md              # This file
+**CSV:**
+```csv
+text,label
+"Sample text",0
 ```
 
-## Example Use Cases
+**JSONL:**
+```jsonl
+{"text": "Sample text", "label": 0}
+```
 
-### Compare Dual vs Single Embeddings
+**Temporal JSONL:**
+```jsonl
+{"instruction": "Fact text", "metadata": {"timestamp": "2025-01-01T00:00:00", "group_id": "group_001"}}
+```
 
+**Pairs (similarity/retrieval):**
+```csv
+text1,text2,label
+"Query","Document",0.8
+```
+
+## Troubleshooting
+
+**Out of memory:**
 ```yaml
-name: dual_vs_single_comparison
-
-models:
-  - type: single
-    name: single_baseline
-    model_name: all-MiniLM-L6-v2
-
-  - type: hierarchical
-    name: hierarchical
-    coarse_model: all-MiniLM-L6-v2
-    fine_model: all-mpnet-base-v2
-    combination_method: concat
-
-datasets:
-  - type: benchmark
-    name: sts-b
-    split: test
-
-tasks:
-  - similarity
-  - classification
-  - clustering
+batch_size: 16  # Reduce in config
 ```
 
-### Test on Custom Dataset
-
+**Slow performance:**
 ```yaml
-name: custom_sentiment_analysis
-
-models:
-  - type: hierarchical
-    name: hierarchical_sentiment
-    coarse_model: all-MiniLM-L6-v2
-    fine_model: all-mpnet-base-v2
-
-datasets:
-  - type: custom
-    name: sentiment_data
-    file_path: data/sentiment.csv
-    text1_column: review_text
-    label_column: sentiment
-
-tasks:
-  - classification
+device: cuda     # Enable GPU
+batch_size: 64   # Increase batch size
 ```
 
-## MLflow Tracking
-
-Experiments are automatically tracked with MLflow:
-
+**Import errors:**
 ```bash
-# View results in MLflow UI
-mlflow ui --backend-store-uri mlruns
+pip install -e .  # Reinstall
 ```
 
-Then open http://localhost:5000 to view experiments, compare models, and analyze metrics.
+**Temporal dataset not loading groups:**
+```yaml
+# Ensure nested paths are correct
+timestamp_column: metadata.timestamp
+group_id_column: metadata.group_id  # Optional, defaults to this
+```
 
 ## Testing
 
 ```bash
 # Run tests
-pytest tests/
+pytest test_basic.py -v
 
 # With coverage
-pytest tests/ --cov=src --cov-report=html
-```
-
-## Advanced Usage
-
-### Programmatic API
-
-```python
-from experiments import ExperimentRunner
-from utils import load_config
-
-# Load configuration
-config = load_config("config/experiments/example_experiment.yaml")
-
-# Run experiment
-runner = ExperimentRunner(config)
-metrics = runner.run()
-
-# Access results
-summary = metrics.get_summary()
-print(summary)
-```
-
-### Custom Evaluators
-
-Extend base evaluator classes:
-
-```python
-from evaluation.similarity import SimilarityEvaluator
-from embeddings import HierarchicalEmbedder
-
-# Create embedder
-embedder = HierarchicalEmbedder(
-    coarse_model="all-MiniLM-L6-v2",
-    fine_model="all-mpnet-base-v2"
-)
-
-# Evaluate
-evaluator = SimilarityEvaluator(embedder)
-metrics = evaluator.evaluate(dataset)
-```
-
-## Performance Considerations
-
-- **Batch Size**: Increase for faster processing (default: 32)
-- **Device**: Use CUDA for GPU acceleration
-- **Model Selection**: Balance speed vs quality
-  - Fast: all-MiniLM-L6-v2
-  - Quality: all-mpnet-base-v2
-- **Normalization**: Enable for cosine similarity tasks
-
-## Troubleshooting
-
-### Out of Memory
-- Reduce batch_size in configuration
-- Use smaller models
-- Process datasets in chunks
-
-### Slow Performance
-- Enable GPU with `device: cuda`
-- Increase batch_size
-- Use faster coarse models
-
-### Import Errors
-```bash
-# Reinstall package
-pip install -e .
-```
-
-## Citation
-
-If you use this platform in your research, please cite:
-
-```bibtex
-@software{embedding_lab,
-  title = {Embedding Lab: Hierarchical Dual-Layer Embedding Experiment Platform},
-  year = {2024},
-  author = {Your Name},
-  url = {https://github.com/jwest33/dual-space-embedding}
-}
+pytest test_basic.py --cov=src --cov-report=html
 ```
 
 ## License
 
-MIT License - see LICENSE file for details
-
-## Acknowledgments
-
-Built with:
-- [Sentence Transformers](https://www.sbert.net/)
-- [HuggingFace Datasets](https://huggingface.co/docs/datasets/)
-- [scikit-learn](https://scikit-learn.org/)
-- [MLflow](https://mlflow.org/)
+MIT License

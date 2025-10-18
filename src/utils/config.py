@@ -40,19 +40,26 @@ class ModelConfig:
 @dataclass
 class DatasetConfig:
     """Configuration for a dataset."""
-    type: str  # 'benchmark' or 'custom'
+    type: str  # 'benchmark', 'custom', or 'temporal'
     name: str
     split: str = "test"
-    
+
     # For custom datasets
     file_path: str = None
     text1_column: str = "text1"
     text2_column: str = "text2"
     label_column: str = "label"
     format: str = None
-    
+
     # For benchmark datasets
     num_samples: int = None
+
+    # For temporal datasets
+    text_column: str = "instruction"  # Column containing fact text
+    timestamp_column: str = None  # Path to timestamp field (e.g., "metadata.timestamp")
+    group_id_column: str = None  # Path to group_id field (e.g., "metadata.group_id")
+    append_timestamp_to_text: bool = False  # Include timestamp in embedding text
+    timestamp_format: str = "iso"  # Format for appended timestamp: iso, human, unix, relative
 
 
 @dataclass
@@ -60,21 +67,31 @@ class ExperimentConfig:
     """Configuration for an experiment."""
     name: str
     description: str = ""
-    
+
     models: List[ModelConfig] = field(default_factory=list)
     datasets: List[DatasetConfig] = field(default_factory=list)
-    
+
     tasks: List[str] = field(default_factory=lambda: ["similarity", "retrieval", "classification", "clustering"])
-    
+
     batch_size: int = 32
     output_dir: str = "results"
-    
+
     # Task-specific settings
     retrieval_k_values: List[int] = field(default_factory=lambda: [1, 5, 10, 20])
     classification_classifier: str = "logistic_regression"
     clustering_algorithm: str = "kmeans"
     clustering_n_clusters: int = None
-    
+
+    # Temporal task settings
+    temporal_evaluate_within_group: bool = True
+    temporal_evaluate_cross_group: bool = True
+    temporal_rank_correlation_method: str = "spearman"  # 'spearman' or 'kendall'
+    temporal_drift_analysis: bool = True
+    temporal_append_timestamp: bool = False  # Global default for timestamp augmentation
+    temporal_timestamp_format: str = "iso"  # Global default timestamp format
+    temporal_save_examples: bool = True  # Save example retrievals for analysis
+    temporal_num_examples: int = 5  # Number of examples to collect per model
+
     # MLflow tracking
     mlflow_tracking: bool = True
     mlflow_uri: str = "mlruns"
@@ -122,6 +139,14 @@ def load_config(config_path: str) -> ExperimentConfig:
         classification_classifier=config_dict.get("classification_classifier", "logistic_regression"),
         clustering_algorithm=config_dict.get("clustering_algorithm", "kmeans"),
         clustering_n_clusters=config_dict.get("clustering_n_clusters"),
+        temporal_evaluate_within_group=config_dict.get("temporal_evaluate_within_group", True),
+        temporal_evaluate_cross_group=config_dict.get("temporal_evaluate_cross_group", True),
+        temporal_rank_correlation_method=config_dict.get("temporal_rank_correlation_method", "spearman"),
+        temporal_drift_analysis=config_dict.get("temporal_drift_analysis", True),
+        temporal_append_timestamp=config_dict.get("temporal_append_timestamp", False),
+        temporal_timestamp_format=config_dict.get("temporal_timestamp_format", "iso"),
+        temporal_save_examples=config_dict.get("temporal_save_examples", True),
+        temporal_num_examples=config_dict.get("temporal_num_examples", 5),
         mlflow_tracking=config_dict.get("mlflow_tracking", True),
         mlflow_uri=config_dict.get("mlflow_uri", "mlruns"),
     )

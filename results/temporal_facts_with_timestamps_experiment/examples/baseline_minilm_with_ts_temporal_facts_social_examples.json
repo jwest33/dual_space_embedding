@@ -1,0 +1,663 @@
+{
+  "model": "baseline_minilm_with_ts",
+  "dataset": "temporal_facts_social",
+  "within_group_examples": [
+    {
+      "query_text": "A photo created by users, depicting a street artist\u2019s mural in Austin, Texas and tagged with #Austin...",
+      "query_timestamp": "2025-03-18 03:50:24",
+      "query_group": "group_008",
+      "query_temporal_position": 1,
+      "retrieved_facts": [
+        {
+          "text": "Within 72 hours of posting, a user-generated photo of a street artist\u2019s mural in Austin, Texas, tagg...",
+          "timestamp": "2025-03-18 09:50:24",
+          "rank": 1,
+          "similarity": 0.9485436081886292,
+          "temporal_position": 7
+        },
+        {
+          "text": "According to reports, a user-generated image of a street artist\u2019s mural in Austin, Texas, tagged #Au...",
+          "timestamp": "2025-03-18 04:50:24",
+          "rank": 2,
+          "similarity": 0.946033239364624,
+          "temporal_position": 2
+        },
+        {
+          "text": "Reportedly, a user-generated photo of a street artist\u2019s mural in Austin, Texas, tagged with #AustinA...",
+          "timestamp": "2025-03-18 08:50:24",
+          "rank": 3,
+          "similarity": 0.9435375928878784,
+          "temporal_position": 6
+        },
+        {
+          "text": "On Instagram, a street artist\u2019s mural in Austin, Texas, seen in a user-generated photo tagged #Austi...",
+          "timestamp": "2025-03-18 06:50:24",
+          "rank": 4,
+          "similarity": 0.9422903060913086,
+          "temporal_position": 4
+        },
+        {
+          "text": "The mural of a street artist in Austin, Texas, captured in a user-generated photo and tagged with #A...",
+          "timestamp": "2025-03-18 05:50:24",
+          "rank": 5,
+          "similarity": 0.9366307258605957,
+          "temporal_position": 3
+        },
+        {
+          "text": "A street artist\u2019s mural in Austin, Texas, photographed by a user and tagged with #AustinArt2024, wen...",
+          "timestamp": "2025-03-18 07:50:24",
+          "rank": 6,
+          "similarity": 0.9273597598075867,
+          "temporal_position": 5
+        }
+      ],
+      "temporal_order_correlation": -0.2571428571428572,
+      "nearest_fact_rank": 2
+    },
+    {
+      "query_text": "A 30-second TikTok dance challenge, which gained 180 million views and generated 1.2 million user-ge...",
+      "query_timestamp": "2025-03-29 00:57:36",
+      "query_group": "group_009",
+      "query_temporal_position": 1,
+      "retrieved_facts": [
+        {
+          "text": "In the first 72 hours post-launch, a TikTok dance challenge with a 30-second routine saw 180 million...",
+          "timestamp": "2025-03-29 05:57:36",
+          "rank": 1,
+          "similarity": 0.9800815582275391,
+          "temporal_position": 6
+        },
+        {
+          "text": "A TikTok dance challenge launched with a 30-second routine reportedly achieved 180 million views and...",
+          "timestamp": "2025-03-29 06:57:36",
+          "rank": 2,
+          "similarity": 0.9777168035507202,
+          "temporal_position": 7
+        },
+        {
+          "text": "According to reports, a 30-second TikTok dance challenge reached 180 million views and attracted 1.2...",
+          "timestamp": "2025-03-29 02:57:36",
+          "rank": 3,
+          "similarity": 0.9719332456588745,
+          "temporal_position": 3
+        },
+        {
+          "text": "Within 72 hours of its launch, a TikTok dance challenge featuring a 30-second routine accumulated 18...",
+          "timestamp": "2025-03-29 01:57:36",
+          "rank": 4,
+          "similarity": 0.9713638424873352,
+          "temporal_position": 2
+        },
+        {
+          "text": "The TikTok dance challenge, launched with a 30-second routine, was viewed 180 million times and trig...",
+          "timestamp": "2025-03-29 03:57:36",
+          "rank": 5,
+          "similarity": 0.9579482674598694,
+          "temporal_position": 4
+        },
+        {
+          "text": "A 30-second routine from a TikTok dance challenge amassed 180 million views and generated 1.2 millio...",
+          "timestamp": "2025-03-29 04:57:36",
+          "rank": 6,
+          "similarity": 0.9547975659370422,
+          "temporal_position": 5
+        }
+      ],
+      "temporal_order_correlation": -0.4285714285714286,
+      "nearest_fact_rank": 4
+    },
+    {
+      "query_text": "A cooking competition streamed live on Instagram Live garnered 250,000 views within 20 minutes, accu...",
+      "query_timestamp": "2025-05-11 13:26:24",
+      "query_group": "group_013",
+      "query_temporal_position": 1,
+      "retrieved_facts": [
+        {
+          "text": "A live-streamed cooking competition on Instagram Live was observed to reach 250,000 views within 20 ...",
+          "timestamp": "2025-05-11 17:26:24",
+          "rank": 1,
+          "similarity": 0.9896448850631714,
+          "temporal_position": 5
+        },
+        {
+          "text": "According to reports, a live-streamed cooking competition on Instagram Live reached 250,000 views in...",
+          "timestamp": "2025-05-11 14:26:24",
+          "rank": 2,
+          "similarity": 0.9878974556922913,
+          "temporal_position": 2
+        },
+        {
+          "text": "With 250,000 views in 20 minutes, a live-streamed cooking competition on Instagram Live recorded 12,...",
+          "timestamp": "2025-05-11 19:26:24",
+          "rank": 3,
+          "similarity": 0.9798592925071716,
+          "temporal_position": 7
+        },
+        {
+          "text": "During the live stream, a cooking competition on Instagram Live achieved 250,000 views in 20 minutes...",
+          "timestamp": "2025-05-11 15:26:24",
+          "rank": 4,
+          "similarity": 0.9787406325340271,
+          "temporal_position": 3
+        },
+        {
+          "text": "In a live-streamed cooking competition on Instagram Live, 250,000 views were reached in 20 minutes, ...",
+          "timestamp": "2025-05-11 18:26:24",
+          "rank": 5,
+          "similarity": 0.9599635004997253,
+          "temporal_position": 6
+        },
+        {
+          "text": "The event, a live-streamed cooking competition on Instagram Live, saw 250,000 views in 20 minutes, r...",
+          "timestamp": "2025-05-11 16:26:24",
+          "rank": 6,
+          "similarity": 0.9518113136291504,
+          "temporal_position": 4
+        }
+      ],
+      "temporal_order_correlation": 0.08571428571428573,
+      "nearest_fact_rank": 2
+    },
+    {
+      "query_text": "A TikTok trend that involved a dance challenge with the phrase \"I\u2019m a robot\" reportedly gained over ...",
+      "query_timestamp": "2025-07-04 23:02:24",
+      "query_group": "group_018",
+      "query_temporal_position": 1,
+      "retrieved_facts": [
+        {
+          "text": "The trend on TikTok involving the phrase \"I\u2019m a robot\" in a dance challenge saw over 50 million view...",
+          "timestamp": "2025-07-05 04:02:24",
+          "rank": 1,
+          "similarity": 0.958248496055603,
+          "temporal_position": 6
+        },
+        {
+          "text": "TikTok users participated in a dance challenge with the phrase \"I\u2019m a robot\" that gained over 50 mil...",
+          "timestamp": "2025-07-05 05:02:24",
+          "rank": 2,
+          "similarity": 0.9568440318107605,
+          "temporal_position": 7
+        },
+        {
+          "text": "According to reports, a TikTok dance challenge featuring the phrase \"I\u2019m a robot\" accumulated over 5...",
+          "timestamp": "2025-07-05 01:02:24",
+          "rank": 3,
+          "similarity": 0.9491691589355469,
+          "temporal_position": 3
+        },
+        {
+          "text": "Using the phrase \"I\u2019m a robot,\" a TikTok dance challenge gained over 50 million views in 21 days and...",
+          "timestamp": "2025-07-05 02:02:24",
+          "rank": 4,
+          "similarity": 0.948273777961731,
+          "temporal_position": 4
+        },
+        {
+          "text": "A dance challenge on TikTok, centered around the phrase \"I\u2019m a robot,\" amassed over 50 million views...",
+          "timestamp": "2025-07-05 03:02:24",
+          "rank": 5,
+          "similarity": 0.9408742189407349,
+          "temporal_position": 5
+        },
+        {
+          "text": "The dance challenge on TikTok using the phrase \"I\u2019m a robot\" achieved over 50 million views within 2...",
+          "timestamp": "2025-07-05 00:02:24",
+          "rank": 6,
+          "similarity": 0.9113885164260864,
+          "temporal_position": 2
+        }
+      ],
+      "temporal_order_correlation": -0.7142857142857143,
+      "nearest_fact_rank": 6
+    },
+    {
+      "query_text": "A user named @DanceWithMe created a modified version of the \"Renegade\" dance, which sparked a TikTok...",
+      "query_timestamp": "2025-09-19 02:52:48",
+      "query_group": "group_025",
+      "query_temporal_position": 1,
+      "retrieved_facts": [
+        {
+          "text": "A modified version of the \"Renegade\" dance, created by user @DanceWithMe, ignited a TikTok challenge...",
+          "timestamp": "2025-09-19 06:52:48",
+          "rank": 1,
+          "similarity": 0.9744932651519775,
+          "temporal_position": 5
+        },
+        {
+          "text": "Reportedly, the viral TikTok dance challenge featuring a modified \"Renegade\" dance, crafted by @Danc...",
+          "timestamp": "2025-09-19 07:52:48",
+          "rank": 2,
+          "similarity": 0.9662845134735107,
+          "temporal_position": 6
+        },
+        {
+          "text": "A TikTok dance challenge rooted in a modified \"Renegade\" dance, originated by @DanceWithMe, went vir...",
+          "timestamp": "2025-09-19 05:52:48",
+          "rank": 3,
+          "similarity": 0.9629682302474976,
+          "temporal_position": 4
+        },
+        {
+          "text": "TikTok users witnessed a viral challenge based on a modified \"Renegade\" dance, initiated by @DanceWi...",
+          "timestamp": "2025-09-19 08:52:48",
+          "rank": 4,
+          "similarity": 0.9594945907592773,
+          "temporal_position": 7
+        },
+        {
+          "text": "The \"Renegade\" dance was modified by user @DanceWithMe, leading to a TikTok challenge that went vira...",
+          "timestamp": "2025-09-19 04:52:48",
+          "rank": 5,
+          "similarity": 0.9516813158988953,
+          "temporal_position": 3
+        },
+        {
+          "text": "According to reports, a TikTok dance challenge based on a modified \"Renegade\" dance, developed by us...",
+          "timestamp": "2025-09-19 03:52:48",
+          "rank": 6,
+          "similarity": 0.9256079792976379,
+          "temporal_position": 2
+        }
+      ],
+      "temporal_order_correlation": -0.6,
+      "nearest_fact_rank": 6
+    }
+  ],
+  "cross_group_examples": [
+    {
+      "query_text": "On Instagram, in March 2024, the #SustainableStyleSwap hashtag challenge, created by users, produced...",
+      "query_group": "group_007",
+      "retrieved_facts": [
+        {
+          "text": "In March 2024, the hashtag challenge #SustainableStyleSwap, initiated by users, gained traction on I...",
+          "group": "group_007",
+          "rank": 1,
+          "similarity": 0.979308009147644,
+          "is_same_group": true
+        },
+        {
+          "text": "Within 30 days of its launch in March 2024, the #SustainableStyleSwap user-generated hashtag challen...",
+          "group": "group_007",
+          "rank": 2,
+          "similarity": 0.9730830788612366,
+          "is_same_group": true
+        },
+        {
+          "text": "A user-generated hashtag challenge named #SustainableStyleSwap was launched on Instagram in March 20...",
+          "group": "group_007",
+          "rank": 3,
+          "similarity": 0.9717278480529785,
+          "is_same_group": true
+        },
+        {
+          "text": "Over 120,000 posts and 2.1 billion impressions were recorded for the user-generated hashtag challeng...",
+          "group": "group_007",
+          "rank": 4,
+          "similarity": 0.9717150926589966,
+          "is_same_group": true
+        },
+        {
+          "text": "According to reports, a user-generated hashtag challenge #SustainableStyleSwap was launched on Insta...",
+          "group": "group_007",
+          "rank": 5,
+          "similarity": 0.9666596055030823,
+          "is_same_group": true
+        },
+        {
+          "text": "The #SustainableStyleSwap challenge, a user-driven initiative, went live on Instagram in March 2024,...",
+          "group": "group_007",
+          "rank": 6,
+          "similarity": 0.8937320709228516,
+          "is_same_group": true
+        },
+        {
+          "text": "A specific hashtag campaign, #UrbanArtRevival, on Instagram Reels sparked a user-generated art chall...",
+          "group": "group_015",
+          "rank": 7,
+          "similarity": 0.6233627200126648,
+          "is_same_group": false
+        },
+        {
+          "text": "The hashtag #UrbanArtRevival, part of a user-generated art challenge on Instagram Reels, achieved 12...",
+          "group": "group_015",
+          "rank": 8,
+          "similarity": 0.6233254075050354,
+          "is_same_group": false
+        },
+        {
+          "text": "An Instagram art contest launched in early 2024 encouraged users to produce digital art based on \"cl...",
+          "group": "group_017",
+          "rank": 9,
+          "similarity": 0.6042697429656982,
+          "is_same_group": false
+        },
+        {
+          "text": "On Instagram Reels, a challenge driven by the hashtag #UrbanArtRevival produced 12 million views wit...",
+          "group": "group_015",
+          "rank": 10,
+          "similarity": 0.5972558259963989,
+          "is_same_group": false
+        }
+      ],
+      "same_group_in_top_5": 5,
+      "same_group_in_top_10": 6,
+      "first_same_group_rank": 1
+    },
+    {
+      "query_text": "The Glitch Hop,\" a TikTok dance challenge, reportedly gained 20 million views in 72 hours, with 120,...",
+      "query_group": "group_012",
+      "retrieved_facts": [
+        {
+          "text": "The Glitch Hop,' a viral TikTok dance challenge, was observed to gain 20 million views in 72 hours, ...",
+          "group": "group_012",
+          "rank": 1,
+          "similarity": 0.979154109954834,
+          "is_same_group": true
+        },
+        {
+          "text": "In just 72 hours, the TikTok dance challenge 'The Glitch Hop' achieved 20 million views, with 120,00...",
+          "group": "group_012",
+          "rank": 2,
+          "similarity": 0.9675585627555847,
+          "is_same_group": true
+        },
+        {
+          "text": "According to reports, 'The Glitch Hop' \u2014 a new TikTok dance challenge \u2014 amassed 20 million views in ...",
+          "group": "group_012",
+          "rank": 3,
+          "similarity": 0.9665831327438354,
+          "is_same_group": true
+        },
+        {
+          "text": "With 120,000 users joining and 500,000 shares across the platform, the TikTok dance challenge 'The G...",
+          "group": "group_012",
+          "rank": 4,
+          "similarity": 0.9650535583496094,
+          "is_same_group": true
+        },
+        {
+          "text": "A new viral trend on TikTok, 'The Glitch Hop,' gained 20 million views in 72 hours, engaging 120,000...",
+          "group": "group_012",
+          "rank": 5,
+          "similarity": 0.8932106494903564,
+          "is_same_group": true
+        },
+        {
+          "text": "A viral TikTok trend named 'The Glitch Hop' saw 20 million views within 72 hours, involving 120,000 ...",
+          "group": "group_012",
+          "rank": 6,
+          "similarity": 0.8842391967773438,
+          "is_same_group": true
+        },
+        {
+          "text": "A user named @DanceWithMe2024 sparked a TikTok dance challenge that went viral, amassing 120 million...",
+          "group": "group_024",
+          "rank": 7,
+          "similarity": 0.7952253818511963,
+          "is_same_group": false
+        },
+        {
+          "text": "According to reports, the TikTok dance challenge led by @DanceWithMe2024 reached 120 million views i...",
+          "group": "group_024",
+          "rank": 8,
+          "similarity": 0.7916063070297241,
+          "is_same_group": false
+        },
+        {
+          "text": "The TikTok dance challenge by @DanceWithMe2024 became viral, reaching 120 million views within 72 ho...",
+          "group": "group_024",
+          "rank": 9,
+          "similarity": 0.788081169128418,
+          "is_same_group": false
+        },
+        {
+          "text": "A viral TikTok dance challenge featuring @DanceWithMe2024 amassed 120 million views over a span of 7...",
+          "group": "group_024",
+          "rank": 10,
+          "similarity": 0.7873203754425049,
+          "is_same_group": false
+        }
+      ],
+      "same_group_in_top_5": 5,
+      "same_group_in_top_10": 6,
+      "first_same_group_rank": 1
+    },
+    {
+      "query_text": "Within 72 hours, the user-generated challenge #DanceWithYourShadow, born from a viral TikTok dance, ...",
+      "query_group": "group_014",
+      "retrieved_facts": [
+        {
+          "text": "In just 72 hours, a user-generated challenge named #DanceWithYourShadow, which originated from a vir...",
+          "group": "group_014",
+          "rank": 1,
+          "similarity": 0.956943929195404,
+          "is_same_group": true
+        },
+        {
+          "text": "According to reports, the challenge #DanceWithYourShadow, inspired by a viral TikTok dance, gained 2...",
+          "group": "group_014",
+          "rank": 2,
+          "similarity": 0.9563326835632324,
+          "is_same_group": true
+        },
+        {
+          "text": "A viral TikTok dance led to the creation of the user-generated challenge #DanceWithYourShadow, which...",
+          "group": "group_014",
+          "rank": 3,
+          "similarity": 0.9554073214530945,
+          "is_same_group": true
+        },
+        {
+          "text": "A viral TikTok dance sparked a user-generated challenge called #DanceWithYourShadow, which reached 2...",
+          "group": "group_014",
+          "rank": 4,
+          "similarity": 0.9497641921043396,
+          "is_same_group": true
+        },
+        {
+          "text": "In a span of 72 hours, #DanceWithYourShadow \u2014 a challenge inspired by a viral TikTok dance \u2014 reached...",
+          "group": "group_014",
+          "rank": 5,
+          "similarity": 0.9454768896102905,
+          "is_same_group": true
+        },
+        {
+          "text": "The challenge #DanceWithYourShadow, inspired by a viral TikTok dance, was reportedly viewed by 20 mi...",
+          "group": "group_014",
+          "rank": 6,
+          "similarity": 0.9209997653961182,
+          "is_same_group": true
+        },
+        {
+          "text": "A viral TikTok dance challenge featuring @DanceWithMe2024 amassed 120 million views over a span of 7...",
+          "group": "group_024",
+          "rank": 7,
+          "similarity": 0.8299226760864258,
+          "is_same_group": false
+        },
+        {
+          "text": "@DanceWithMe2024 launched a TikTok dance challenge that went viral, collecting 120 million views in ...",
+          "group": "group_024",
+          "rank": 8,
+          "similarity": 0.8225125074386597,
+          "is_same_group": false
+        },
+        {
+          "text": "Inspired by a viral 2023 music video, the dance challenge on TikTok led by @DanceWithMe2024 grew to ...",
+          "group": "group_002",
+          "rank": 9,
+          "similarity": 0.8209489583969116,
+          "is_same_group": false
+        },
+        {
+          "text": "A user named @DanceWithMe2024 sparked a TikTok dance challenge that went viral, amassing 120 million...",
+          "group": "group_024",
+          "rank": 10,
+          "similarity": 0.8193919062614441,
+          "is_same_group": false
+        }
+      ],
+      "same_group_in_top_5": 5,
+      "same_group_in_top_10": 6,
+      "first_same_group_rank": 1
+    },
+    {
+      "query_text": "The dance challenge on TikTok using the phrase \"I\u2019m a robot\" achieved over 50 million views within 2...",
+      "query_group": "group_018",
+      "retrieved_facts": [
+        {
+          "text": "A dance challenge on TikTok, centered around the phrase \"I\u2019m a robot,\" amassed over 50 million views...",
+          "group": "group_018",
+          "rank": 1,
+          "similarity": 0.970230758190155,
+          "is_same_group": true
+        },
+        {
+          "text": "Using the phrase \"I\u2019m a robot,\" a TikTok dance challenge gained over 50 million views in 21 days and...",
+          "group": "group_018",
+          "rank": 2,
+          "similarity": 0.9687917232513428,
+          "is_same_group": true
+        },
+        {
+          "text": "TikTok users participated in a dance challenge with the phrase \"I\u2019m a robot\" that gained over 50 mil...",
+          "group": "group_018",
+          "rank": 3,
+          "similarity": 0.9556970596313477,
+          "is_same_group": true
+        },
+        {
+          "text": "According to reports, a TikTok dance challenge featuring the phrase \"I\u2019m a robot\" accumulated over 5...",
+          "group": "group_018",
+          "rank": 4,
+          "similarity": 0.9266113042831421,
+          "is_same_group": true
+        },
+        {
+          "text": "A TikTok trend that involved a dance challenge with the phrase \"I\u2019m a robot\" reportedly gained over ...",
+          "group": "group_018",
+          "rank": 5,
+          "similarity": 0.9113885164260864,
+          "is_same_group": true
+        },
+        {
+          "text": "The trend on TikTok involving the phrase \"I\u2019m a robot\" in a dance challenge saw over 50 million view...",
+          "group": "group_018",
+          "rank": 6,
+          "similarity": 0.8958032131195068,
+          "is_same_group": true
+        },
+        {
+          "text": "A TikTok dance challenge launched with a 30-second routine reportedly achieved 180 million views and...",
+          "group": "group_009",
+          "rank": 7,
+          "similarity": 0.7883008718490601,
+          "is_same_group": false
+        },
+        {
+          "text": "The dance challenge on TikTok, initiated by @DanceWithMeSue and inspired by a viral 2023 song, repor...",
+          "group": "group_006",
+          "rank": 8,
+          "similarity": 0.783392608165741,
+          "is_same_group": false
+        },
+        {
+          "text": "According to reports, a TikTok dance challenge based on a modified \"Renegade\" dance, developed by us...",
+          "group": "group_025",
+          "rank": 9,
+          "similarity": 0.7816392183303833,
+          "is_same_group": false
+        },
+        {
+          "text": "A 30-second TikTok dance challenge, which gained 180 million views and generated 1.2 million user-ge...",
+          "group": "group_009",
+          "rank": 10,
+          "similarity": 0.7786548137664795,
+          "is_same_group": false
+        }
+      ],
+      "same_group_in_top_5": 5,
+      "same_group_in_top_10": 6,
+      "first_same_group_rank": 1
+    },
+    {
+      "query_text": "The TikTok dance challenge by @DanceWithMe2024 became viral, reaching 120 million views within 72 ho...",
+      "query_group": "group_024",
+      "retrieved_facts": [
+        {
+          "text": "The viral TikTok dance challenge initiated by @DanceWithMe2024 garnered 120 million views in 72 hour...",
+          "group": "group_024",
+          "rank": 1,
+          "similarity": 0.9776631593704224,
+          "is_same_group": true
+        },
+        {
+          "text": "@DanceWithMe2024 launched a TikTok dance challenge that went viral, collecting 120 million views in ...",
+          "group": "group_024",
+          "rank": 2,
+          "similarity": 0.977594256401062,
+          "is_same_group": true
+        },
+        {
+          "text": "It was reported that @DanceWithMe2024\u2019s TikTok dance challenge went viral, accumulating 120 million ...",
+          "group": "group_024",
+          "rank": 3,
+          "similarity": 0.9739001393318176,
+          "is_same_group": true
+        },
+        {
+          "text": "A viral TikTok dance challenge featuring @DanceWithMe2024 amassed 120 million views over a span of 7...",
+          "group": "group_024",
+          "rank": 4,
+          "similarity": 0.9689033031463623,
+          "is_same_group": true
+        },
+        {
+          "text": "A user named @DanceWithMe2024 sparked a TikTok dance challenge that went viral, amassing 120 million...",
+          "group": "group_024",
+          "rank": 5,
+          "similarity": 0.9627968072891235,
+          "is_same_group": true
+        },
+        {
+          "text": "The TikTok dance challenge initiated by @DanceWithMe2024, inspired by a viral 2023 music video, gain...",
+          "group": "group_002",
+          "rank": 6,
+          "similarity": 0.9471868276596069,
+          "is_same_group": false
+        },
+        {
+          "text": "According to reports, the TikTok dance challenge led by @DanceWithMe2024 reached 120 million views i...",
+          "group": "group_024",
+          "rank": 7,
+          "similarity": 0.9439282417297363,
+          "is_same_group": true
+        },
+        {
+          "text": "According to reports, a TikTok dance challenge based on a modified \"Renegade\" dance, developed by us...",
+          "group": "group_025",
+          "rank": 8,
+          "similarity": 0.9325220584869385,
+          "is_same_group": false
+        },
+        {
+          "text": "The dance challenge on TikTok, initiated by @DanceWithMeSue and inspired by a viral 2023 song, repor...",
+          "group": "group_006",
+          "rank": 9,
+          "similarity": 0.9324895739555359,
+          "is_same_group": false
+        },
+        {
+          "text": "A 30-second TikTok dance challenge, which gained 180 million views and generated 1.2 million user-ge...",
+          "group": "group_009",
+          "rank": 10,
+          "similarity": 0.9308250546455383,
+          "is_same_group": false
+        }
+      ],
+      "same_group_in_top_5": 5,
+      "same_group_in_top_10": 6,
+      "first_same_group_rank": 1
+    }
+  ]
+}

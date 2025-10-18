@@ -1,0 +1,62 @@
+name: temporal_facts_experiment
+description: 'Evaluating single vs hierarchical embeddings on temporal fact retrieval'
+
+models:
+- type: single
+  name: baseline_minilm
+  model_name: all-MiniLM-L6-v2
+  normalize: true
+
+- type: single
+  name: baseline_mpnet
+  model_name: all-mpnet-base-v2
+  normalize: true
+
+- type: hierarchical
+  name: hierarchical_concat
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: concat
+  coarse_weight: 0.5
+  fine_weight: 0.5
+  normalize: true
+
+- type: hierarchical
+  name: hierarchical_hyperbolic
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: hyperbolic
+  hyperbolic_curvature: 1.0
+  normalize: true
+
+datasets:
+- type: temporal
+  name: temporal_facts_social
+  file_path: datasets/temporal_facts_social_20251018_055003.jsonl
+  text_column: instruction
+  timestamp_column: metadata.timestamp  # Required: path to timestamp field
+  # append_timestamp_to_text: false  # Optional: include timestamp in embeddings (default: false)
+  # timestamp_format: iso  # Optional: iso, human, unix, relative (default: iso)
+
+tasks:
+- temporal
+
+batch_size: 32
+output_dir: results
+
+# Retrieval settings
+retrieval_k_values:
+- 1
+- 3
+- 5
+- 10
+
+# Temporal task settings
+temporal_evaluate_within_group: true
+temporal_evaluate_cross_group: true
+temporal_rank_correlation_method: spearman  # or 'kendall'
+temporal_drift_analysis: true
+
+# MLflow tracking
+mlflow_tracking: true
+mlflow_uri: mlruns

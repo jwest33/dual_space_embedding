@@ -1,0 +1,63 @@
+name: temporal_facts_with_timestamps_experiment
+description: 'Testing if including timestamps in embeddings improves temporal ordering'
+
+models:
+- type: single
+  name: baseline_minilm_with_ts
+  model_name: all-MiniLM-L6-v2
+  normalize: true
+
+- type: single
+  name: baseline_mpnet_with_ts
+  model_name: all-mpnet-base-v2
+  normalize: true
+
+- type: hierarchical
+  name: hierarchical_concat_with_ts
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: concat
+  coarse_weight: 0.5
+  fine_weight: 0.5
+  normalize: true
+
+- type: hierarchical
+  name: hierarchical_hyperbolic
+  coarse_model: all-MiniLM-L6-v2
+  fine_model: all-mpnet-base-v2
+  combination_method: hyperbolic
+  hyperbolic_curvature: 1.0
+  normalize: true
+
+datasets:
+- type: temporal
+  name: temporal_facts_social
+  file_path: datasets/temporal_facts_social_20251018_055003.jsonl
+  text_column: instruction
+  timestamp_column: metadata.timestamp  # Required: path to timestamp field
+  group_id_column: metadata.group_id  # Optional: defaults to metadata.group_id
+  append_timestamp_to_text: true  # Include timestamps in embeddings
+  timestamp_format: relative  # Options: iso, human, unix, relative
+
+tasks:
+- temporal
+
+batch_size: 32
+output_dir: results
+
+# Retrieval settings
+retrieval_k_values:
+- 1
+- 3
+- 5
+- 10
+
+# Temporal task settings
+temporal_evaluate_within_group: true
+temporal_evaluate_cross_group: true
+temporal_rank_correlation_method: spearman
+temporal_drift_analysis: true
+
+# MLflow tracking
+mlflow_tracking: true
+mlflow_uri: mlruns

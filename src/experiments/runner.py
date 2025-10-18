@@ -7,13 +7,15 @@ from loguru import logger
 import mlflow
 
 from embeddings import SingleEmbedder, HierarchicalEmbedder
-from data_loaders import get_benchmark_dataset, load_custom_dataset
+from data_loaders import get_benchmark_dataset, load_custom_dataset, load_temporal_dataset
 from evaluation import (
     SimilarityEvaluator,
     RetrievalEvaluator,
     ClassificationEvaluator,
     ClusteringEvaluator,
+    TemporalRetrievalEvaluator,
 )
+from evaluation.temporal_examples import save_examples, generate_examples_summary
 from utils import ExperimentConfig, ModelConfig, DatasetConfig, MetricsTracker
 
 
@@ -143,16 +145,29 @@ class ExperimentRunner:
                     }
                 )
                 
+                # Save temporal examples if available
+                if task == "temporal" and self.config.temporal_save_examples:
+                    if "within_group_examples" in metrics or "cross_group_examples" in metrics:
+                        save_examples(
+                            model_name=model_config.name,
+                            dataset_name=dataset_config.name,
+                            metrics=metrics,
+                            output_dir=self.output_dir,
+                        )
+                        logger.info(f"    Saved temporal examples to {self.output_dir}/examples/")
+
                 # Log to MLflow
                 if self.config.mlflow_tracking:
                     for metric_name, metric_value in metrics.items():
-                        # Sanitize metric name for MLflow (replace @ with _at_)
-                        sanitized_name = metric_name.replace("@", "_at_")
-                        mlflow.log_metric(
-                            f"{dataset_config.name}_{task}_{sanitized_name}",
-                            metric_value
-                        )
-                
+                        # Skip non-numeric values (like examples)
+                        if isinstance(metric_value, (int, float)):
+                            # Sanitize metric name for MLflow (replace @ with _at_)
+                            sanitized_name = metric_name.replace("@", "_at_")
+                            mlflow.log_metric(
+                                f"{dataset_config.name}_{task}_{sanitized_name}",
+                                metric_value
+                            )
+
                 # Print key metrics
                 self._print_metrics(metrics)
                 
@@ -184,12 +199,12 @@ class ExperimentRunner:
     def _load_datasets(self, dataset_config: DatasetConfig) -> Dict[str, Any]:
         """
         Load dataset(s) for different tasks.
-        
+
         Returns:
             Dictionary mapping task names to dataset configurations
         """
         datasets = {}
-        
+
         if dataset_config.type == "benchmark":
             # Load benchmark dataset
             dataset = get_benchmark_dataset(
@@ -197,15 +212,15 @@ class ExperimentRunner:
                 split=dataset_config.split,
                 num_samples=dataset_config.num_samples
             )
-            
+
             # Determine which tasks this dataset supports
             info = dataset.get_info()
-            
+
             if info["has_pairs"] and info["has_labels"]:
                 # Supports similarity
                 datasets["similarity"] = {"dataset": dataset}
                 datasets["retrieval"] = {"dataset": dataset}
-            
+
             if not info["has_pairs"] and info["has_labels"]:
                 # Supports classification and clustering
                 datasets["classification"] = {
@@ -213,7 +228,7 @@ class ExperimentRunner:
                     "test": dataset  # Will split or use separate split
                 }
                 datasets["clustering"] = {"dataset": dataset}
-        
+
         elif dataset_config.type == "custom":
             # Load custom dataset
             dataset = load_custom_dataset(
@@ -223,25 +238,40 @@ class ExperimentRunner:
                 label_column=dataset_config.label_column,
                 format=dataset_config.format,
             )
-            
+
             # Determine supported tasks
             info = dataset.get_info()
-            
+
             if info["has_pairs"] and info["has_labels"]:
                 datasets["similarity"] = {"dataset": dataset}
                 datasets["retrieval"] = {"dataset": dataset}
-            
+
             if not info["has_pairs"] and info["has_labels"]:
                 datasets["classification"] = {
                     "train": dataset,
                     "test": dataset
                 }
                 datasets["clustering"] = {"dataset": dataset}
-            
+
             if not info["has_labels"]:
                 # Unsupervised clustering only
                 datasets["clustering"] = {"dataset": dataset}
-        
+
+        elif dataset_config.type == "temporal":
+            # Load temporal dataset
+            dataset = load_temporal_dataset(
+                file_path=dataset_config.file_path,
+                text_column=dataset_config.text_column,
+                timestamp_column=dataset_config.timestamp_column or "metadata.timestamp",
+                group_id_column=dataset_config.group_id_column or "metadata.group_id",
+                append_timestamp_to_text=dataset_config.append_timestamp_to_text or self.config.temporal_append_timestamp,
+                timestamp_format=dataset_config.timestamp_format or self.config.temporal_timestamp_format,
+                num_samples=dataset_config.num_samples
+            )
+
+            # Temporal datasets support temporal task
+            datasets["temporal"] = {"dataset": dataset}
+
         return datasets
     
     def _run_task(
@@ -252,12 +282,12 @@ class ExperimentRunner:
     ) -> Dict[str, float]:
         """
         Run a specific task.
-        
+
         Args:
             embedder: Embedding model
             task: Task name
             dataset_config: Dataset configuration for this task
-            
+
         Returns:
             Dictionary of metrics
         """
@@ -267,7 +297,7 @@ class ExperimentRunner:
                 dataset_config["dataset"],
                 batch_size=self.config.batch_size
             )
-        
+
         elif task == "retrieval":
             evaluator = RetrievalEvaluator(embedder)
             return evaluator.evaluate(
@@ -275,7 +305,7 @@ class ExperimentRunner:
                 batch_size=self.config.batch_size,
                 k_values=self.config.retrieval_k_values
             )
-        
+
         elif task == "classification":
             evaluator = ClassificationEvaluator(
                 embedder,
@@ -286,7 +316,7 @@ class ExperimentRunner:
                 dataset_config["test"],
                 batch_size=self.config.batch_size
             )
-        
+
         elif task == "clustering":
             evaluator = ClusteringEvaluator(
                 embedder,
@@ -297,7 +327,23 @@ class ExperimentRunner:
                 dataset_config["dataset"],
                 batch_size=self.config.batch_size
             )
-        
+
+        elif task == "temporal":
+            evaluator = TemporalRetrievalEvaluator(
+                embedder,
+                evaluate_within_group=self.config.temporal_evaluate_within_group,
+                evaluate_cross_group=self.config.temporal_evaluate_cross_group,
+                rank_correlation_method=self.config.temporal_rank_correlation_method,
+                temporal_drift_analysis=self.config.temporal_drift_analysis,
+                save_examples=self.config.temporal_save_examples,
+                num_examples=self.config.temporal_num_examples,
+            )
+            return evaluator.evaluate(
+                dataset_config["dataset"],
+                batch_size=self.config.batch_size,
+                k_values=self.config.retrieval_k_values
+            )
+
         else:
             raise ValueError(f"Unknown task: {task}")
     
@@ -305,16 +351,19 @@ class ExperimentRunner:
         """Print key metrics."""
         # Select most important metrics based on what's available
         key_metrics = {}
-        
+
         priority_metrics = [
             "accuracy", "f1", "spearman", "pearson",
-            "mrr", "recall@10", "silhouette"
+            "mrr", "recall@10", "silhouette",
+            "within_group_temporal_order_correlation", "within_group_nearest_fact_mrr",
+            "cross_group_mrr", "cross_group_purity@5",
+            "temporal_drift_correlation"
         ]
-        
+
         for metric in priority_metrics:
             if metric in metrics:
                 key_metrics[metric] = metrics[metric]
-        
+
         # Print
         metrics_str = ", ".join([f"{k}: {v:.4f}" for k, v in key_metrics.items()])
         logger.info(f"    Metrics: {metrics_str}")
@@ -360,5 +409,23 @@ class ExperimentRunner:
                 f.write(summary.to_string(index=False))
             else:
                 f.write("No results available.\n")
-        
+
+            # Add examples summary if temporal task with examples
+            examples_dir = self.output_dir / "examples"
+            if examples_dir.exists() and any(examples_dir.glob("*.json")):
+                f.write("\n\n")
+                f.write("=" * 80 + "\n")
+                f.write("Temporal Retrieval Examples\n")
+                f.write("=" * 80 + "\n\n")
+                f.write(f"Example retrievals have been saved to: {examples_dir.relative_to(self.output_dir)}/\n")
+                f.write("See *_examples.txt files for human-readable examples\n")
+                f.write("See *_examples.json files for machine-readable data\n")
+
+                # Generate and save examples summary
+                summary_md = generate_examples_summary(self.output_dir)
+                summary_path = examples_dir / "README.md"
+                with open(summary_path, "w") as sf:
+                    sf.write(summary_md)
+                f.write(f"\nSee {examples_dir.relative_to(self.output_dir)}/README.md for full examples summary\n")
+
         logger.info(f"Report saved to {report_path}")

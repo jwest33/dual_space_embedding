@@ -1,0 +1,405 @@
+Temporal Retrieval Examples
+Model: baseline_mpnet_with_ts
+Dataset: temporal_facts_social
+================================================================================
+
+
+################################################################################
+# WITHIN-GROUP RETRIEVAL EXAMPLES
+################################################################################
+
+================================================================================
+Within-Group Example 1
+================================================================================
+
+Query (Group: group_007, Position: 1):
+Timestamp: 2025-03-07 06:43:12
+"In March 2024, the hashtag challenge #SustainableStyleSwap, initiated by users, gained traction on I..."
+
+Retrieved Facts (by similarity):
+
+  1. [Pos: 5, Sim: 0.986] 
+     Timestamp: 2025-03-07 10:43:12
+     "A user-generated hashtag challenge named #SustainableStyleSwap was launched on Instagram in March 20..."
+
+  2. [Pos: 6, Sim: 0.982] 
+     Timestamp: 2025-03-07 11:43:12
+     "On Instagram, in March 2024, the #SustainableStyleSwap hashtag challenge, created by users, produced..."
+
+  3. [Pos: 2, Sim: 0.982] 
+     Timestamp: 2025-03-07 07:43:12
+     "According to reports, a user-generated hashtag challenge #SustainableStyleSwap was launched on Insta..."
+
+  4. [Pos: 7, Sim: 0.965] 
+     Timestamp: 2025-03-07 12:43:12
+     "Within 30 days of its launch in March 2024, the #SustainableStyleSwap user-generated hashtag challen..."
+
+  5. [Pos: 4, Sim: 0.958] 
+     Timestamp: 2025-03-07 09:43:12
+     "Over 120,000 posts and 2.1 billion impressions were recorded for the user-generated hashtag challeng..."
+
+  6. [Pos: 3, Sim: 0.939] 
+     Timestamp: 2025-03-07 08:43:12
+     "The #SustainableStyleSwap challenge, a user-driven initiative, went live on Instagram in March 2024,..."
+
+Temporal Order Correlation: -0.314
+Nearest Fact Rank: 3
+================================================================================
+Within-Group Example 2
+================================================================================
+
+Query (Group: group_009, Position: 1):
+Timestamp: 2025-03-29 00:57:36
+"A 30-second TikTok dance challenge, which gained 180 million views and generated 1.2 million user-ge..."
+
+Retrieved Facts (by similarity):
+
+  1. [Pos: 7, Sim: 0.963] 
+     Timestamp: 2025-03-29 06:57:36
+     "A TikTok dance challenge launched with a 30-second routine reportedly achieved 180 million views and..."
+
+  2. [Pos: 3, Sim: 0.956] 
+     Timestamp: 2025-03-29 02:57:36
+     "According to reports, a 30-second TikTok dance challenge reached 180 million views and attracted 1.2..."
+
+  3. [Pos: 2, Sim: 0.956] 
+     Timestamp: 2025-03-29 01:57:36
+     "Within 72 hours of its launch, a TikTok dance challenge featuring a 30-second routine accumulated 18..."
+
+  4. [Pos: 4, Sim: 0.948] 
+     Timestamp: 2025-03-29 03:57:36
+     "The TikTok dance challenge, launched with a 30-second routine, was viewed 180 million times and trig..."
+
+  5. [Pos: 5, Sim: 0.945] 
+     Timestamp: 2025-03-29 04:57:36
+     "A 30-second routine from a TikTok dance challenge amassed 180 million views and generated 1.2 millio..."
+
+  6. [Pos: 6, Sim: 0.930] 
+     Timestamp: 2025-03-29 05:57:36
+     "In the first 72 hours post-launch, a TikTok dance challenge with a 30-second routine saw 180 million..."
+
+Temporal Order Correlation: 0.086
+Nearest Fact Rank: 3
+================================================================================
+Within-Group Example 3
+================================================================================
+
+Query (Group: group_013, Position: 1):
+Timestamp: 2025-05-11 13:26:24
+"A cooking competition streamed live on Instagram Live garnered 250,000 views within 20 minutes, accu..."
+
+Retrieved Facts (by similarity):
+
+  1. [Pos: 5, Sim: 0.977] 
+     Timestamp: 2025-05-11 17:26:24
+     "A live-streamed cooking competition on Instagram Live was observed to reach 250,000 views within 20 ..."
+
+  2. [Pos: 3, Sim: 0.969] 
+     Timestamp: 2025-05-11 15:26:24
+     "During the live stream, a cooking competition on Instagram Live achieved 250,000 views in 20 minutes..."
+
+  3. [Pos: 7, Sim: 0.958] 
+     Timestamp: 2025-05-11 19:26:24
+     "With 250,000 views in 20 minutes, a live-streamed cooking competition on Instagram Live recorded 12,..."
+
+  4. [Pos: 6, Sim: 0.956] 
+     Timestamp: 2025-05-11 18:26:24
+     "In a live-streamed cooking competition on Instagram Live, 250,000 views were reached in 20 minutes, ..."
+
+  5. [Pos: 2, Sim: 0.943] 
+     Timestamp: 2025-05-11 14:26:24
+     "According to reports, a live-streamed cooking competition on Instagram Live reached 250,000 views in..."
+
+  6. [Pos: 4, Sim: 0.913] 
+     Timestamp: 2025-05-11 16:26:24
+     "The event, a live-streamed cooking competition on Instagram Live, saw 250,000 views in 20 minutes, r..."
+
+Temporal Order Correlation: -0.257
+Nearest Fact Rank: 5
+================================================================================
+Within-Group Example 4
+================================================================================
+
+Query (Group: group_024, Position: 1):
+Timestamp: 2025-09-08 05:45:36
+"A user named @DanceWithMe2024 sparked a TikTok dance challenge that went viral, amassing 120 million..."
+
+Retrieved Facts (by similarity):
+
+  1. [Pos: 5, Sim: 0.967] 
+     Timestamp: 2025-09-08 09:45:36
+     "It was reported that @DanceWithMe2024’s TikTok dance challenge went viral, accumulating 120 million ..."
+
+  2. [Pos: 7, Sim: 0.965] 
+     Timestamp: 2025-09-08 11:45:36
+     "@DanceWithMe2024 launched a TikTok dance challenge that went viral, collecting 120 million views in ..."
+
+  3. [Pos: 3, Sim: 0.958] 
+     Timestamp: 2025-09-08 07:45:36
+     "The viral TikTok dance challenge initiated by @DanceWithMe2024 garnered 120 million views in 72 hour..."
+
+  4. [Pos: 4, Sim: 0.958] 
+     Timestamp: 2025-09-08 08:45:36
+     "A viral TikTok dance challenge featuring @DanceWithMe2024 amassed 120 million views over a span of 7..."
+
+  5. [Pos: 6, Sim: 0.952] 
+     Timestamp: 2025-09-08 10:45:36
+     "The TikTok dance challenge by @DanceWithMe2024 became viral, reaching 120 million views within 72 ho..."
+
+  6. [Pos: 2, Sim: 0.935] 
+     Timestamp: 2025-09-08 06:45:36
+     "According to reports, the TikTok dance challenge led by @DanceWithMe2024 reached 120 million views i..."
+
+Temporal Order Correlation: -0.486
+Nearest Fact Rank: 6
+================================================================================
+Within-Group Example 5
+================================================================================
+
+Query (Group: group_025, Position: 1):
+Timestamp: 2025-09-19 02:52:48
+"A user named @DanceWithMe created a modified version of the "Renegade" dance, which sparked a TikTok..."
+
+Retrieved Facts (by similarity):
+
+  1. [Pos: 3, Sim: 0.951] 
+     Timestamp: 2025-09-19 04:52:48
+     "The "Renegade" dance was modified by user @DanceWithMe, leading to a TikTok challenge that went vira..."
+
+  2. [Pos: 5, Sim: 0.941] 
+     Timestamp: 2025-09-19 06:52:48
+     "A modified version of the "Renegade" dance, created by user @DanceWithMe, ignited a TikTok challenge..."
+
+  3. [Pos: 6, Sim: 0.927] 
+     Timestamp: 2025-09-19 07:52:48
+     "Reportedly, the viral TikTok dance challenge featuring a modified "Renegade" dance, crafted by @Danc..."
+
+  4. [Pos: 4, Sim: 0.926] 
+     Timestamp: 2025-09-19 05:52:48
+     "A TikTok dance challenge rooted in a modified "Renegade" dance, originated by @DanceWithMe, went vir..."
+
+  5. [Pos: 7, Sim: 0.919] 
+     Timestamp: 2025-09-19 08:52:48
+     "TikTok users witnessed a viral challenge based on a modified "Renegade" dance, initiated by @DanceWi..."
+
+  6. [Pos: 2, Sim: 0.907] 
+     Timestamp: 2025-09-19 03:52:48
+     "According to reports, a TikTok dance challenge based on a modified "Renegade" dance, developed by us..."
+
+Temporal Order Correlation: -0.029
+Nearest Fact Rank: 6
+
+################################################################################
+# CROSS-GROUP RETRIEVAL EXAMPLES
+################################################################################
+
+================================================================================
+Cross-Group Example 1
+================================================================================
+
+Query (Group: group_004):
+"The 30-second "Sunset Glow" dance routine, developed by @danceforyou123, saw 25 million views in 72 ..."
+
+Top 10 Retrieved Facts:
+
+  1. [Sim: 0.930] ✓ SAME
+     "A 30-second "Sunset Glow" dance routine, created by @danceforyou123 and popularized on TikTok, amass..."
+
+  2. [Sim: 0.920] ✓ SAME
+     "The "Sunset Glow" routine, a 30-second dance challenge by @danceforyou123, achieved 25 million views..."
+
+  3. [Sim: 0.878] ✓ SAME
+     "A TikTok dance challenge featuring a 30-second "Sunset Glow" routine, created by user @danceforyou12..."
+
+  4. [Sim: 0.869] ✓ SAME
+     "Created by @danceforyou123, the 30-second "Sunset Glow" TikTok dance challenge was viewed 25 million..."
+
+  5. [Sim: 0.868] ✓ SAME
+     "According to reports, the TikTok dance challenge titled "Sunset Glow," produced by user @danceforyou..."
+
+  6. [Sim: 0.867] ✓ SAME
+     "A TikTok dance challenge known as "Sunset Glow," featuring a 30-second routine from user @danceforyo..."
+
+  7. [Sim: 0.805] ✗ group_016
+     "The dance challenge centered on a remix of 'Blinding Lights' reached 20 million views on TikTok in 7..."
+
+  8. [Sim: 0.795] ✗ group_016
+     "Within 72 hours, a trending dance challenge based on a remix of 'Blinding Lights' achieved 20 millio..."
+
+  9. [Sim: 0.793] ✗ group_016
+     "In a span of 72 hours, the dance trend built around a remix of 'Blinding Lights' gained 20 million v..."
+
+  10. [Sim: 0.781] ✗ group_016
+     "According to reports, a viral dance challenge featuring a remix of 'Blinding Lights' generated 20 mi..."
+
+Same-group facts in top-5: 5/5
+Same-group facts in top-10: 6/10
+First same-group fact rank: 1
+================================================================================
+Cross-Group Example 2
+================================================================================
+
+Query (Group: group_005):
+"A user-generated art competition on Instagram Reels, featuring AI-generated portraits, reportedly sp..."
+
+Top 10 Retrieved Facts:
+
+  1. [Sim: 0.959] ✓ SAME
+     "Featuring AI-generated portraits, the user-generated art competition on Instagram Reels attracted 2...."
+
+  2. [Sim: 0.940] ✓ SAME
+     "Within 72 hours of launch, the Instagram Reels user-generated art competition showcasing AI-generate..."
+
+  3. [Sim: 0.934] ✓ SAME
+     "According to reports, an Instagram Reels art competition driven by user-generated content and center..."
+
+  4. [Sim: 0.912] ✓ SAME
+     "In the first 72 hours post-launch, the Instagram Reels art competition based on user-generated conte..."
+
+  5. [Sim: 0.906] ✓ SAME
+     "The Instagram Reels competition, which featured AI-generated portraits and was user-generated, saw 2..."
+
+  6. [Sim: 0.897] ✓ SAME
+     "Sparked by user-generated art and centered on AI-generated portraits, the Instagram Reels competitio..."
+
+  7. [Sim: 0.851] ✗ group_015
+     "Featuring the hashtag #UrbanArtRevival, a user-generated art challenge on Instagram Reels attracted ..."
+
+  8. [Sim: 0.829] ✗ group_015
+     "A user-generated art challenge on Instagram Reels, centered around the hashtag #UrbanArtRevival, gar..."
+
+  9. [Sim: 0.818] ✗ group_015
+     "According to reports, a user-generated art challenge on Instagram Reels using the hashtag #UrbanArtR..."
+
+  10. [Sim: 0.798] ✗ group_015
+     "A specific hashtag campaign, #UrbanArtRevival, on Instagram Reels sparked a user-generated art chall..."
+
+Same-group facts in top-5: 5/5
+Same-group facts in top-10: 6/10
+First same-group fact rank: 1
+================================================================================
+Cross-Group Example 3
+================================================================================
+
+Query (Group: group_012):
+"In just 72 hours, the TikTok dance challenge 'The Glitch Hop' achieved 20 million views, with 120,00..."
+
+Top 10 Retrieved Facts:
+
+  1. [Sim: 0.989] ✓ SAME
+     "With 120,000 users joining and 500,000 shares across the platform, the TikTok dance challenge 'The G..."
+
+  2. [Sim: 0.967] ✓ SAME
+     "According to reports, 'The Glitch Hop' — a new TikTok dance challenge — amassed 20 million views in ..."
+
+  3. [Sim: 0.958] ✓ SAME
+     "The Glitch Hop," a TikTok dance challenge, reportedly gained 20 million views in 72 hours, with 120,..."
+
+  4. [Sim: 0.945] ✓ SAME
+     "The Glitch Hop,' a viral TikTok dance challenge, was observed to gain 20 million views in 72 hours, ..."
+
+  5. [Sim: 0.839] ✗ group_024
+     "The TikTok dance challenge by @DanceWithMe2024 became viral, reaching 120 million views within 72 ho..."
+
+  6. [Sim: 0.838] ✗ group_001
+     "The TikTok dance challenge, inspired by the 1980s, went viral and amassed 50 million views in 72 hou..."
+
+  7. [Sim: 0.837] ✗ group_024
+     "The viral TikTok dance challenge initiated by @DanceWithMe2024 garnered 120 million views in 72 hour..."
+
+  8. [Sim: 0.837] ✗ group_009
+     "A 30-second TikTok dance challenge, which gained 180 million views and generated 1.2 million user-ge..."
+
+  9. [Sim: 0.836] ✗ group_024
+     "It was reported that @DanceWithMe2024’s TikTok dance challenge went viral, accumulating 120 million ..."
+
+  10. [Sim: 0.836] ✗ group_001
+     "According to reports, a viral TikTok dance challenge featuring 1980s-inspired choreography achieved ..."
+
+Same-group facts in top-5: 4/5
+Same-group facts in top-10: 4/10
+First same-group fact rank: 1
+================================================================================
+Cross-Group Example 4
+================================================================================
+
+Query (Group: group_017):
+"An Instagram art contest launched in early 2024 encouraged users to produce digital art based on "cl..."
+
+Top 10 Retrieved Facts:
+
+  1. [Sim: 0.965] ✓ SAME
+     "A user-generated art contest on Instagram, launched in early 2024, invited participants to create di..."
+
+  2. [Sim: 0.957] ✓ SAME
+     "Users on Instagram participated in a contest launched in early 2024 to generate digital art inspired..."
+
+  3. [Sim: 0.940] ✓ SAME
+     "In early 2024, Instagram launched a user-generated art contest where participants created digital ar..."
+
+  4. [Sim: 0.930] ✓ SAME
+     "A user-generated art contest on Instagram launched in early 2024, where participants created digital..."
+
+  5. [Sim: 0.928] ✓ SAME
+     "A user-generated art contest on Instagram launched in early 2024, where participants created digital..."
+
+  6. [Sim: 0.927] ✓ SAME
+     "A user-generated art contest on Instagram launched in early 2024, where participants created digital..."
+
+  7. [Sim: 0.693] ✗ group_007
+     "The #SustainableStyleSwap challenge, a user-driven initiative, went live on Instagram in March 2024,..."
+
+  8. [Sim: 0.678] ✗ group_005
+     "A user-generated art competition on Instagram Reels, featuring AI-generated portraits, reportedly sp..."
+
+  9. [Sim: 0.664] ✗ group_005
+     "Within 72 hours of launch, the Instagram Reels user-generated art competition showcasing AI-generate..."
+
+  10. [Sim: 0.646] ✗ group_007
+     "On Instagram, in March 2024, the #SustainableStyleSwap hashtag challenge, created by users, produced..."
+
+Same-group facts in top-5: 5/5
+Same-group facts in top-10: 6/10
+First same-group fact rank: 1
+================================================================================
+Cross-Group Example 5
+================================================================================
+
+Query (Group: group_018):
+"Using the phrase "I’m a robot," a TikTok dance challenge gained over 50 million views in 21 days and..."
+
+Top 10 Retrieved Facts:
+
+  1. [Sim: 0.980] ✓ SAME
+     "According to reports, a TikTok dance challenge featuring the phrase "I’m a robot" accumulated over 5..."
+
+  2. [Sim: 0.977] ✓ SAME
+     "TikTok users participated in a dance challenge with the phrase "I’m a robot" that gained over 50 mil..."
+
+  3. [Sim: 0.972] ✓ SAME
+     "The dance challenge on TikTok using the phrase "I’m a robot" achieved over 50 million views within 2..."
+
+  4. [Sim: 0.970] ✓ SAME
+     "A dance challenge on TikTok, centered around the phrase "I’m a robot," amassed over 50 million views..."
+
+  5. [Sim: 0.940] ✓ SAME
+     "The trend on TikTok involving the phrase "I’m a robot" in a dance challenge saw over 50 million view..."
+
+  6. [Sim: 0.924] ✓ SAME
+     "A TikTok trend that involved a dance challenge with the phrase "I’m a robot" reportedly gained over ..."
+
+  7. [Sim: 0.801] ✗ group_002
+     "Reportedly, a TikTok dance challenge by user @DanceWithMe2024, inspired by a 2023 music video, accum..."
+
+  8. [Sim: 0.801] ✗ group_006
+     "A viral 2023 song sparked a TikTok dance challenge by user @DanceWithMeSue, which amassed 25 million..."
+
+  9. [Sim: 0.800] ✗ group_002
+     "A viral 2023 music video inspired a TikTok dance challenge by user @DanceWithMe2024, which amassed o..."
+
+  10. [Sim: 0.798] ✗ group_006
+     "In a span of 72 hours, the TikTok dance challenge by @DanceWithMeSue, inspired by a viral 2023 song,..."
+
+Same-group facts in top-5: 5/5
+Same-group facts in top-10: 6/10
+First same-group fact rank: 1

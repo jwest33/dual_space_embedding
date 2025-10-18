@@ -46,14 +46,27 @@ class MetricsTracker:
     def get_summary(self) -> pd.DataFrame:
         """
         Get summary of all results as DataFrame.
-        
+
+        Only includes numeric metrics (excludes examples and other non-numeric data).
+
         Returns:
             DataFrame with all results
         """
         if not self.results:
             return pd.DataFrame()
-        
-        return pd.DataFrame(self.results)
+
+        # Filter out non-numeric metrics (like examples) for summary display
+        numeric_results = []
+        for result in self.results:
+            numeric_result = {}
+            for key, value in result.items():
+                # Keep metadata as-is, filter others to numeric only
+                if key == "metadata" or isinstance(value, (int, float, bool, type(None), str)):
+                    numeric_result[key] = value
+                # Skip lists/dicts (examples)
+            numeric_results.append(numeric_result)
+
+        return pd.DataFrame(numeric_results)
     
     def get_comparison(self, metric: str = "accuracy") -> pd.DataFrame:
         """
